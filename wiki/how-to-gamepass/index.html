@@ -3,26 +3,31 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How to Create a Roblox Game Pass (Template) — RO-Wiki</title>
-  <meta name="description" content="Complete template tutorial: create a game pass, connect it to gameplay, test ownership checks, and publish safely.">
+  <title>How to Make a Game Pass on Roblox (2025 Guide) — RO-Wiki</title>
+  <meta name="description" content="Step-by-step tutorial: create, customize, and sell a game pass on Roblox. From opening Studio to setting a price and getting your Pass ID.">
   <meta name="robots" content="index,follow,max-image-preview:large">
   <link rel="canonical" href="https://ro-wiki.duckdns.org/tutorials/how-to-gamepass/">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How to Create a Roblox Game Pass (Template)">
-  <meta property="og:description" content="A clean, reusable tutorial layout with sections for text, images, tips, and code snippets.">
+  <meta property="og:title" content="How to Make a Game Pass on Roblox (2025 Guide)">
+  <meta property="og:description" content="Learn how to create a game pass in 8 simple steps. Includes tips on thumbnails, pricing, and finding your Pass ID for scripting.">
   <meta property="og:url" content="https://ro-wiki.duckdns.org/tutorials/how-to-gamepass/">
   <link rel="stylesheet" href="/assets/css/global.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    "name": "How to Create a Roblox Game Pass",
-    "description": "Step-by-step tutorial for publishing and integrating a game pass.",
+    "name": "How to Make a Roblox Game Pass",
+    "description": "8-step guide to creating and selling a game pass.",
+    "totalTime": "PT10M",
     "step": [
-      {"@type": "HowToStep", "name": "Create game pass in Creator Dashboard"},
-      {"@type": "HowToStep", "name": "Get Game Pass ID"},
-      {"@type": "HowToStep", "name": "Check ownership in script"},
-      {"@type": "HowToStep", "name": "Test in Studio and live game"}
+      {"@type": "HowToStep", "name": "Open Roblox", "text": "Open Roblox via the player app or web browser."},
+      {"@type": "HowToStep", "name": "Go to Create", "text": "Access the Creator Hub by clicking the Create button."},
+      {"@type": "HowToStep", "name": "Select your game", "text": "Select your game under Experiences and click Manage experience."},
+      {"@type": "HowToStep", "name": "Go to Passes", "text": "Click on Monetization options, then hit Passes."},
+      {"@type": "HowToStep", "name": "Click Create A Pass", "text": "Under the Creations tab, click the Create A Pass button."},
+      {"@type": "HowToStep", "name": "Customize your pass", "text": "Give it a name, image, and description."},
+      {"@type": "HowToStep", "name": "Sell your pass", "text": "Open the Sales tab and enable Item for Sale."},
+      {"@type": "HowToStep", "name": "Set a price", "text": "Choose a Robux price and save changes."}
     ]
   }
   </script>
@@ -43,73 +48,154 @@
   <main class="section">
     <div class="container article-layout">
       <article class="panel article-content">
-        <h1>How to Create a Roblox Game Pass</h1>
-        <p class="lead">Use this article as a reusable template. Replace headings, text blocks, and image placeholders to publish new tutorials quickly.</p>
+        <h1>How to Make a Game Pass on Roblox (8 Easy Steps)</h1>
+        <p class="lead">Game passes are one of the best ways to monetize your Roblox experience. This guide walks you through the entire process — from opening the Creator Hub to setting a price and grabbing your Pass ID for scripts.</p>
 
-        <!-- Editable Block: Intro Summary -->
+        <!-- Intro Summary -->
         <h2 id="overview">Overview</h2>
-        <p>This guide explains how to create a game pass, set a price, grab the pass ID, and connect ownership checks to in-game features.</p>
+        <p>In this tutorial, you'll learn how to create a game pass, customize it with a name and thumbnail, enable sales, and set a price in Robux. We'll also show you where to find your Pass ID so you can use it in your game scripts later.</p>
 
-        <!-- Editable Block: Requirements -->
-        <h2 id="requirements">Requirements</h2>
+        <!-- Requirements -->
+        <h2 id="requirements">What you'll need</h2>
         <ul>
-          <li>A published Roblox experience.</li>
-          <li>Access to Creator Dashboard and Studio.</li>
-          <li>Basic Lua scripting knowledge.</li>
+          <li>A Roblox account with publishing permissions.</li>
+          <li>A published (or saved) experience in your Creator Dashboard.</li>
+          <li>An image for your game pass thumbnail (512x512 pixels works best).</li>
         </ul>
 
-        <img src="/assets/img/tutorial-placeholder.svg" alt="Placeholder screenshot where you can add Creator Dashboard image">
+        <!-- STEP 1 -->
+        <h2 id="step1">Step 1: Open Roblox</h2>
+        <p>Start by launching Roblox. You can do this either through the <strong>Roblox Player app</strong> on your computer, or by visiting the <strong>Roblox website</strong> in your browser. Make sure you're logged into your account.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 1 - Open Roblox -->
+        <img src="/assets/img/tutorials/gamepass/step1-open-roblox.png" alt="Roblox app or website homepage showing the login state" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
 
-        <!-- Editable Block: Steps -->
-        <h2 id="steps">Step-by-step</h2>
-        <ol>
-          <li><strong>Create Pass:</strong> In Creator Dashboard, open Monetization → Passes and upload a thumbnail.</li>
-          <li><strong>Set Price:</strong> Enable item for sale and choose your Robux amount.</li>
-          <li><strong>Copy ID:</strong> Open the pass page URL and copy the numeric ID.</li>
-          <li><strong>Add Script:</strong> Use <code>MarketplaceService:UserOwnsGamePassAsync()</code> to unlock benefits.</li>
-          <li><strong>Test:</strong> Verify in Studio and in a live server with test accounts.</li>
-        </ol>
+        <!-- STEP 2 -->
+        <h2 id="step2">Step 2: Go to Create</h2>
+        <p>Once you're logged in, navigate to the <strong>Creator Hub</strong> (also called the Create page). On the website, click the <strong>"Create"</strong> button usually located in the top navigation bar. If you're using the app, you might need to click "More" and then look for the Create option.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 2 - Go to Create (highlighting the Create button) -->
+        <img src="/assets/img/tutorials/gamepass/step2-go-to-create.png" alt="Roblox homepage with the Create button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
 
-        <h3 id="snippet">Code snippet</h3>
+        <!-- STEP 3 -->
+        <h2 id="step3">Step 3: Select your game</h2>
+        <p>In the Creator Hub, you'll see a list of your experiences under the <strong>"Experiences"</strong> tab. Find the game you want to create a pass for and click on its title or the <strong>"Manage experience"</strong> button (often represented by a gear icon or a menu button).</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 3 - Select the game (showing the Experiences list and Manage button) -->
+        <img src="/assets/img/tutorials/gamepass/step3-select-game.png" alt="Creator Hub Experiences list with Manage experience button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- STEP 4 -->
+        <h2 id="step4">Step 4: Go to Passes</h2>
+        <p>Inside your game's management panel, look for the <strong>"Monetization"</strong> section in the left-hand menu. Click on it, and then select <strong>"Passes"</strong>. This is where all your game passes for this specific experience are managed.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 4 - Go to Passes (showing Monetization -> Passes in the sidebar) -->
+        <img src="/assets/img/tutorials/gamepass/step4-go-to-passes.png" alt="Game management sidebar with Monetization expanded and Passes option highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- STEP 5 -->
+        <h2 id="step5">Step 5: Click on "Create A Pass"</h2>
+        <p>On the Passes page, you'll see two tabs: <strong>"Creations"</strong> and <strong>"Analytics"</strong>. Make sure you're on the Creations tab. Click the big blue button that says <strong>"Create A Pass"</strong> to get started.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 5 - Click Create A Pass (showing the Creations tab and the button) -->
+        <img src="/assets/img/tutorials/gamepass/step5-create-a-pass.png" alt="Passes page with Creations tab and Create A Pass button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- STEP 6 -->
+        <h2 id="step6">Step 6: Customize your game pass</h2>
+        <p>Now you can set up how your pass looks. Fill in the following:
+          <ul>
+            <li><strong>Name:</strong> Make it clear and appealing (e.g., "VIP Access" or "Double Jump").</li>
+            <li><strong>Description:</strong> Explain what the buyer gets.</li>
+            <li><strong>Image (Thumbnail):</strong> Upload a 512x512 pixel image. If you don't have one ready, Roblox will provide a default placeholder for now — you can change it later.</li>
+          </ul>
+          Click <strong>"Save Changes"</strong> to create the pass.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 6 - Customize (showing the form with Name, Description, and Image upload) -->
+        <img src="/assets/img/tutorials/gamepass/step6-customize-pass.png" alt="Game pass creation form with Name, Description, and Image upload fields" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- STEP 7 -->
+        <h2 id="step7">Step 7: Sell your game pass</h2>
+        <p>Your pass is created, but it's not for sale yet. Find your new pass in the list under the Creations tab and click on it to open its settings. Go to the <strong>"Sales"</strong> tab. Toggle the switch to enable <strong>"Item for Sale"</strong>.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 7 - Sell your pass (showing the Sales tab and enabling "Item for Sale") -->
+        <img src="/assets/img/tutorials/gamepass/step7-enable-sales.png" alt="Game pass settings with Sales tab open and Item for Sale toggle enabled" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- STEP 8 -->
+        <h2 id="step8">Step 8: Set a price</h2>
+        <p>Once sales are enabled, a field will appear to set the price. Enter the amount of Robux you want to charge. Remember, you earn <strong>70%</strong> of each transaction (Roblox keeps 30% for platform fees). Click <strong>"Save Changes"</strong>.</p>
+        <p>Congratulations! You've just created your first game pass. To see its public page or copy its ID for scripting, click the three dots (...) on its image and select <strong>"Open in New Tab"</strong>. The ID will be the long number in the URL.</p>
+        <!-- ВСТАВЬТЕ СЮДА КАРТИНКУ: Step 8 - Set a price (showing the price input field and Save button) -->
+        <img src="/assets/img/tutorials/gamepass/step8-set-price.png" alt="Sales tab showing the price input field in Robux" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
+
+        <!-- Code Snippet Section (Bonus) -->
+        <h2 id="snippet">Using the Pass ID in a Script</h2>
+        <p>After you have your Pass ID (the number from the URL), you can use this basic script to check if a player owns the pass. This should be placed in a Script inside ServerScriptService.</p>
         <pre class="panel" style="padding:0.9rem; overflow:auto;"><code>local MarketplaceService = game:GetService("MarketplaceService")
-local PASS_ID = 123456789
+local PASS_ID = 123456789  -- ЗАМЕНИТЕ НА ВАШ ID
 
-local function playerOwnsPass(player)
-  local success, ownsPass = pcall(function()
-    return MarketplaceService:UserOwnsGamePassAsync(player.UserId, PASS_ID)
-  end)
-  return success and ownsPass
-end</code></pre>
+game.Players.PlayerAdded:Connect(function(player)
+    local success, ownsPass = pcall(function()
+        return MarketplaceService:UserOwnsGamePassAsync(player.UserId, PASS_ID)
+    end)
 
+    if success and ownsPass then
+        print(player.Name .. " owns the pass! Grant benefits.")
+        -- Здесь добавьте код для выдачи преимуществ (например, дать двойной прыжок)
+    else
+        print(player.Name .. " does not own the pass.")
+    end
+end)</code></pre>
         <div class="callout">
-          <strong>Pro tip:</strong> Keep one section for "Common errors" in every article. It helps SEO and reduces support messages.
+          <strong>Pro tip:</strong> Always wrap <code>MarketplaceService:UserOwnsGamePassAsync()</code> in a <code>pcall()</code> to handle potential errors (like network issues) without crashing your script.
         </div>
 
-        <!-- Editable Block: FAQ -->
-        <h2 id="faq">FAQ</h2>
-        <h3>Why does ownership check fail?</h3>
-        <p>Usually because of wrong pass ID, unpublished game, or temporary API errors. Wrap checks with <code>pcall</code>.</p>
+        <!-- FAQ -->
+        <h2 id="faq">Frequently Asked Questions</h2>
 
-        <h3>Can I reuse this article layout?</h3>
-        <p>Yes. Copy this file into a new folder and only edit titles, text blocks, and metadata.</p>
+        <h3>How much Robux do I earn from a game pass sale?</h3>
+        <p>You earn 70% of the Robux price you set. For example, if you sell a pass for 100 Robux, you will receive 70 Robux. The remaining 30% goes to Roblox platform fees.</p>
+
+        <h3>Can I change the price after publishing?</h3>
+        <p>Yes, you can change the price anytime from the Sales tab. However, be mindful that changing prices frequently might confuse players.</p>
+
+        <h3>My ownership check fails in the script. What's wrong?</h3>
+        <p>This usually happens for a few reasons: 1) The Pass ID is incorrect. 2) The game is not published (it must be public). 3) You're testing in Studio without a valid Roblox player. 4) Temporary API issues. Always use <code>pcall</code> to handle errors gracefully.</p>
+
+        <h3>Do I need an image to create a pass?</h3>
+        <p>An image is highly recommended for sales, but Roblox provides a default placeholder if you skip this step. You can upload a custom image later.</p>
       </article>
 
+      <!-- Sidebar -->
       <aside class="panel article-aside">
         <h2 style="font-size:1.1rem;">On this page</h2>
-        <ul>
+        <ul style="list-style:none; padding-left:0;">
           <li><a href="#overview">Overview</a></li>
           <li><a href="#requirements">Requirements</a></li>
-          <li><a href="#steps">Step-by-step</a></li>
+          <li><a href="#step1">Step 1: Open Roblox</a></li>
+          <li><a href="#step2">Step 2: Go to Create</a></li>
+          <li><a href="#step3">Step 3: Select your game</a></li>
+          <li><a href="#step4">Step 4: Go to Passes</a></li>
+          <li><a href="#step5">Step 5: Click "Create A Pass"</a></li>
+          <li><a href="#step6">Step 6: Customize your pass</a></li>
+          <li><a href="#step7">Step 7: Enable sales</a></li>
+          <li><a href="#step8">Step 8: Set a price</a></li>
           <li><a href="#snippet">Code snippet</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
-        <p class="small">Template note: Keep one H1, clear H2 sections, and descriptive image alt text.</p>
+        <hr>
+        <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
       </aside>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container small">Need support? <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></div>
+    <div class="container footer-grid">
+      <div>
+        <h3>RO-Wiki</h3>
+        <p class="small">Free knowledge base for Roblox developers. Tutorials, scripts, and best practices from experienced creators.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p class="small">Email: <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a><br>
+        X: <a href="https://x.com/TowerObbyPR" rel="noopener" target="_blank">@TowerObbyPR</a><br>
+        Roblox: <a href="https://www.roblox.com/communities/102552180/Tower-Obby-Productions" rel="noopener" target="_blank">Tower Obby Productions</a></p>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <p class="small"><a href="/policy/">Privacy & Policy</a><br><a href="/404.html">404 page</a></p>
+      </div>
+    </div>
   </footer>
 
   <script src="/assets/js/main.js" defer></script>
