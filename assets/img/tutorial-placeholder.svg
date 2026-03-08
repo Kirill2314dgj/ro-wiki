@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720" fill="none">
+  <rect width="1280" height="720" fill="#131a29"/>
+  <rect x="40" y="40" width="1200" height="640" rx="18" fill="#1b2640" stroke="#324368"/>
+  <text x="640" y="330" fill="#8ea4d4" font-size="44" text-anchor="middle" font-family="Arial, sans-serif">Add Your Screenshot Here</text>
+  <text x="640" y="390" fill="#6d82af" font-size="28" text-anchor="middle" font-family="Arial, sans-serif">Replace this image with your article-specific visual</text>
+</svg>
