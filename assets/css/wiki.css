@@ -319,8 +319,175 @@ pre code {
 }
 
 /* ====================================================================
+   СТИЛИ ДЛЯ МОБИЛЬНОГО САЙДБАРА (ГАМБУРГЕР МЕНЮ)
+   ==================================================================== */
+
+/* Кнопка для открытия сайдбара на мобилках */
+.mobile-toc-button {
+  display: none;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.mobile-toc-button svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.mobile-toc-button:hover {
+  background: var(--primary-strong);
+}
+
+/* Оверлей для затемнения фона */
+.toc-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(3px);
+  z-index: 9998;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.toc-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Мобильное меню (слайд сбоку) */
+.mobile-toc-panel {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 85%;
+  max-width: 320px;
+  height: 100vh;
+  background: var(--bg-elev);
+  border-left: 1px solid var(--border);
+  z-index: 9999;
+  overflow-y: auto;
+  padding: 1.5rem;
+  transition: right 0.3s ease;
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-toc-panel.active {
+  right: 0;
+}
+
+.mobile-toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-toc-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--text);
+}
+
+.close-toc {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.close-toc:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.close-toc svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
+.mobile-toc-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.mobile-toc-content a {
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.mobile-toc-content a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--primary);
+  padding-left: 1.5rem;
+}
+
+.mobile-toc-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1rem 0;
+}
+
+.mobile-toc-footer {
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.mobile-toc-footer p {
+  margin: 0.5rem 0;
+}
+
+/* ====================================================================
    МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
    ==================================================================== */
+
+@media (max-width: 960px) {
+  /* Прячем обычный сайдбар на мобилках */
+  .article-aside {
+    display: none;
+  }
+  
+  /* Показываем кнопку для мобильного меню */
+  .mobile-toc-button {
+    display: flex;
+  }
+  
+  /* Убираем лишние отступы */
+  .article-content {
+    padding: 1rem;
+  }
+}
 
 @media (max-width: 768px) {
   /* Адаптация заголовка и блока с кнопкой Share */
@@ -393,9 +560,22 @@ pre code {
     padding: 0.7rem;
   }
   
-  /* Адаптация сайдбара */
-  .article-aside {
-    margin-top: 2rem;
+  /* Фикс для контейнера чтобы не было горизонтального скролла */
+  .container {
+    width: calc(100% - 2rem);
+    overflow-x: hidden;
+  }
+  
+  /* Фикс для article-layout чтобы не вылезало */
+  .article-layout {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Фикс для изображений */
+  .article-content img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
