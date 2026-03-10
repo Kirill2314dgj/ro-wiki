@@ -4,18 +4,425 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Scripting Basics — RO-Wiki</title>
-  <meta name="description" content="Beginner-friendly Lua scripting basics for Roblox: variables, events, and simple functions.">
+  <meta name="description" content="Beginner-friendly Lua scripting basics for Roblox: variables, events, functions, loops, and practical examples with scripts you can copy and use.">
   <link rel="canonical" href="https://ro-wiki.duckdns.org/tutorials/scripting-basics/">
   <meta name="robots" content="index,follow">
+  <meta property="og:title" content="Scripting Basics — RO-Wiki">
+  <meta property="og:description" content="Learn Roblox Lua scripting from scratch with real examples.">
   <link rel="stylesheet" href="/assets/css/global.css">
+  
+  <style>
+    /* Дополнительные стили для улучшения читаемости */
+    .code-block {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 8px;
+      padding: 1rem;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-left: 4px solid #00a2ff;
+    }
+    
+    .code-block code {
+      font-family: 'Courier New', monospace;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #e6e6e6;
+    }
+    
+    .note {
+      background: rgba(255, 193, 7, 0.1);
+      border-left: 4px solid #ffc107;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    
+    .tip {
+      background: rgba(40, 167, 69, 0.1);
+      border-left: 4px solid #28a745;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    
+    .warning {
+      background: rgba(220, 53, 69, 0.1);
+      border-left: 4px solid #dc3545;
+      padding: 1rem;
+      border-radius: 4px;
+      margin: 1.5rem 0;
+    }
+    
+    .concept-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .concept-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s;
+    }
+    
+    .concept-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(0, 162, 255, 0.5);
+    }
+    
+    .concept-card h3 {
+      margin-top: 0;
+      color: #00a2ff;
+    }
+    
+    .table-of-contents {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+    }
+    
+    .table-of-contents ul {
+      columns: 2;
+      column-gap: 2rem;
+    }
+    
+    @media (max-width: 600px) {
+      .table-of-contents ul {
+        columns: 1;
+      }
+    }
+    
+    .example-box {
+      background: rgba(0, 162, 255, 0.05);
+      border: 1px solid rgba(0, 162, 255, 0.2);
+      border-radius: 8px;
+      padding: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .example-title {
+      font-weight: bold;
+      color: #00a2ff;
+      margin-bottom: 0.5rem;
+    }
+    
+    .article-meta {
+      display: flex;
+      gap: 1.5rem;
+      color: #888;
+      font-size: 0.9rem;
+      margin: 1rem 0 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+    }
+    
+    .practice-task {
+      background: linear-gradient(145deg, #1a2a3a, #0f1a24);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .practice-task h3 {
+      color: #ffc107;
+      margin-top: 0;
+    }
+    
+    .keyword {
+      color: #ff79c6;
+      font-weight: bold;
+    }
+    
+    .string {
+      color: #f1fa8c;
+    }
+    
+    .comment {
+      color: #6272a4;
+    }
+  </style>
 </head>
 <body>
-<header class="site-header"><div class="container nav"><a class="brand" href="/"><span class="brand-mark"></span><span>RO-Wiki</span></a><ul class="nav-links"><li><a href="/">Home</a></li><li><a href="/tutorials/" aria-current="page">Tutorials</a></li><li><a href="/policy/">Policy</a></li></ul><button class="theme-toggle" data-theme-toggle type="button">Theme</button></div></header>
-<main class="section"><div class="container panel article-content"><h1>Scripting Basics</h1><p class="lead">Understand how scripts react to player actions.</p><h2>Start with these concepts</h2><ul><li>Variables store values.</li><li>Functions run reusable logic.</li><li>Events trigger scripts from actions.</li></ul><h2>Simple example</h2><pre class="panel" style="padding:0.9rem; overflow:auto;"><code>local part = script.Parent
-part.Touched:Connect(function(hit)
-  print(hit.Name .. " touched the part")
-end)</code></pre></div></main>
-<footer class="site-footer"><div class="container small">Return to <a href="/tutorials/">all tutorials</a>.</div></footer>
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/"><span class="brand-mark"></span><span>RO-Wiki</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tutorials/" aria-current="page">Tutorials</a></li>
+      <li><a href="/policy/">Policy</a></li>
+    </ul>
+    <button class="theme-toggle" data-theme-toggle type="button">Theme</button>
+  </div>
+</header>
+
+<main class="section">
+  <div class="container">
+    <div class="panel article-content">
+      <!-- Заголовок и мета-информация -->
+      <h1>📚 Scripting Basics for Roblox</h1>
+      
+      <div class="article-meta">
+        <span>📅 Last updated: March 2026</span>
+        <span>⏱️ 15 min read</span>
+        <span>🎓 Beginner friendly</span>
+      </div>
+      
+      <p class="lead">Welcome to the complete beginner's guide to Lua scripting in Roblox! By the end of this tutorial, you'll understand the fundamentals and be able to create your first interactive scripts.</p>
+
+      <!-- Оглавление -->
+      <div class="table-of-contents">
+        <h2>📖 What you'll learn</h2>
+        <ul>
+          <li><a href="#variables">Variables and Data Types</a></li>
+          <li><a href="#functions">Functions and Parameters</a></li>
+          <li><a href="#events">Events and Connections</a></li>
+          <li><a href="#conditions">If Statements (Conditions)</a></li>
+          <li><a href="#loops">Loops (While, For)</a></li>
+          <li><a href="#tables">Tables and Dictionaries</a></li>
+          <li><a href="#instances">Working with Instances</a></li>
+          <li><a href="#practice">Practice Tasks</a></li>
+        </ul>
+      </div>
+
+      <!-- 1. Variables -->
+      <h2 id="variables">📦 Variables and Data Types</h2>
+      <p>Variables store information that your script can use later. In Lua, you don't need to specify the type – it's automatically detected.</p>
+      
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>Numbers</h3>
+          <div class="code-block">
+            <code>local score = 100<br>local speed = 25.5<br>local negative = -10</code>
+          </div>
+        </div>
+        <div class="concept-card">
+          <h3>Strings (Text)</h3>
+          <div class="code-block">
+            <code>local name = "Player1"<br>local message = 'Hello!'<br>local color = [[Red]]</code>
+          </div>
+        </div>
+        <div class="concept-card">
+          <h3>Booleans</h3>
+          <div class="code-block">
+            <code>local isAlive = true<br>local hasKey = false<br>local isAdmin = true</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="example-title">💡 Real Example: Player Stats</div>
+        <div class="code-block">
+          <code>-- Player information<br>local playerName = "Robloxian"<br>local playerLevel = 5<br>local experience = 1250<br>local isVip = false<br><br>print(playerName .. " is level " .. playerLevel)<br>-- Output: Robloxian is level 5</code>
+        </div>
+      </div>
+
+      <!-- 2. Functions -->
+      <h2 id="functions">⚙️ Functions</h2>
+      <p>Functions are reusable blocks of code. They can take parameters and return values.</p>
+      
+      <div class="code-block">
+        <code>-- Basic function<br>function greetPlayer(name)<br>    print("Welcome to the game, " .. name .. "!")<br>end<br><br>-- Call the function<br>greetPlayer("Alex")  -- Output: Welcome to the game, Alex!<br><br>-- Function with return value<br>function calculateDamage(damage, armor)<br>    local finalDamage = damage - armor<br>    if finalDamage < 0 then<br>        return 0<br>    end<br>    return finalDamage<br>end<br><br>local received = calculateDamage(50, 20)<br>print("You took " .. received .. " damage")  -- Output: You took 30 damage</code>
+      </div>
+
+      <div class="tip">
+        <strong>💎 Pro Tip:</strong> Always use <code>local</code> for variables inside functions to avoid conflicts with other scripts!
+      </div>
+
+      <!-- 3. Events -->
+      <h2 id="events">🎯 Events</h2>
+      <p>Events are what make Roblox games interactive. They trigger code when something happens.</p>
+      
+      <div class="code-block">
+        <code>-- Touched event (when something touches a part)<br>local part = script.Parent<br><br>part.Touched:Connect(function(hit)<br>    -- hit is the object that touched the part<br>    if hit.Parent:FindFirstChild("Humanoid") then<br>        print("A player touched the part!")<br>        part.BrickColor = BrickColor.new("Bright red")<br>    end<br>end)<br><br>-- ClickDetector event (when player clicks)<br>local clickDetector = Instance.new("ClickDetector")<br>clickDetector.Parent = part<br><br>clickDetector.MouseClick:Connect(function(player)<br>    print(player.Name .. " clicked the part!")<br>    -- Give reward<br>    player.leaderstats.Coins.Value = player.leaderstats.Coins.Value + 10<br>end)</code>
+      </div>
+
+      <!-- 4. Conditions -->
+      <h2 id="conditions">🔀 If Statements</h2>
+      <p>Make decisions in your code based on conditions.</p>
+      
+      <div class="code-block">
+        <code>local playerLevel = 10<br>local requiredLevel = 5<br>local hasPass = true<br><br>-- Basic if<br>if playerLevel >= requiredLevel then<br>    print("You can enter the zone!")<br>end<br><br>-- If-else<br>if playerLevel >= 10 then<br>    print("You have access to advanced weapons")<br>else<br>    print("Keep playing to unlock more!")<br>end<br><br>-- Multiple conditions<br>if playerLevel >= 10 and hasPass then<br>    print("Welcome to the VIP area!")<br>elseif playerLevel >= 10 then<br>    print("Get the game pass for VIP access!")<br>else<br>    print("Reach level 10 first!")<br>end</code>
+      </div>
+
+      <!-- 5. Loops -->
+      <h2 id="loops">🔄 Loops</h2>
+      <p>Repeat code multiple times.</p>
+      
+      <div class="concept-grid">
+        <div class="concept-card">
+          <h3>While Loop</h3>
+          <div class="code-block">
+            <code>local count = 0<br>while count < 5 do<br>    print("Count: " .. count)<br>    count = count + 1<br>    wait(1)  -- Wait 1 second<br>end</code>
+          </div>
+        </div>
+        <div class="concept-card">
+          <h3>For Loop</h3>
+          <div class="code-block">
+            <code>for i = 1, 10 do<br>    print("Number: " .. i)<br>end<br><br>-- Step by 2<br>for i = 1, 10, 2 do<br>    print("Odd: " .. i)<br>end</code>
+          </div>
+        </div>
+      </div>
+
+      <div class="example-box">
+        <div class="example-title">🎮 Spawn enemies every 5 seconds</div>
+        <div class="code-block">
+          <code>while true do<br>    -- Create enemy<br>    local enemy = game.ServerStorage.Enemy:Clone()<br>    enemy.Parent = workspace.Enemies<br>    enemy.HumanoidRootPart.Position = Vector3.new(0, 10, 0)<br>    <br>    print("Enemy spawned!")<br>    wait(5)  -- Wait 5 seconds<br>end</code>
+        </div>
+      </div>
+
+      <!-- 6. Tables -->
+      <h2 id="tables">📋 Tables</h2>
+      <p>Tables store multiple values. They're like lists or dictionaries.</p>
+      
+      <div class="code-block">
+        <code>-- Array-style table (list)<br>local weapons = {"Sword", "Gun", "Bow"}<br>print(weapons[1])  -- Output: Sword (Lua starts at 1, not 0!)<br><br>-- Dictionary-style table<br>local playerInfo = {<br>    name = "John",<br>    level = 10,<br>    class = "Warrior",<br>    inventory = {"Potion", "Key"}<br>}<br><br>print(playerInfo.name)     -- Output: John<br>print(playerInfo.level)    -- Output: 10<br><br>-- Loop through a table<br>for i, weapon in ipairs(weapons) do<br>    print("Weapon " .. i .. ": " .. weapon)<br>end<br><br>for key, value in pairs(playerInfo) do<br>    print(key .. ": " .. tostring(value))<br>end</code>
+      </div>
+
+      <!-- 7. Working with Instances -->
+      <h2 id="instances">🏗️ Instances</h2>
+      <p>Everything in Roblox is an Instance. Here's how to work with them.</p>
+      
+      <div class="code-block">
+        <code>-- Finding objects<br>local part = workspace:FindFirstChild("Part")<br>local players = game:GetService("Players")<br><br>-- Creating new objects<br>local newPart = Instance.new("Part")<br>newPart.Name = "MyPart"<br>newPart.Size = Vector3.new(4, 1, 2)<br>newPart.BrickColor = BrickColor.new("Bright blue")<br>newPart.Position = Vector3.new(10, 5, 10)<br>newPart.Parent = workspace<br><br>-- Changing properties<br>part.BrickColor = BrickColor.new("Red")<br>part.Transparency = 0.5<br>part.Anchored = true<br><br>-- Destroying objects<br>-- part:Destroy()</code>
+      </div>
+
+      <div class="note">
+        <strong>📝 Note:</strong> Always set <code>Parent</code> last for better performance!
+      </div>
+
+      <!-- 8. Complete Working Example -->
+      <h2>🎮 Complete Example: Coin Collection System</h2>
+      
+      <div class="code-block">
+        <code>-- Put this script in a part named "Coin"<br><br>local coin = script.Parent<br>local collectionSound = Instance.new("Sound")<br>collectionSound.SoundId = "rbxassetid://9120387021"  -- Replace with your sound<br>collectionSound.Parent = coin<br><br>-- Make coin spin<br>local spinSpeed = 50<br><br>-- Collection counter<br>local collectedCount = 0<br>local maxCollects = 10<br><br>-- Function to respawn coin<br>function respawnCoin()<br>    coin.CanCollide = false<br>    coin.Transparency = 1<br>    collectionSound:Play()<br>    <br>    wait(3)  -- Wait 3 seconds<br>    <br>    coin.CanCollide = true<br>    coin.Transparency = 0<br>    collectedCount = 0<br>end<br><br>-- When touched<br>coin.Touched:Connect(function(hit)<br>    -- Check if it's a player<br>    local humanoid = hit.Parent:FindFirstChild("Humanoid")<br>    if humanoid and collectedCount < maxCollects then<br>        collectedCount = collectedCount + 1<br>        <br>        -- Find player's leaderstats<br>        local player = game.Players:GetPlayerFromCharacter(hit.Parent)<br>        if player then<br>            local coins = player:FindFirstChild("leaderstats"):FindFirstChild("Coins")<br>            if coins then<br>                coins.Value = coins.Value + 5<br>                print(player.Name .. " got 5 coins! Total: " .. coins.Value)<br>            end<br>        end<br>        <br>        -- Visual effect<br>        local effect = Instance.new("Explosion")<br>        effect.Position = coin.Position<br>        effect.BlastRadius = 2<br>        effect.BlastPressure = 0<br>        effect.Visible = true<br>        effect.Parent = workspace<br>        <br>        if collectedCount >= maxCollects then<br>            respawnCoin()<br>        end<br>    end<br>end)<br><br>-- Spin animation<br>while true do<br>    if coin.Transparency == 0 then<br>        coin.CFrame = coin.CFrame * CFrame.Angles(0, math.rad(spinSpeed), 0)<br>    end<br>    wait(0.1)<br>end</code>
+      </div>
+
+      <!-- 9. Practice Tasks -->
+      <h2 id="practice">✍️ Practice Tasks</h2>
+      
+      <div class="practice-task">
+        <h3>Task 1: Door System</h3>
+        <p>Create a door that opens when a player with a game pass touches it.</p>
+        <div class="code-block">
+          <code>-- Hint structure:<br>local gamePassId = 12345678<br><br>-- Check if player owns pass<br>-- If yes, open door (CFrame animation)<br>-- If no, show message "You need the VIP pass!"</code>
+        </div>
+      </div>
+      
+      <div class="practice-task">
+        <h3>Task 2: Timer System</h3>
+        <p>Create a countdown timer that displays on a part's surface.</p>
+        <div class="code-block">
+          <code>-- Hint:<br>local timeLeft = 60<br>local surfaceGui = Instance.new("SurfaceGui")<br>local textLabel = Instance.new("TextLabel")<br><br>-- Update every second until timeLeft = 0</code>
+        </div>
+      </div>
+      
+      <div class="practice-task">
+        <h3>Task 3: Random Loot</h3>
+        <p>Create a chest that gives random rewards when touched.</p>
+        <div class="code-block">
+          <code>-- Hint:<br>local rewards = {"Coins", "Health", "Weapon", "Key"}<br>local randomIndex = math.random(1, #rewards)<br>-- Give random reward</code>
+        </div>
+      </div>
+
+      <!-- Common Mistakes -->
+      <h2>⚠️ Common Mistakes to Avoid</h2>
+      
+      <div class="warning">
+        <strong>❌ Forgetting "local"</strong><br>
+        Always use <code>local</code> for variables unless you need them globally.
+      </div>
+      
+      <div class="warning">
+        <strong>❌ Not using wait() in loops</strong><br>
+        <code>while true do</code> without <code>wait()</code> will crash your game!
+      </div>
+      
+      <div class="warning">
+        <strong>❌ Assuming array index starts at 0</strong><br>
+        Lua arrays start at <code>1</code>, not <code>0</code>!
+      </div>
+
+      <!-- Resources -->
+      <h2>📚 Additional Resources</h2>
+      
+      <ul>
+        <li><a href="https://create.roblox.com/docs" target="_blank">Roblox Creator Documentation</a></li>
+        <li><a href="https://devforum.roblox.com/" target="_blank">Roblox Developer Forum</a></li>
+        <li><a href="/tutorials/advanced-scripting/">Advanced Scripting Tutorial</a></li>
+        <li><a href="/tutorials/debugging/">Debugging Guide</a></li>
+      </ul>
+
+      <!-- Next Steps -->
+      <div class="tip" style="text-align: center;">
+        <h3 style="margin-top: 0;">🎯 Ready for more?</h3>
+        <p>Try our <a href="/tutorials/intermediate-scripting/">Intermediate Scripting</a> tutorial next!</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <h3>RO-Wiki</h3>
+      <p class="small">Free knowledge base for Roblox developers. Tutorials, scripts, and best practices from experienced creators.</p>
+    </div>
+    <div>
+      <h3>Quick Links</h3>
+      <p class="small">
+        <a href="/tutorials/">All Tutorials</a><br>
+        <a href="/scripts/">Free Scripts</a><br>
+        <a href="/tools/">Developer Tools</a>
+      </p>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p class="small">
+        Email: <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a><br>
+        Discord: <a href="#">RO-Wiki Community</a>
+      </p>
+    </div>
+  </div>
+  <div class="container small" style="text-align: center; margin-top: 2rem;">
+    Return to <a href="/tutorials/">all tutorials</a>.
+  </div>
+</footer>
+
 <script src="/assets/js/main.js" defer></script>
+
+<!-- Добавим подсветку синтаксиса для улучшения читаемости -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Простая подсветка синтаксиса для примеров кода
+    const codeBlocks = document.querySelectorAll('.code-block code');
+    
+    codeBlocks.forEach(block => {
+      let html = block.innerHTML;
+      
+      // Подсветка ключевых слов
+      const keywords = ['local', 'function', 'end', 'if', 'then', 'else', 'elseif', 'for', 'while', 'do', 'return', 'true', 'false', 'nil', 'and', 'or', 'not', 'in', 'repeat', 'until', 'break'];
+      
+      keywords.forEach(keyword => {
+        const regex = new RegExp('\\b' + keyword + '\\b', 'g');
+        html = html.replace(regex, '<span class="keyword">' + keyword + '</span>');
+      });
+      
+      // Подсветка строк
+      html = html.replace(/"([^"]*)"/g, '<span class="string">"$1"</span>');
+      html = html.replace(/'([^']*)'/g, "<span class='string'>'$1'</span>");
+      
+      // Подсветка комментариев
+      html = html.replace(/--(.*)/g, '<span class="comment">--$1</span>');
+      
+      block.innerHTML = html;
+    });
+  });
+</script>
+
 </body>
 </html>
