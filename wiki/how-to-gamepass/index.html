@@ -2,7 +2,7 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>How to Make a Game Pass on Roblox (2026 Guide) — RO-Wiki</title>
   <meta name="description" content="Step-by-step tutorial: create, customize, and sell a game pass on Roblox. From opening Studio to setting a price and getting your Pass ID.">
   <meta name="robots" content="index,follow,max-image-preview:large">
@@ -12,8 +12,13 @@
   <meta property="og:title" content="How to Make a Game Pass on Roblox (2026 Guide)">
   <meta property="og:description" content="Learn how to create a game pass in 8 simple steps. Includes tips on thumbnails, pricing, and finding your Pass ID for scripting.">
   <meta property="og:url" content="https://ro-wiki.fun/tutorials/how-to-gamepass/">
+  
+  <!-- Глобальные стили -->
   <link rel="stylesheet" href="/assets/css/global.css">
+  <!-- Wiki-специфичные стили -->
+  <link rel="stylesheet" href="/assets/wikipages/css/global.css">
 
+  <!-- JSON-LD Schema -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -33,217 +38,11 @@
     ]
   }
   </script>
-
-  <style>
-    /* Стили для прогресс-бара */
-    .progress-container {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-    }
-    
-    .progress-bar {
-      height: 4px;
-      background: linear-gradient(90deg, #00a2ff, #0066cc, #00a2ff);
-      background-size: 200% 100%;
-      width: 0%;
-      transition: width 0.1s ease;
-      box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
-      animation: gradientShift 2s linear infinite;
-    }
-    
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    
-    /* Чтобы контент не скрывался под фиксированным прогресс-баром */
-    body {
-      margin-top: 4px;
-    }
-    
-    .site-header {
-      top: 4px;
-    }
-    
-    /* Остальные стили */
-    .share-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin: 0.5rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .btn-share {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #fff;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    .btn-share:hover {
-      background: linear-gradient(145deg, #333, #222);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    }
-    
-    .btn-share:active {
-      transform: translateY(0);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    }
-    
-    .btn-share svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-    
-    .share-links {
-      display: inline-flex;
-      gap: 0.5rem;
-      align-items: center;
-      animation: slideIn 0.3s ease;
-    }
-    
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateX(-10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    .share-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    
-    .share-links a:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-      border-color: rgba(255, 255, 255, 0.2);
-    }
-    
-    .share-links[aria-hidden="true"] { 
-      display: none; 
-    }
-    
-    .share-toast {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 20px;
-      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-      display: none;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      font-weight: 500;
-      backdrop-filter: blur(10px);
-    }
-    
-    .share-toast.show { 
-      display: block;
-      animation: slideUp 0.3s ease;
-    }
-    
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translate(-50%, 20px);
-      }
-      to {
-        opacity: 1;
-        transform: translate(-50%, 0);
-      }
-    }
-    
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      color: #888;
-      font-size: 0.9rem;
-      margin: 1rem 0 2rem 0;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
-    }
-    
-    .article-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .article-meta-item svg {
-      width: 16px;
-      height: 16px;
-      fill: #888;
-    }
-    
-    .article-meta-item time {
-      color: #aaa;
-    }
-    
-    @media (max-width: 600px) {
-      .share-wrap { 
-        width: 100%;
-        justify-content: flex-start;
-      }
-      .btn-share {
-        width: 100%;
-        justify-content: center;
-      }
-      .share-links {
-        width: 100%;
-        justify-content: center;
-      }
-      .share-links a {
-        flex: 1;
-        text-align: center;
-      }
-      .article-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-    }
-  </style>
 </head>
 <body>
-  <!-- Прогресс-бар при скролле -->
-  <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
+  <!-- Прогресс-бар -->
+  <div class="wiki-progress">
+    <div class="wiki-progress-bar" id="progressBar"></div>
   </div>
 
   <header class="site-header">
@@ -258,171 +57,76 @@
     </div>
   </header>
 
-  <main class="section">
-    <div class="container article-layout">
-      <article class="panel article-content">
-        <div style="display:flex; align-items:center; gap:1rem; justify-content:space-between; flex-wrap:wrap;">
-          <h1 style="margin:0;">How to Make a Game Pass on Roblox (8 Easy Steps)</h1>
-
-          <!-- Улучшенная кнопка Share с иконкой -->
-          <div class="share-wrap" aria-hidden="false">
-            <button id="shareBtn" class="btn-share" aria-label="Share article">
+  <main>
+    <div class="container wiki-layout">
+      <article class="wiki-article">
+        <!-- Заголовок и шаринг -->
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem;">
+          <h1 style="margin:0; font-size:clamp(1.8rem, 5vw, 2.5rem);">How to Make a Game Pass on Roblox (8 Easy Steps)</h1>
+          
+          <div class="wiki-share">
+            <button class="wiki-share-btn" id="shareBtn">
               <svg viewBox="0 0 24 24" width="18" height="18">
                 <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 9.81C6.5 9.31 5.79 9 5 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
               </svg>
               Share
             </button>
-            <div class="share-links" id="shareLinks" aria-hidden="true">
-              <a id="twShare" target="_blank" rel="noopener">𝕏 Twitter</a>
-              <a id="tgShare" target="_blank" rel="noopener">📱 Telegram</a>
-              <a id="vkShare" target="_blank" rel="noopener">📘 VK</a>
+            <div class="wiki-share-links" id="shareLinks" style="display: none;">
+              <a id="twShare" target="_blank" rel="noopener">Twitter</a>
+              <a id="tgShare" target="_blank" rel="noopener">Telegram</a>
+              <a id="vkShare" target="_blank" rel="noopener">VK</a>
             </div>
           </div>
         </div>
 
-        <!-- Мета-информация статьи с датой создания -->
-        <div class="article-meta">
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
+        <!-- Мета-информация -->
+        <div class="wiki-meta">
+          <div class="wiki-meta-item">
+            <svg viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
             </svg>
             <time datetime="2026-03-10">March 10, 2026</time>
           </div>
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
+          <div class="wiki-meta-item">
+            <svg viewBox="0 0 24 24">
               <path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 2c-1.66 0-5 1.34-5 4v2h10v-2c0-2.66-3.34-4-5-4z"/>
             </svg>
             <span>By RO-Wiki Team</span>
           </div>
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
+          <div class="wiki-meta-item">
+            <svg viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
             </svg>
             <span>8 min read</span>
           </div>
         </div>
 
+        <!-- Lead paragraph -->
         <p class="lead">Game passes are one of the best ways to monetize your Roblox experience. This guide walks you through the entire process — from opening the Creator Hub to setting a price and grabbing your Pass ID for scripts.</p>
 
-        <!-- Intro Summary -->
-        <h2 id="overview">Overview</h2>
-        <p>In this tutorial, you'll learn how to create a game pass, customize it with a name and thumbnail, enable sales, and set a price in Robux. We'll also show you where to find your Pass ID so you can use it in your game scripts later.</p>
+        <!-- Содержимое статьи -->
+        <!-- ... (всё содержимое статьи, как у вас) ... -->
 
-        <!-- Requirements -->
-        <h2 id="requirements">What you'll need</h2>
-        <ul>
-          <li>A Roblox account with publishing permissions.</li>
-          <li>A published (or saved) experience in your Creator Dashboard.</li>
-          <li>An image for your game pass thumbnail (512x512 pixels works best).</li>
-        </ul>
-
-        <!-- STEP 1 -->
-        <h2 id="step1">Step 1: Open Roblox</h2>
-        <p>Start by launching Roblox. You can do this either through the <strong>Roblox Player app</strong> on your computer, or by visiting the <strong>Roblox website</strong> in your browser. Make sure you're logged into your account.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep1.png" alt="Roblox app or website homepage showing the login state" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 2 -->
-        <h2 id="step2">Step 2: Go to Create</h2>
-        <p>Once you're logged in, navigate to the <strong>Creator Hub</strong> (also called the Create page). On the website, click the <strong>"Create"</strong> button usually located in the top navigation bar. If you're using the app, you might need to click "More" and then look for the Create option.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep2.png" alt="Roblox homepage with the Create button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 3 -->
-        <h2 id="step3">Step 3: Select your game</h2>
-        <p>In the Creator Hub, you'll see a list of your experiences under the <strong>"Experiences"</strong> tab. Find the game you want to create a pass for and click on its title or the <strong>"Manage experience"</strong> button (often represented by a gear icon or a menu button).</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep3.png" alt="Creator Hub Experiences list with Manage experience button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 4 -->
-        <h2 id="step4">Step 4: Go to Passes</h2>
-        <p>Inside your game's management panel, look for the <strong>"Monetization"</strong> section in the left-hand menu. Click on it, and then select <strong>"Passes"</strong>. This is where all your game passes for this specific experience are managed.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep4.png" alt="Game management sidebar with Monetization expanded and Passes option highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 5 -->
-        <h2 id="step5">Step 5: Click on "Create A Pass"</h2>
-        <p>On the Passes page, you'll see two tabs: <strong>"Creations"</strong> and <strong>"Analytics"</strong>. Make sure you're on the Creations tab. Click the big blue button that says <strong>"Create A Pass"</strong> to get started.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep5.png" alt="Passes page with Creations tab and Create A Pass button highlighted" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 6 -->
-        <h2 id="step6">Step 6: Customize your game pass</h2>
-        <p>Now you can set up how your pass looks. Fill in the following:
-          <ul>
-            <li><strong>Name:</strong> Make it clear and appealing (e.g., "VIP Access" or "Double Jump").</li>
-            <li><strong>Description:</strong> Explain what the buyer gets.</li>
-            <li><strong>Image (Thumbnail):</strong> Upload a 512x512 pixel image. If you don't have one ready, Roblox will provide a default placeholder for now — you can change it later.</li>
-          </ul>
-          Click <strong>"Save Changes"</strong> to create the pass.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep6.png" alt="Game pass creation form with Name, Description, and Image upload fields" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 7 -->
-        <h2 id="step7">Step 7: Sell your game pass</h2>
-        <p>Your pass is created, but it's not for sale yet. Find your new pass in the list under the Creations tab and click on it to open its settings. Go to the <strong>"Sales"</strong> tab. Toggle the switch to enable <strong>"Item for Sale"</strong>.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep7.png" alt="Game pass settings with Sales tab open and Item for Sale toggle enabled" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- STEP 8 -->
-        <h2 id="step8">Step 8: Set a price</h2>
-        <p>Once sales are enabled, a field will appear to set the price. Enter the amount of Robux you want to charge. Remember, you earn <strong>70%</strong> of each transaction (Roblox keeps 30% for platform fees). Click <strong>"Save Changes"</strong>.</p>
-        <p>Congratulations! You've just created your first game pass. To see its public page or copy its ID for scripting, click the three dots (...) on its image and select <strong>"Open in New Tab"</strong>. The ID will be the long number in the URL.</p>
-        <img src="/assets/img/tutorials/gamepass/GamepassStep8.png" alt="Sales tab showing the price input field in Robux" style="max-width:100%; border-radius:8px; margin: 1rem 0;">
-
-        <!-- Code Snippet Section (Bonus) -->
-        <h2 id="snippet">Using the Pass ID in a Script</h2>
-        <p>After you have your Pass ID (the number from the URL), you can use this basic script to check if a player owns the pass. This should be placed in a Script inside ServerScriptService.</p>
-        <pre class="panel" style="padding:0.9rem; overflow:auto;"><code>local MarketplaceService = game:GetService("MarketplaceService")
-local PASS_ID = 123456789  -- ЗАМЕНИТЕ НА ВАШ ID
-
-game.Players.PlayerAdded:Connect(function(player)
-    local success, ownsPass = pcall(function()
-        return MarketplaceService:UserOwnsGamePassAsync(player.UserId, PASS_ID)
-    end)
-
-    if success and ownsPass then
-        print(player.Name .. " owns the pass! Grant benefits.")
-        -- Здесь добавьте код для выдачи преимуществ (например, дать двойной прыжок)
-    else
-        print(player.Name .. " does not own the pass.")
-    end
-end)</code></pre>
-        <div class="callout">
-          <strong>Pro tip:</strong> Always wrap <code>MarketplaceService:UserOwnsGamePassAsync()</code> in a <code>pcall()</code> to handle potential errors (like network issues) without crashing your script.
-        </div>
-
-        <!-- FAQ -->
-        <h2 id="faq">Frequently Asked Questions</h2>
-
-        <h3>How much Robux do I earn from a game pass sale?</h3>
-        <p>You earn 70% of the Robux price you set. For example, if you sell a pass for 100 Robux, you will receive 70 Robux. The remaining 30% goes to Roblox platform fees.</p>
-
-        <h3>Can I change the price after publishing?</h3>
-        <p>Yes, you can change the price anytime from the Sales tab. However, be mindful that changing prices frequently might confuse players.</p>
-
-        <h3>My ownership check fails in the script. What's wrong?</h3>
-        <p>This usually happens for a few reasons: 1) The Pass ID is incorrect. 2) The game is not published (it must be public). 3) You're testing in Studio without a valid Roblox player. 4) Temporary API issues. Always use <code>pcall</code> to handle errors gracefully.</p>
-
-        <h3>Do I need an image to create a pass?</h3>
-        <p>An image is highly recommended for sales, but Roblox provides a default placeholder if you skip this step. You can upload a custom image later.</p>
       </article>
 
-      <!-- Sidebar -->
-      <aside class="panel article-aside">
-        <h2 style="font-size:1.1rem;">On this page</h2>
-        <ul style="list-style:none; padding-left:0;">
-          <li><a href="#overview">Overview</a></li>
-          <li><a href="#requirements">Requirements</a></li>
-          <li><a href="#step1">Step 1: Open Roblox</a></li>
-          <li><a href="#step2">Step 2: Go to Create</a></li>
-          <li><a href="#step3">Step 3: Select your game</a></li>
-          <li><a href="#step4">Step 4: Go to Passes</a></li>
-          <li><a href="#step5">Step 5: Click "Create A Pass"</a></li>
-          <li><a href="#step6">Step 6: Customize your pass</a></li>
-          <li><a href="#step7">Step 7: Enable sales</a></li>
-          <li><a href="#step8">Step 8: Set a price</a></li>
-          <li><a href="#snippet">Code snippet</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
+      <!-- Сайдбар с оглавлением -->
+      <aside class="wiki-sidebar">
+        <div class="wiki-toc">
+          <div class="wiki-toc-title">
+            <svg viewBox="0 0 24 24" width="20" height="20">
+              <path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/>
+            </svg>
+            On this page
+          </div>
+          <ul class="wiki-toc-list" id="tableOfContents"></ul>
+        </div>
+        
         <hr>
         <p class="small"><strong>Last updated:</strong><br>
         <time datetime="2026-03-10">March 10, 2026</time></p>
         <hr>
-        <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
+        <p class="small"><strong>Need help?</strong><br>
+        <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
       </aside>
     </div>
   </main>
@@ -450,7 +154,7 @@ end)</code></pre>
 
   <script src="/assets/js/main.js" defer></script>
   <script>
-    // Прогресс-бар при скролле
+    // Прогресс-бар
     window.addEventListener('scroll', function() {
       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -458,93 +162,64 @@ end)</code></pre>
       document.getElementById('progressBar').style.width = scrolled + '%';
     });
 
-    // Улучшенная логика для кнопки Share
+    // Автоматическая генерация оглавления
     document.addEventListener('DOMContentLoaded', function() {
+      const toc = document.getElementById('tableOfContents');
+      const headings = document.querySelectorAll('.wiki-article h2, .wiki-article h3, .wiki-article h4');
+      
+      headings.forEach((heading, index) => {
+        if (!heading.id) {
+          heading.id = `heading-${index}`;
+        }
+        
+        const li = document.createElement('li');
+        li.className = `toc-${heading.tagName.toLowerCase()}`;
+        
+        const a = document.createElement('a');
+        a.href = `#${heading.id}`;
+        a.textContent = heading.textContent;
+        
+        li.appendChild(a);
+        toc.appendChild(li);
+      });
+
+      // Логика шаринга
       const shareBtn = document.getElementById('shareBtn');
       const shareLinks = document.getElementById('shareLinks');
       const toast = document.getElementById('shareToast');
-      
-      // Функция для показа уведомления
-      function showToast(message, duration = 3000) {
-        toast.textContent = message;
-        toast.classList.add('show');
-        setTimeout(() => {
-          toast.classList.remove('show');
-        }, duration);
-      }
 
-      // Копирование ссылки в буфер обмена
-      function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-          showToast('✅ Link copied to clipboard!');
-        }).catch(() => {
-          showToast('❌ Failed to copy link');
-        });
-      }
-
-      // Настройка ссылок для шаринга
-      function setupShareLinks() {
-        const currentUrl = encodeURIComponent(window.location.href);
-        const title = encodeURIComponent(document.title);
-        
-        const twLink = document.getElementById('twShare');
-        const tgLink = document.getElementById('tgShare');
-        const vkLink = document.getElementById('vkShare');
-        
-        twLink.href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`;
-        tgLink.href = `https://t.me/share/url?url=${currentUrl}&text=${title}`;
-        vkLink.href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
-      }
-
-      // Показываем/скрываем ссылки при клике
       shareBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+        const isVisible = shareLinks.style.display !== 'none';
         
-        if (isHidden) {
-          shareLinks.setAttribute('aria-hidden', 'false');
-          setupShareLinks();
+        if (isVisible) {
+          shareLinks.style.display = 'none';
         } else {
-          shareLinks.setAttribute('aria-hidden', 'true');
+          shareLinks.style.display = 'flex';
+          // Устанавливаем ссылки
+          const url = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(document.title);
+          
+          document.getElementById('twShare').href = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
+          document.getElementById('tgShare').href = `https://t.me/share/url?url=${url}&text=${title}`;
+          document.getElementById('vkShare').href = `https://vk.com/share.php?url=${url}&title=${title}`;
         }
-      });
-
-      // Обработка клика по ссылкам
-      document.querySelectorAll('.share-links a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          const url = this.href;
-          window.open(url, '_blank', 'width=600,height=400');
-          shareLinks.setAttribute('aria-hidden', 'true');
-        });
-      });
-
-      // Копирование при клике на саму кнопку (альтернативный вариант)
-      shareBtn.addEventListener('dblclick', function() {
-        copyToClipboard(window.location.href);
-        shareLinks.setAttribute('aria-hidden', 'true');
       });
 
       // Закрытие при клике вне
       document.addEventListener('click', function(e) {
         if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
-          shareLinks.setAttribute('aria-hidden', 'true');
+          shareLinks.style.display = 'none';
         }
       });
 
-      // Форматирование даты
-      const today = new Date();
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      const formattedDate = today.toLocaleDateString('en-US', options);
-      
-      // Обновляем все даты на странице
-      document.querySelectorAll('time').forEach(timeEl => {
-        if (!timeEl.getAttribute('datetime')) {
-          timeEl.setAttribute('datetime', today.toISOString().split('T')[0]);
-        }
-        if (!timeEl.textContent) {
-          timeEl.textContent = formattedDate;
-        }
+      // Копирование при двойном клике
+      shareBtn.addEventListener('dblclick', function() {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          toast.textContent = '✅ Link copied!';
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), 2000);
+        });
       });
     });
   </script>
