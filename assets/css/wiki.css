@@ -1,41 +1,6 @@
-/* assets/css/wiki.css */
-/* Дополнительные стили для страниц статей Wiki (гайды, туториалы) */
+/* Дополнительные стили только для страниц статей Wiki */
 
-/* --- Прогресс-бар --- */
-.progress-container {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-}
-
-.progress-bar {
-  height: 4px;
-  background: linear-gradient(90deg, #00a2ff, #0066cc, #00a2ff);
-  background-size: 200% 100%;
-  width: 0%;
-  transition: width 0.1s ease;
-  box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
-  animation: gradientShift 2s linear infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-body {
-  margin-top: 4px;
-}
-
-.site-header {
-  top: 4px;
-}
-
-/* --- Блок "Поделиться" (Share) --- */
+/* Блок "Поделиться" (Share) */
 .share-wrap {
   display: inline-flex;
   align-items: center;
@@ -112,7 +77,7 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
-/* --- Уведомление (Toast) для Share --- */
+/* Уведомление (Toast) для Share */
 .share-toast {
   position: fixed;
   left: 50%;
@@ -141,7 +106,7 @@ body {
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 
-/* --- Мета-информация статьи (дата, автор) --- */
+/* Мета-информация статьи */
 .article-meta {
   display: flex;
   align-items: center;
@@ -170,7 +135,7 @@ body {
   color: #aaa;
 }
 
-/* --- Стили для контента статьи --- */
+/* Стили для контента статей */
 .warning-box {
   background: rgba(220, 53, 69, 0.15);
   border-left: 6px solid #dc3545;
@@ -275,141 +240,54 @@ body {
   border-color: #00a2ff;
 }
 
-/* --- Хлебные крошки --- */
-.post-breadcrumb {
-  margin-bottom: 1rem;
-  color: #888;
-  font-size: 0.9rem;
-}
-
-.post-breadcrumb a {
-  color: #888;
-  text-decoration: none;
-}
-
-.post-breadcrumb a:hover {
-  color: var(--primary);
-}
-
-/* --- Стили для изображений в статьях --- */
+/* Стили для изображений */
 .article-content img {
   max-width: 100%;
   border-radius: 8px;
   margin: 1rem 0;
 }
 
-/* --- Стили для кода --- */
-pre.panel {
-  padding: 0.9rem;
-  overflow: auto;
-  background: var(--bg);
-  border-radius: var(--radius);
+/* Темы для light mode в специальных блоках */
+:root[data-theme='light'] .btn-share {
+  background: linear-gradient(145deg, #e0e0e0, #d0d0d0);
+  color: #1a1a1a;
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
-pre code {
-  font-family: 'Courier New', monospace;
+:root[data-theme='light'] .btn-share:hover {
+  background: linear-gradient(145deg, #d0d0d0, #c0c0c0);
 }
 
-.callout {
-  border-left: 4px solid var(--success);
-  background: color-mix(in srgb, var(--success), transparent 90%);
-  padding: 0.8rem 0.9rem;
-  border-radius: 8px;
-  margin: 1rem 0;
+:root[data-theme='light'] .share-links a {
+  background: rgba(0, 0, 0, 0.05);
+  color: #1a1a1a;
 }
 
-/* ====================================================================
-   УЛУЧШЕННАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
-   ==================================================================== */
-
-/* Исправляем ширину контента на мобильных */
-@media (max-width: 960px) {
-  /* Убираем скрытие сайдбара - теперь он будет показываться внизу */
-  .article-aside {
-    display: block;
-    position: static;
-    margin-top: 2rem;
-    width: 100%;
-  }
-  
-  /* Перестраиваем сетку */
-  .article-layout {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  
-  /* Добавляем отступы для контента */
-  .article-content {
-    padding: 1rem;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* Ограничиваем ширину контейнера */
-  .container {
-    width: calc(100% - 2rem);
-    max-width: 100%;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  
-  /* Убираем горизонтальный скролл */
-  body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-  
-  /* Фикс для изображений */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  /* Улучшаем читаемость */
-  .lead {
-    font-size: 1rem;
-  }
-  
-  /* Добавляем отступы для лучшей читаемости */
-  p, li {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-  }
-  
-  /* Делаем сайдбар более компактным */
-  .article-aside {
-    padding: 1rem;
-  }
-  
-  .article-aside ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-  
-  .article-aside li {
-    display: inline-block;
-    margin-right: 0.5rem;
-  }
-  
-  .article-aside a {
-    display: inline-block;
-    padding: 0.4rem 0.8rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    font-size: 0.9rem;
-    white-space: nowrap;
-  }
-  
-  /* Компактный hr в сайдбаре */
-  .article-aside hr {
-    margin: 1rem 0;
-  }
+:root[data-theme='light'] .share-toast {
+  background: linear-gradient(145deg, #e0e0e0, #d0d0d0);
+  color: #1a1a1a;
 }
 
+:root[data-theme='light'] .article-meta {
+  border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+:root[data-theme='light'] .step-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+:root[data-theme='light'] .table-of-contents {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+:root[data-theme='light'] .related-card {
+  background: rgba(0, 0, 0, 0.02);
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Медиа-запросы специфичные для wiki */
 @media (max-width: 768px) {
-  /* Адаптация заголовка и блока с кнопкой Share */
   .article-content > div:first-child {
     flex-direction: column;
     align-items: flex-start !important;
@@ -431,25 +309,10 @@ pre code {
     text-align: center;
   }
 
-  /* Адаптация мета-информации */
   .article-meta {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.75rem;
-  }
-
-  /* Адаптация оглавления */
-  .table-of-contents ul {
-    columns: 1;
-  }
-
-  /* Адаптация карточек шагов */
-  .step-card {
-    padding: 1rem;
-  }
-  
-  .step-title {
-    font-size: 1.2rem;
   }
   
   .step-number {
@@ -457,236 +320,35 @@ pre code {
     height: 30px;
     line-height: 30px;
     font-size: 1rem;
-    margin-right: 0.75rem;
   }
+}
 
-  /* Уменьшаем отступы у боксов */
+@media (max-width: 480px) {
+  .table-of-contents ul {
+    columns: 1;
+  }
+  
+  .step-card {
+    padding: 1rem;
+  }
+  
+  .step-title {
+    font-size: 1.2rem;
+  }
+  
   .warning-box,
   .info-box,
   .tip-box {
     padding: 1rem;
-    margin: 1.5rem 0;
-  }
-
-  /* Адаптация сетки похожих статей */
-  .related-articles {
-    grid-template-columns: 1fr;
-  }
-
-  /* Уменьшаем размер шрифта для pre */
-  pre.panel {
-    font-size: 0.85rem;
-    padding: 0.7rem;
-    white-space: pre-wrap;
-    word-wrap: break-word;
   }
   
-  /* Улучшаем сайдбар на планшетах */
-  .article-aside ul {
-    gap: 0.4rem;
-  }
-  
-  .article-aside a {
-    padding: 0.35rem 0.7rem;
-    font-size: 0.85rem;
-  }
-}
-
-/* Специально для очень маленьких экранов */
-@media (max-width: 480px) {
-  /* Основная типографика */
-  .step-title {
-    font-size: 1.1rem;
-  }
-  
-  .table-of-contents h2,
-  .warning-box h2,
-  .info-box h2,
-  .tip-box h2 {
-    font-size: 1.2rem;
-  }
-  
-  h1 {
-    font-size: 1.6rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
-  }
-  
-  .article-content h2 {
-    font-size: 1.4rem;
-    margin-top: 1.5rem;
-  }
-  
-  .article-content h3 {
-    font-size: 1.2rem;
-  }
-  
-  /* Улучшаем отступы для лучшей читаемости */
-  .article-content {
-    padding: 0.75rem;
-  }
-  
-  p {
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-  
-  /* Улучшаем сайдбар на телефонах */
-  .article-aside {
-    padding: 0.75rem;
-  }
-  
-  .article-aside h2 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .article-aside ul {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.3rem;
-  }
-  
-  .article-aside li {
-    margin-right: 0;
-  }
-  
-  .article-aside a {
-    display: block;
-    padding: 0.4rem 0.5rem;
-    font-size: 0.8rem;
-    white-space: normal;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 16px;
-  }
-  
-  /* Убираем лишние элементы в сайдбаре */
-  .article-aside hr:first-of-type {
-    display: none;
-  }
-  
-  /* Делаем контактную информацию компактнее */
-  .article-aside .small {
-    font-size: 0.8rem;
-  }
-  
-  .article-aside br {
-    display: none;
-  }
-  
-  .article-aside p {
-    margin: 0.3rem 0;
-  }
-  
-  /* Улучшаем код-блоки */
-  pre.panel {
-    font-size: 0.75rem;
-    padding: 0.5rem;
-    border-radius: 8px;
-  }
-  
-  /* Улучшаем изображения */
-  .step-image {
-    padding: 0.5rem;
-    margin: 1rem 0;
-  }
-  
-  /* Улучшаем callout */
-  .callout {
-    padding: 0.6rem 0.7rem;
+  .btn-share {
+    padding: 0.5rem 1rem;
     font-size: 0.9rem;
   }
   
-  /* Улучшаем шаги */
-  .step-card {
-    padding: 0.75rem;
-    margin: 1rem 0;
-  }
-  
-  /* Улучшаем мета-информацию */
-  .article-meta {
-    gap: 0.5rem;
-    margin: 0.5rem 0 1rem 0;
-  }
-  
-  .article-meta-item {
-    font-size: 0.8rem;
-  }
-  
-  .article-meta-item svg {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-/* Для экранов меньше 360px (самые маленькие телефоны) */
-@media (max-width: 360px) {
-  h1 {
-    font-size: 1.4rem;
-  }
-  
-  .article-content h2 {
-    font-size: 1.2rem;
-  }
-  
-  .article-aside ul {
-    grid-template-columns: 1fr;
-  }
-  
-  .article-aside a {
-    text-align: left;
-    padding: 0.35rem 0.6rem;
-  }
-  
-  .step-title {
-    font-size: 1rem;
-  }
-  
-  .step-number {
-    width: 26px;
-    height: 26px;
-    line-height: 26px;
-    font-size: 0.9rem;
-  }
-}
-
-/* ====================================================================
-   ОПЦИОНАЛЬНО: АККОРДЕОН ДЛЯ САЙДБАРА НА ТЕЛЕФОНАХ (ЕСЛИ НУЖНО)
-   ==================================================================== */
-@media (max-width: 480px) {
-  .article-aside.collapsible {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-  
-  .article-aside.collapsible h2 {
-    margin: 0;
-    padding: 0.8rem;
-    background: rgba(255, 255, 255, 0.03);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .article-aside.collapsible h2::after {
-    content: "▼";
-    font-size: 0.7rem;
-    transition: transform 0.3s;
-  }
-  
-  .article-aside.collapsible.collapsed h2::after {
-    transform: rotate(-90deg);
-  }
-  
-  .article-aside.collapsible .aside-content {
-    padding: 0.8rem;
-    transition: max-height 0.3s;
-  }
-  
-  .article-aside.collapsible.collapsed .aside-content {
-    display: none;
+  .share-links a {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
   }
 }
