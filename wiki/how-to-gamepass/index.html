@@ -37,47 +37,171 @@
   <style>
     /* Локальные быстрые стили для кнопки Share и toast'а — можно вынести в global.css */
     .share-wrap {
-      display:inline-flex;
-      align-items:center;
-      gap:0.5rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
       margin: 0.5rem 0;
-      flex-wrap:wrap;
+      flex-wrap: wrap;
     }
+    
     .btn-share {
-      padding: 0.4rem 0.7rem;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.06);
-      background: transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
       cursor: pointer;
       font-size: 0.95rem;
+      font-weight: 500;
+      color: #fff;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     }
-    .share-links { display:inline-flex; gap:0.5rem; align-items:center; }
+    
+    .btn-share:hover {
+      background: linear-gradient(145deg, #333, #222);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+    
+    .btn-share:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-share svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    
+    .share-links {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
     .share-links a {
-      text-decoration:none;
-      font-size:0.9rem;
-      padding: 0.25rem 0.5rem;
-      border-radius:6px;
-      border:1px solid rgba(255,255,255,0.04);
-      background:transparent;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-weight: 500;
+      transition: all 0.2s ease;
     }
-    .share-links[aria-hidden="true"] { display:none; }
+    
+    .share-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .share-links[aria-hidden="true"] { 
+      display: none; 
+    }
+    
     .share-toast {
       position: fixed;
       left: 50%;
       transform: translateX(-50%);
       bottom: 20px;
-      background: rgba(17,17,17,0.95);
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
       color: #fff;
-      padding: 0.6rem 0.9rem;
-      border-radius: 8px;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
       font-size: 0.95rem;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
       z-index: 9999;
       display: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+      backdrop-filter: blur(10px);
     }
-    .share-toast.show { display:block; }
-    @media (max-width:600px){
-      .share-wrap { width:100%; }
+    
+    .share-toast.show { 
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+    
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: #888;
+      font-size: 0.9rem;
+      margin: 1rem 0 2rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+    }
+    
+    .article-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .article-meta-item svg {
+      width: 16px;
+      height: 16px;
+      fill: #888;
+    }
+    
+    .article-meta-item time {
+      color: #aaa;
+    }
+    
+    @media (max-width: 600px) {
+      .share-wrap { 
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .btn-share {
+        width: 100%;
+        justify-content: center;
+      }
+      .share-links {
+        width: 100%;
+        justify-content: center;
+      }
+      .share-links a {
+        flex: 1;
+        text-align: center;
+      }
+      .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
     }
   </style>
 </head>
@@ -100,14 +224,41 @@
         <div style="display:flex; align-items:center; gap:1rem; justify-content:space-between; flex-wrap:wrap;">
           <h1 style="margin:0;">How to Make a Game Pass on Roblox (8 Easy Steps)</h1>
 
-          <!-- Share button placed next to title -->
+          <!-- Улучшенная кнопка Share с иконкой -->
           <div class="share-wrap" aria-hidden="false">
-            <button id="shareBtn" class="btn-share" aria-label="Share article">Share</button>
+            <button id="shareBtn" class="btn-share" aria-label="Share article">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 9.81C6.5 9.31 5.79 9 5 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+              </svg>
+              Share
+            </button>
             <div class="share-links" id="shareLinks" aria-hidden="true">
-              <a id="twShare" target="_blank" rel="noopener">Twitter</a>
-              <a id="tgShare" target="_blank" rel="noopener">Telegram</a>
-              <a id="vkShare" target="_blank" rel="noopener">VK</a>
+              <a id="twShare" target="_blank" rel="noopener">𝕏 Twitter</a>
+              <a id="tgShare" target="_blank" rel="noopener">📱 Telegram</a>
+              <a id="vkShare" target="_blank" rel="noopener">📘 VK</a>
             </div>
+          </div>
+        </div>
+
+        <!-- Мета-информация статьи с датой создания -->
+        <div class="article-meta">
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+            </svg>
+            <time datetime="2026-03-10">March 10, 2026</time>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 2c-1.66 0-5 1.34-5 4v2h10v-2c0-2.66-3.34-4-5-4z"/>
+            </svg>
+            <span>By RO-Wiki Team</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            <span>8 min read</span>
           </div>
         </div>
 
@@ -228,6 +379,9 @@ end)</code></pre>
           <li><a href="#faq">FAQ</a></li>
         </ul>
         <hr>
+        <p class="small"><strong>Last updated:</strong><br>
+        <time datetime="2026-03-10">March 10, 2026</time></p>
+        <hr>
         <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
       </aside>
     </div>
@@ -255,8 +409,96 @@ end)</code></pre>
   <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
 
   <script src="/assets/js/main.js" defer></script>
-</body>
-</html>
-  <script src="/assets/js/main.js" defer></script>
+  <script>
+    // Улучшенная логика для кнопки Share
+    document.addEventListener('DOMContentLoaded', function() {
+      const shareBtn = document.getElementById('shareBtn');
+      const shareLinks = document.getElementById('shareLinks');
+      const toast = document.getElementById('shareToast');
+      
+      // Функция для показа уведомления
+      function showToast(message, duration = 3000) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, duration);
+      }
+
+      // Копирование ссылки в буфер обмена
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('✅ Link copied to clipboard!');
+        }).catch(() => {
+          showToast('❌ Failed to copy link');
+        });
+      }
+
+      // Настройка ссылок для шаринга
+      function setupShareLinks() {
+        const currentUrl = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        
+        const twLink = document.getElementById('twShare');
+        const tgLink = document.getElementById('tgShare');
+        const vkLink = document.getElementById('vkShare');
+        
+        twLink.href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`;
+        tgLink.href = `https://t.me/share/url?url=${currentUrl}&text=${title}`;
+        vkLink.href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
+      }
+
+      // Показываем/скрываем ссылки при клике
+      shareBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+        
+        if (isHidden) {
+          shareLinks.setAttribute('aria-hidden', 'false');
+          setupShareLinks();
+        } else {
+          shareLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Обработка клика по ссылкам
+      document.querySelectorAll('.share-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const url = this.href;
+          window.open(url, '_blank', 'width=600,height=400');
+          shareLinks.setAttribute('aria-hidden', 'true');
+        });
+      });
+
+      // Копирование при клике на саму кнопку (альтернативный вариант)
+      shareBtn.addEventListener('dblclick', function() {
+        copyToClipboard(window.location.href);
+        shareLinks.setAttribute('aria-hidden', 'true');
+      });
+
+      // Закрытие при клике вне
+      document.addEventListener('click', function(e) {
+        if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
+          shareLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Форматирование даты
+      const today = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = today.toLocaleDateString('en-US', options);
+      
+      // Обновляем все даты на странице
+      document.querySelectorAll('time').forEach(timeEl => {
+        if (!timeEl.getAttribute('datetime')) {
+          timeEl.setAttribute('datetime', today.toISOString().split('T')[0]);
+        }
+        if (!timeEl.textContent) {
+          timeEl.textContent = formattedDate;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
