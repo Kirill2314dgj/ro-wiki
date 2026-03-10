@@ -288,17 +288,19 @@ end)</code></pre>
         document.getElementById('vkShare').href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
       }
 
-      shareBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
-        
-        if (isHidden) {
-          shareLinks.setAttribute('aria-hidden', 'false');
-          setupShareLinks();
-        } else {
-          shareLinks.setAttribute('aria-hidden', 'true');
-        }
-      });
+      if (shareBtn) {
+        shareBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+          
+          if (isHidden) {
+            shareLinks.setAttribute('aria-hidden', 'false');
+            setupShareLinks();
+          } else {
+            shareLinks.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
 
       document.querySelectorAll('.share-links a').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -308,13 +310,15 @@ end)</code></pre>
         });
       });
 
-      shareBtn.addEventListener('dblclick', function() {
-        copyToClipboard(window.location.href);
-        shareLinks.setAttribute('aria-hidden', 'true');
-      });
+      if (shareBtn) {
+        shareBtn.addEventListener('dblclick', function() {
+          copyToClipboard(window.location.href);
+          shareLinks.setAttribute('aria-hidden', 'true');
+        });
+      }
 
       document.addEventListener('click', function(e) {
-        if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
+        if (shareBtn && !shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
           shareLinks.setAttribute('aria-hidden', 'true');
         }
       });
@@ -326,21 +330,41 @@ end)</code></pre>
       const modalContent = document.querySelector('.modal-toc-content');
       const sidebar = document.querySelector('.article-aside');
       
-      // Копируем содержимое сайдбара в модальное окно
+      // Копируем содержимое сайдбара в модальное окно с проверкой
       if (modalContent && sidebar) {
-        const sidebarClone = sidebar.cloneNode(true);
-        // Удаляем заголовок и лишние элементы
-        const heading = sidebarClone.querySelector('h2');
-        if (heading) heading.remove();
+        // Функция для копирования контента
+        function copySidebarContent() {
+          // Очищаем предыдущее содержимое
+          modalContent.innerHTML = '';
+          
+          // Клонируем сайдбар
+          const sidebarClone = sidebar.cloneNode(true);
+          
+          // Удаляем заголовок
+          const heading = sidebarClone.querySelector('h2');
+          if (heading) heading.remove();
+          
+          // Удаляем hr
+          const hrs = sidebarClone.querySelectorAll('hr');
+          hrs.forEach(hr => hr.remove());
+          
+          // Удаляем дополнительные тексты
+          const smalls = sidebarClone.querySelectorAll('.small');
+          smalls.forEach(small => small.remove());
+          
+          // Добавляем склонированное содержимое
+          modalContent.appendChild(sidebarClone);
+          
+          console.log('Sidebar content copied to modal'); // Для отладки
+        }
         
-        // Удаляем hr и дополнительный текст (оставим только ul)
-        const hrs = sidebarClone.querySelectorAll('hr');
-        hrs.forEach(hr => hr.remove());
+        // Копируем сразу
+        copySidebarContent();
         
-        const smalls = sidebarClone.querySelectorAll('.small');
-        smalls.forEach(small => small.remove());
-        
-        modalContent.appendChild(sidebarClone);
+        // Копируем с небольшой задержкой на всякий случай
+        setTimeout(copySidebarContent, 100);
+      } else {
+        console.error('Modal content or sidebar not found'); // Для отладки
       }
       
       if (fabButton && modal && closeButton) {
@@ -367,6 +391,8 @@ end)</code></pre>
             document.body.style.overflow = '';
           }
         });
+      } else {
+        console.error('FAB button, modal, or close button not found'); // Для отладки
       }
 
       // Форматирование даты
