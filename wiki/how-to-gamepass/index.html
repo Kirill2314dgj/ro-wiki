@@ -13,7 +13,6 @@
   <meta property="og:description" content="Learn how to create a game pass in 8 simple steps. Includes tips on thumbnails, pricing, and finding your Pass ID for scripting.">
   <meta property="og:url" content="https://ro-wiki.fun/tutorials/how-to-gamepass/">
   <link rel="stylesheet" href="/assets/css/global.css">
-  <link rel="stylesheet" href="/assets/css/wiki.css">
 
   <script type="application/ld+json">
   {
@@ -95,14 +94,6 @@
             <span>8 min read</span>
           </div>
         </div>
-
-        <!-- Мобильная кнопка оглавления (будет видна только на телефонах) -->
-        <button class="mobile-toc-button" id="mobileTocBtn">
-          <svg viewBox="0 0 24 24" width="20" height="20">
-            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-          </svg>
-          On this page
-        </button>
 
         <p class="lead">Game passes are one of the best ways to monetize your Roblox experience. This guide walks you through the entire process — from opening the Creator Hub to setting a price and grabbing your Pass ID for scripts.</p>
 
@@ -191,7 +182,7 @@ end)</code></pre>
         <p>An image is highly recommended for sales, but Roblox provides a default placeholder if you skip this step. You can upload a custom image later.</p>
       </article>
 
-      <!-- Обычный сайдбар (скрывается на мобилках) -->
+      <!-- Обычный сайдбар (автоматически скрывается на мобилках через CSS) -->
       <aside class="panel article-aside">
         <h2 style="font-size:1.1rem;">On this page</h2>
         <ul style="list-style:none; padding-left:0;">
@@ -236,35 +227,22 @@ end)</code></pre>
     </div>
   </footer>
 
-  <!-- Мобильное меню (выезжающая панель) -->
-  <div class="toc-overlay" id="tocOverlay"></div>
-  <div class="mobile-toc-panel" id="mobileTocPanel">
-    <div class="mobile-toc-header">
-      <h3>📖 On this page</h3>
-      <button class="close-toc" id="closeTocBtn" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </svg>
-      </button>
-    </div>
-    <div class="mobile-toc-content">
-      <a href="#overview">Overview</a>
-      <a href="#requirements">Requirements</a>
-      <a href="#step1">Step 1: Open Roblox</a>
-      <a href="#step2">Step 2: Go to Create</a>
-      <a href="#step3">Step 3: Select your game</a>
-      <a href="#step4">Step 4: Go to Passes</a>
-      <a href="#step5">Step 5: Click "Create A Pass"</a>
-      <a href="#step6">Step 6: Customize your pass</a>
-      <a href="#step7">Step 7: Enable sales</a>
-      <a href="#step8">Step 8: Set a price</a>
-      <a href="#snippet">Code snippet</a>
-      <a href="#faq">FAQ</a>
-      <div class="mobile-toc-divider"></div>
-      <div class="mobile-toc-footer">
-        <p><strong>Last updated:</strong><br>March 10, 2026</p>
-        <p><strong>Need help?</strong><br><a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
+  <!-- Мобильная FAB кнопка для открытия оглавления (появляется только на мобилках) -->
+  <button class="toc-fab" id="tocFab" aria-label="Open table of contents">
+    <svg viewBox="0 0 24 24">
+      <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z"/>
+    </svg>
+  </button>
+
+  <!-- Модальное окно с оглавлением -->
+  <div class="toc-modal" id="tocModal">
+    <div class="toc-modal-content">
+      <div class="toc-modal-header">
+        <h2>On this page</h2>
+        <button class="toc-close" id="tocClose" aria-label="Close">×</button>
       </div>
+      <!-- Копия содержимого сайдбара (будет заполнена через JS) -->
+      <div id="tocModalBody"></div>
     </div>
   </div>
 
@@ -340,39 +318,69 @@ end)</code></pre>
         }
       });
 
-      // Логика для мобильного меню
-      const mobileBtn = document.getElementById('mobileTocBtn');
-      const mobilePanel = document.getElementById('mobileTocPanel');
-      const overlay = document.getElementById('tocOverlay');
-      const closeBtn = document.getElementById('closeTocBtn');
+      // Логика для мобильного оглавления
+      const tocFab = document.getElementById('tocFab');
+      const tocModal = document.getElementById('tocModal');
+      const tocClose = document.getElementById('tocClose');
+      const tocModalBody = document.getElementById('tocModalBody');
       
-      if (mobileBtn && mobilePanel && overlay && closeBtn) {
-        function openMenu() {
-          mobilePanel.classList.add('active');
-          overlay.classList.add('active');
-          document.body.style.overflow = 'hidden'; // Блокируем скролл
+      if (tocFab && tocModal && tocClose && tocModalBody) {
+        // Копируем содержимое сайдбара в модальное окно
+        const originalAside = document.querySelector('.article-aside');
+        if (originalAside) {
+          tocModalBody.innerHTML = originalAside.innerHTML;
         }
         
-        function closeMenu() {
-          mobilePanel.classList.remove('active');
-          overlay.classList.remove('active');
-          document.body.style.overflow = ''; // Возвращаем скролл
+        function openToc() {
+          tocModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
         }
         
-        mobileBtn.addEventListener('click', openMenu);
-        closeBtn.addEventListener('click', closeMenu);
-        overlay.addEventListener('click', closeMenu);
+        function closeToc() {
+          tocModal.classList.remove('active');
+          document.body.style.overflow = '';
+        }
+        
+        tocFab.addEventListener('click', openToc);
+        tocClose.addEventListener('click', closeToc);
+        
+        // Закрытие по клику на фон
+        tocModal.addEventListener('click', function(e) {
+          if (e.target === tocModal) {
+            closeToc();
+          }
+        });
         
         // Закрытие по ESC
         document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape' && mobilePanel.classList.contains('active')) {
-            closeMenu();
+          if (e.key === 'Escape' && tocModal.classList.contains('active')) {
+            closeToc();
           }
         });
-
-        // Закрытие при клике на ссылку в меню
-        document.querySelectorAll('.mobile-toc-content a').forEach(link => {
-          link.addEventListener('click', closeMenu);
+        
+        // Плавный скролл к якорям и закрытие модалки
+        tocModalBody.addEventListener('click', function(e) {
+          const link = e.target.closest('a[href^="#"]');
+          if (link) {
+            e.preventDefault();
+            const targetId = link.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
+            
+            if (targetElement) {
+              closeToc();
+              
+              setTimeout(() => {
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                
+                window.scrollTo({
+                  top: offsetPosition,
+                  behavior: 'smooth'
+                });
+              }, 300);
+            }
+          }
         });
       }
 
