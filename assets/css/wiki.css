@@ -319,173 +319,92 @@ pre code {
 }
 
 /* ====================================================================
-   СТИЛИ ДЛЯ МОБИЛЬНОГО САЙДБАРА (ГАМБУРГЕР МЕНЮ)
+   УЛУЧШЕННАЯ МОБИЛЬНАЯ АДАПТАЦИЯ
    ==================================================================== */
 
-/* Кнопка для открытия сайдбара на мобилках */
-.mobile-toc-button {
-  display: none;
-  width: 100%;
-  padding: 0.8rem 1rem;
-  margin: 1rem 0;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: var(--radius);
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  box-shadow: var(--shadow);
-}
-
-.mobile-toc-button svg {
-  width: 20px;
-  height: 20px;
-  fill: currentColor;
-}
-
-.mobile-toc-button:hover {
-  background: var(--primary-strong);
-}
-
-/* Оверлей для затемнения фона */
-.toc-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(3px);
-  z-index: 9998;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.toc-overlay.active {
-  display: block;
-  opacity: 1;
-}
-
-/* Мобильное меню (слайд сбоку) */
-.mobile-toc-panel {
-  position: fixed;
-  top: 0;
-  right: -100%;
-  width: 85%;
-  max-width: 320px;
-  height: 100vh;
-  background: var(--bg-elev);
-  border-left: 1px solid var(--border);
-  z-index: 9999;
-  overflow-y: auto;
-  padding: 1.5rem;
-  transition: right 0.3s ease;
-  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.5);
-}
-
-.mobile-toc-panel.active {
-  right: 0;
-}
-
-.mobile-toc-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border);
-}
-
-.mobile-toc-header h3 {
-  margin: 0;
-  font-size: 1.2rem;
-  color: var(--text);
-}
-
-.close-toc {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.close-toc:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text);
-}
-
-.close-toc svg {
-  width: 24px;
-  height: 24px;
-  fill: currentColor;
-}
-
-.mobile-toc-content {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.mobile-toc-content a {
-  color: var(--text-muted);
-  text-decoration: none;
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
-}
-
-.mobile-toc-content a:hover {
-  background: rgba(255, 255, 255, 0.05);
-  color: var(--primary);
-  padding-left: 1.5rem;
-}
-
-.mobile-toc-divider {
-  height: 1px;
-  background: var(--border);
-  margin: 1rem 0;
-}
-
-.mobile-toc-footer {
-  margin-top: 1rem;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.mobile-toc-footer p {
-  margin: 0.5rem 0;
-}
-
-/* ====================================================================
-   МЕДИА-ЗАПРОСЫ ДЛЯ МОБИЛЬНЫХ УСТРОЙСТВ
-   ==================================================================== */
-
+/* Исправляем ширину контента на мобильных */
 @media (max-width: 960px) {
-  /* Прячем обычный сайдбар на мобилках */
+  /* Убираем скрытие сайдбара - теперь он будет показываться внизу */
   .article-aside {
-    display: none;
+    display: block;
+    position: static;
+    margin-top: 2rem;
+    width: 100%;
   }
   
-  /* Показываем кнопку для мобильного меню */
-  .mobile-toc-button {
-    display: flex;
+  /* Перестраиваем сетку */
+  .article-layout {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
   
-  /* Убираем лишние отступы */
+  /* Добавляем отступы для контента */
   .article-content {
     padding: 1rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Ограничиваем ширину контейнера */
+  .container {
+    width: calc(100% - 2rem);
+    max-width: 100%;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  
+  /* Убираем горизонтальный скролл */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  /* Фикс для изображений */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Улучшаем читаемость */
+  .lead {
+    font-size: 1rem;
+  }
+  
+  /* Добавляем отступы для лучшей читаемости */
+  p, li {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Делаем сайдбар более компактным */
+  .article-aside {
+    padding: 1rem;
+  }
+  
+  .article-aside ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .article-aside li {
+    display: inline-block;
+    margin-right: 0.5rem;
+  }
+  
+  .article-aside a {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  
+  /* Компактный hr в сайдбаре */
+  .article-aside hr {
+    margin: 1rem 0;
   }
 }
 
@@ -558,28 +477,24 @@ pre code {
   pre.panel {
     font-size: 0.85rem;
     padding: 0.7rem;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
   
-  /* Фикс для контейнера чтобы не было горизонтального скролла */
-  .container {
-    width: calc(100% - 2rem);
-    overflow-x: hidden;
+  /* Улучшаем сайдбар на планшетах */
+  .article-aside ul {
+    gap: 0.4rem;
   }
   
-  /* Фикс для article-layout чтобы не вылезало */
-  .article-layout {
-    width: 100%;
-    overflow-x: hidden;
-  }
-  
-  /* Фикс для изображений */
-  .article-content img {
-    max-width: 100%;
-    height: auto;
+  .article-aside a {
+    padding: 0.35rem 0.7rem;
+    font-size: 0.85rem;
   }
 }
 
+/* Специально для очень маленьких экранов */
 @media (max-width: 480px) {
+  /* Основная типографика */
   .step-title {
     font-size: 1.1rem;
   }
@@ -593,13 +508,185 @@ pre code {
   
   h1 {
     font-size: 1.6rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
   }
   
   .article-content h2 {
     font-size: 1.4rem;
+    margin-top: 1.5rem;
   }
   
   .article-content h3 {
     font-size: 1.2rem;
+  }
+  
+  /* Улучшаем отступы для лучшей читаемости */
+  .article-content {
+    padding: 0.75rem;
+  }
+  
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  /* Улучшаем сайдбар на телефонах */
+  .article-aside {
+    padding: 0.75rem;
+  }
+  
+  .article-aside h2 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .article-aside ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.3rem;
+  }
+  
+  .article-aside li {
+    margin-right: 0;
+  }
+  
+  .article-aside a {
+    display: block;
+    padding: 0.4rem 0.5rem;
+    font-size: 0.8rem;
+    white-space: normal;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+  }
+  
+  /* Убираем лишние элементы в сайдбаре */
+  .article-aside hr:first-of-type {
+    display: none;
+  }
+  
+  /* Делаем контактную информацию компактнее */
+  .article-aside .small {
+    font-size: 0.8rem;
+  }
+  
+  .article-aside br {
+    display: none;
+  }
+  
+  .article-aside p {
+    margin: 0.3rem 0;
+  }
+  
+  /* Улучшаем код-блоки */
+  pre.panel {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+  
+  /* Улучшаем изображения */
+  .step-image {
+    padding: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  /* Улучшаем callout */
+  .callout {
+    padding: 0.6rem 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  /* Улучшаем шаги */
+  .step-card {
+    padding: 0.75rem;
+    margin: 1rem 0;
+  }
+  
+  /* Улучшаем мета-информацию */
+  .article-meta {
+    gap: 0.5rem;
+    margin: 0.5rem 0 1rem 0;
+  }
+  
+  .article-meta-item {
+    font-size: 0.8rem;
+  }
+  
+  .article-meta-item svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Для экранов меньше 360px (самые маленькие телефоны) */
+@media (max-width: 360px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+  
+  .article-content h2 {
+    font-size: 1.2rem;
+  }
+  
+  .article-aside ul {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-aside a {
+    text-align: left;
+    padding: 0.35rem 0.6rem;
+  }
+  
+  .step-title {
+    font-size: 1rem;
+  }
+  
+  .step-number {
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ====================================================================
+   ОПЦИОНАЛЬНО: АККОРДЕОН ДЛЯ САЙДБАРА НА ТЕЛЕФОНАХ (ЕСЛИ НУЖНО)
+   ==================================================================== */
+@media (max-width: 480px) {
+  .article-aside.collapsible {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  
+  .article-aside.collapsible h2 {
+    margin: 0;
+    padding: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .article-aside.collapsible h2::after {
+    content: "▼";
+    font-size: 0.7rem;
+    transition: transform 0.3s;
+  }
+  
+  .article-aside.collapsible.collapsed h2::after {
+    transform: rotate(-90deg);
+  }
+  
+  .article-aside.collapsible .aside-content {
+    padding: 0.8rem;
+    transition: max-height 0.3s;
+  }
+  
+  .article-aside.collapsible.collapsed .aside-content {
+    display: none;
   }
 }
