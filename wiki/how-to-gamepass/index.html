@@ -12,10 +12,7 @@
   <meta property="og:title" content="How to Make a Game Pass on Roblox (2026 Guide)">
   <meta property="og:description" content="Learn how to create a game pass in 8 simple steps. Includes tips on thumbnails, pricing, and finding your Pass ID for scripting.">
   <meta property="og:url" content="https://ro-wiki.fun/tutorials/how-to-gamepass/">
-  
-  <!-- СТИЛИ: ТОЛЬКО ДВА ФАЙЛА -->
   <link rel="stylesheet" href="/assets/css/global.css">
-  <link rel="stylesheet" href="/assets/css/wiki.css">
 
   <script type="application/ld+json">
   {
@@ -36,9 +33,212 @@
     ]
   }
   </script>
-  
-  <!-- ВЕСЬ БЛОК <style> УДАЛЕН - ТЕПЕРЬ ОН В wiki.css -->
-  
+
+  <style>
+    /* Стили для прогресс-бара */
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+    }
+    
+    .progress-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #00a2ff, #0066cc, #00a2ff);
+      background-size: 200% 100%;
+      width: 0%;
+      transition: width 0.1s ease;
+      box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+      animation: gradientShift 2s linear infinite;
+    }
+    
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    /* Чтобы контент не скрывался под фиксированным прогресс-баром */
+    body {
+      margin-top: 4px;
+    }
+    
+    .site-header {
+      top: 4px;
+    }
+    
+    /* Остальные стили */
+    .share-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0.5rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .btn-share {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #fff;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-share:hover {
+      background: linear-gradient(145deg, #333, #222);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+    }
+    
+    .btn-share:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    .btn-share svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+    
+    .share-links {
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      animation: slideIn 0.3s ease;
+    }
+    
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    .share-links a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border-radius: 30px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+    
+    .share-links a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .share-links[aria-hidden="true"] { 
+      display: none; 
+    }
+    
+    .share-toast {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 20px;
+      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border-radius: 30px;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: none;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-weight: 500;
+      backdrop-filter: blur(10px);
+    }
+    
+    .share-toast.show { 
+      display: block;
+      animation: slideUp 0.3s ease;
+    }
+    
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translate(-50%, 20px);
+      }
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+    
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: #888;
+      font-size: 0.9rem;
+      margin: 1rem 0 2rem 0;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      flex-wrap: wrap;
+    }
+    
+    .article-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .article-meta-item svg {
+      width: 16px;
+      height: 16px;
+      fill: #888;
+    }
+    
+    .article-meta-item time {
+      color: #aaa;
+    }
+    
+    @media (max-width: 600px) {
+      .share-wrap { 
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .btn-share {
+        width: 100%;
+        justify-content: center;
+      }
+      .share-links {
+        width: 100%;
+        justify-content: center;
+      }
+      .share-links a {
+        flex: 1;
+        text-align: center;
+      }
+      .article-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+      }
+    }
+  </style>
 </head>
 <body>
   <!-- Прогресс-бар при скролле -->
@@ -64,7 +264,7 @@
         <div style="display:flex; align-items:center; gap:1rem; justify-content:space-between; flex-wrap:wrap;">
           <h1 style="margin:0;">How to Make a Game Pass on Roblox (8 Easy Steps)</h1>
 
-          <!-- Кнопка Share с иконкой -->
+          <!-- Улучшенная кнопка Share с иконкой -->
           <div class="share-wrap" aria-hidden="false">
             <button id="shareBtn" class="btn-share" aria-label="Share article">
               <svg viewBox="0 0 24 24" width="18" height="18">
@@ -166,7 +366,7 @@
         <!-- Code Snippet Section (Bonus) -->
         <h2 id="snippet">Using the Pass ID in a Script</h2>
         <p>After you have your Pass ID (the number from the URL), you can use this basic script to check if a player owns the pass. This should be placed in a Script inside ServerScriptService.</p>
-        <pre class="panel"><code>local MarketplaceService = game:GetService("MarketplaceService")
+        <pre class="panel" style="padding:0.9rem; overflow:auto;"><code>local MarketplaceService = game:GetService("MarketplaceService")
 local PASS_ID = 123456789  -- ЗАМЕНИТЕ НА ВАШ ID
 
 game.Players.PlayerAdded:Connect(function(player)
@@ -204,7 +404,7 @@ end)</code></pre>
       <!-- Sidebar -->
       <aside class="panel article-aside">
         <h2 style="font-size:1.1rem;">On this page</h2>
-        <ul>
+        <ul style="list-style:none; padding-left:0;">
           <li><a href="#overview">Overview</a></li>
           <li><a href="#requirements">Requirements</a></li>
           <li><a href="#step1">Step 1: Open Roblox</a></li>
@@ -248,11 +448,105 @@ end)</code></pre>
 
   <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
 
-  <!-- СКРИПТЫ: ТОЛЬКО ДВА ФАЙЛА -->
   <script src="/assets/js/main.js" defer></script>
-  <script src="/assets/js/wiki.js" defer></script>
-  <script src="/assets/js/toc-mobile.js" defer></script>
-  <!-- ВЕСЬ БЛОК <script> УДАЛЕН - ТЕПЕРЬ ОН В wiki.js -->
-  
+  <script>
+    // Прогресс-бар при скролле
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // Улучшенная логика для кнопки Share
+    document.addEventListener('DOMContentLoaded', function() {
+      const shareBtn = document.getElementById('shareBtn');
+      const shareLinks = document.getElementById('shareLinks');
+      const toast = document.getElementById('shareToast');
+      
+      // Функция для показа уведомления
+      function showToast(message, duration = 3000) {
+        toast.textContent = message;
+        toast.classList.add('show');
+        setTimeout(() => {
+          toast.classList.remove('show');
+        }, duration);
+      }
+
+      // Копирование ссылки в буфер обмена
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('✅ Link copied to clipboard!');
+        }).catch(() => {
+          showToast('❌ Failed to copy link');
+        });
+      }
+
+      // Настройка ссылок для шаринга
+      function setupShareLinks() {
+        const currentUrl = encodeURIComponent(window.location.href);
+        const title = encodeURIComponent(document.title);
+        
+        const twLink = document.getElementById('twShare');
+        const tgLink = document.getElementById('tgShare');
+        const vkLink = document.getElementById('vkShare');
+        
+        twLink.href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`;
+        tgLink.href = `https://t.me/share/url?url=${currentUrl}&text=${title}`;
+        vkLink.href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
+      }
+
+      // Показываем/скрываем ссылки при клике
+      shareBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+        
+        if (isHidden) {
+          shareLinks.setAttribute('aria-hidden', 'false');
+          setupShareLinks();
+        } else {
+          shareLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Обработка клика по ссылкам
+      document.querySelectorAll('.share-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const url = this.href;
+          window.open(url, '_blank', 'width=600,height=400');
+          shareLinks.setAttribute('aria-hidden', 'true');
+        });
+      });
+
+      // Копирование при клике на саму кнопку (альтернативный вариант)
+      shareBtn.addEventListener('dblclick', function() {
+        copyToClipboard(window.location.href);
+        shareLinks.setAttribute('aria-hidden', 'true');
+      });
+
+      // Закрытие при клике вне
+      document.addEventListener('click', function(e) {
+        if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
+          shareLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
+
+      // Форматирование даты
+      const today = new Date();
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = today.toLocaleDateString('en-US', options);
+      
+      // Обновляем все даты на странице
+      document.querySelectorAll('time').forEach(timeEl => {
+        if (!timeEl.getAttribute('datetime')) {
+          timeEl.setAttribute('datetime', today.toISOString().split('T')[0]);
+        }
+        if (!timeEl.textContent) {
+          timeEl.textContent = formattedDate;
+        }
+      });
+    });
+  </script>
 </body>
 </html>
