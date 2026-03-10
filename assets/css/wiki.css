@@ -4,13 +4,12 @@
 
 /* === 1. ОСНОВНЫЕ НАСТРОЙКИ И ПЕРЕМЕННЫЕ === */
 :root {
-  /* Добавляем переменные для мобильных отступов */
   --mobile-padding: 16px;
   --section-spacing-mobile: 1.5rem;
-  --border-radius-mobile: 12px; /* Немного скругляем все на мобилках */
+  --border-radius-mobile: 12px;
 }
 
-/* === 2. ПРОГРЕСС-БАР (без изменений, он и так хорош) === */
+/* === 2. ПРОГРЕСС-БАР === */
 .progress-container {
   position: fixed;
   top: 0;
@@ -45,15 +44,14 @@ body {
   top: 4px !important;
 }
 
-
-/* === 3. МЕТА-ИНФОРМАЦИЯ (АДАПТИВНОСТЬ) === */
+/* === 3. МЕТА-ИНФОРМАЦИЯ === */
 .article-meta {
   display: flex;
   align-items: center;
-  gap: 1rem; /* Уменьшил с 1.5rem */
+  gap: 1rem;
   color: var(--text-muted, #888);
-  font-size: 0.85rem; /* Немного уменьшил шрифт */
-  margin: 0.75rem 0 1.5rem 0; /* Уменьшил отступы */
+  font-size: 0.85rem;
+  margin: 0.75rem 0 1.5rem 0;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border, rgba(255,255,255,0.1));
   flex-wrap: wrap;
@@ -62,7 +60,7 @@ body {
 .article-meta-item {
   display: flex;
   align-items: center;
-  gap: 0.4rem; /* Уменьшил */
+  gap: 0.4rem;
 }
 
 .article-meta-item svg {
@@ -70,17 +68,16 @@ body {
   height: 16px;
   fill: currentColor;
   opacity: 0.7;
-  flex-shrink: 0; /* Чтобы иконка не сжималась */
+  flex-shrink: 0;
 }
 
-
-/* === 4. ШЕРИНГ (ПОЛНЫЙ РЕДИЗАЙН ДЛЯ МОБИЛЬНЫХ) === */
+/* === 4. ШЕРИНГ === */
 .share-wrap {
   display: flex;
   align-items: center;
   gap: 0.75rem;
   flex-wrap: wrap;
-  width: 100%; /* Занимаем всю ширину на мобилках */
+  width: 100%;
 }
 
 .btn-share {
@@ -99,9 +96,6 @@ body {
   transition: all 0.2s ease;
   box-shadow: var(--shadow, 0 4px 12px rgba(0,0,0,0.3));
   white-space: nowrap;
-  flex: 1; /* Кнопка Share занимает доступное место */
-  max-width: fit-content; /* Но не растягивается без нужды */
-  flex: 0 1 auto; /* Более гибкий подход, чем width: 100% */
 }
 
 .btn-share:hover {
@@ -121,8 +115,8 @@ body {
   gap: 0.5rem;
   align-items: center;
   animation: slideIn 0.3s ease;
-  flex-wrap: wrap; /* Ссылки будут переноситься */
-  width: 100%; /* Занимают всю ширину под кнопкой */
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 @keyframes slideIn {
@@ -145,7 +139,6 @@ body {
   font-weight: 500;
   transition: all 0.2s ease;
   white-space: nowrap;
-  flex: 1 0 auto; /* Ссылки растягиваются, но не сжимаются слишком сильно */
   text-align: center;
 }
 
@@ -155,8 +148,7 @@ body {
   transform: translateY(-2px);
 }
 
-
-/* === 5. ТОСТ (можно чуть шире на мобилках) === */
+/* === 5. ТОСТ === */
 .share-toast {
   position: fixed;
   left: 50%;
@@ -174,8 +166,8 @@ body {
   font-weight: 500;
   backdrop-filter: blur(10px);
   text-align: center;
-  width: 90%; /* На мобилках будет почти во всю ширину */
-  max-width: 300px; /* Но не больше 300px */
+  width: 90%;
+  max-width: 300px;
 }
 
 .share-toast.show {
@@ -188,8 +180,12 @@ body {
   to { opacity: 1; transform: translate(-50%, 0); }
 }
 
+/* === 6. САЙДБАР === */
+.article-aside {
+  width: 100%;
+  overflow: hidden; /* Предотвращаем вылезание */
+}
 
-/* === 6. САЙДБАР (уже адаптирован в @media, но улучшим) === */
 .article-aside ul {
   list-style: none;
   padding-left: 0;
@@ -205,8 +201,9 @@ body {
   font-size: 0.95rem;
   transition: all 0.2s;
   display: inline-block;
-  padding: 0.4rem 0; /* Увеличил область нажатия на мобилках */
+  padding: 0.4rem 0;
   line-height: 1.4;
+  word-break: break-word;
 }
 
 .article-aside a:hover {
@@ -220,32 +217,42 @@ body {
   border-top: 1px solid var(--border, rgba(255,255,255,0.1));
 }
 
-
 /* === 7. ТИПОГРАФИКА И КОНТЕНТ === */
+.article-content {
+  min-width: 0; /* Критически важно для предотвращения переполнения */
+  width: 100%;
+  overflow-x: hidden;
+  word-wrap: break-word;
+}
+
 h1 {
-  font-size: clamp(1.8rem, 5vw, 2.5rem); /* Более отзывчивый заголовок */
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
   line-height: 1.2;
-  word-break: break-word; /* Чтобы длинные слова переносились */
+  word-break: break-word;
+  margin-top: 0;
 }
 
 .article-content h2 {
-  margin-top: 2rem; /* Уменьшил отступ сверху */
+  margin-top: 2rem;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border, #2a3040);
-  font-size: 1.5rem; /* Чуть меньше на мобилках */
+  font-size: clamp(1.3rem, 4vw, 1.8rem);
+  word-break: break-word;
 }
 
 .article-content h3 {
-  margin-top: 1.5rem; /* Уменьшил отступ */
+  margin-top: 1.5rem;
   margin-bottom: 0.75rem;
-  font-size: 1.3rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
+  word-break: break-word;
 }
 
 .article-content p,
 .article-content li {
-  font-size: 1rem; /* Убедимся, что базовый размер не слишком мелкий */
+  font-size: 1rem;
   line-height: 1.6;
+  word-break: break-word;
 }
 
 pre {
@@ -253,11 +260,14 @@ pre {
   padding: 1rem;
   border-radius: 8px;
   overflow-x: auto;
-  font-size: 0.85rem; /* Чуть меньше для кода */
+  font-size: 0.85rem;
   margin: 16px 0;
   border: 1px solid var(--border, rgba(255,255,255,0.1));
   font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
-  -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%; /* Ограничиваем ширину */
+  white-space: pre-wrap; /* Разрешаем перенос в коде */
+  word-wrap: break-word;
 }
 
 code {
@@ -267,26 +277,27 @@ code {
   border-radius: 4px;
   font-size: 0.9em;
   color: var(--primary, #6ea8ff);
-  word-break: break-word; /* Перенос длинных строк кода */
+  word-break: break-word;
 }
 
 .article-content img {
   max-width: 100%;
   height: auto;
-  border-radius: var(--border-radius-mobile); /* Используем переменную */
+  border-radius: var(--border-radius-mobile);
   border: 1px solid var(--border, #2a3040);
   margin: 1.5rem 0;
   box-shadow: var(--shadow, 0 8px 20px rgba(0,0,0,0.2));
 }
 
-
-/* === 8. КОМПОНЕНТЫ (STEP CARDS, INFO BOXES) === */
+/* === 8. КОМПОНЕНТЫ === */
 .step-card {
   background: var(--card-bg, rgba(255,255,255,0.02));
   border: 1px solid var(--border, rgba(255,255,255,0.08));
   border-radius: var(--border-radius-mobile);
   padding: 20px;
   margin: 20px 0;
+  width: 100%;
+  overflow: hidden;
 }
 
 .step-title {
@@ -294,6 +305,7 @@ code {
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .step-number {
@@ -307,7 +319,7 @@ code {
   font-weight: bold;
   font-size: 1.1rem;
   color: white;
-  flex-shrink: 0; /* Номер не должен сжиматься */
+  flex-shrink: 0;
 }
 
 .step-image {
@@ -325,6 +337,7 @@ code {
   border-radius: 8px;
   margin: 20px 0;
   border-left: 4px solid;
+  word-break: break-word;
 }
 
 .info-box { background: rgba(23, 162, 184, 0.1); border-left-color: #17a2b8; }
@@ -337,18 +350,20 @@ code {
   border-radius: 8px;
   margin: 20px 0;
   border: 1px solid var(--border, rgba(255,255,255,0.08));
+  width: 100%;
+  overflow: hidden;
 }
 
 .table-of-contents ul {
   list-style: none;
   padding-left: 0;
-  display: grid; /* Сетка для ToC */
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
   gap: 8px;
 }
 
 .table-of-contents li {
-  margin-bottom: 0; /* Убираем нижний отступ, т.к. есть gap */
+  margin-bottom: 0;
 }
 
 .table-of-contents a {
@@ -356,6 +371,7 @@ code {
   text-decoration: none;
   display: block;
   padding: 6px 0;
+  word-break: break-word;
 }
 
 .table-of-contents a:hover {
@@ -366,10 +382,11 @@ code {
   color: var(--text-muted, #888);
   font-size: 0.85rem;
   margin-bottom: 16px;
-  overflow-x: auto; /* На случай очень длинных названий */
+  overflow-x: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 5px; /* Чтобы скроллбар не обрезался */
+  padding-bottom: 5px;
+  max-width: 100%;
 }
 
 .breadcrumbs a {
@@ -381,11 +398,10 @@ code {
   color: var(--primary, #6ea8ff);
 }
 
-
-/* === 9. МОБИЛЬНАЯ НАВИГАЦИЯ (была во второй странице, интегрируем) === */
+/* === 9. МОБИЛЬНАЯ НАВИГАЦИЯ === */
 .mobile-header {
   position: sticky;
-  top: 4px; /* Учитываем прогресс-бар */
+  top: 4px;
   z-index: 1000;
   background: var(--bg-primary, var(--bg));
   border-bottom: 1px solid var(--border);
@@ -396,6 +412,7 @@ code {
   -webkit-backdrop-filter: blur(10px);
   background: rgba(var(--bg-rgb, 10,12,16), 0.95);
   padding: 0 var(--mobile-padding);
+  width: 100%;
 }
 
 .mobile-header .container {
@@ -403,7 +420,7 @@ code {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0; /* Убираем паддинги, если они есть у .container */
+  padding: 0;
   max-width: 100%;
 }
 
@@ -415,11 +432,11 @@ code {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  width: 44px; /* Чуть больше для удобства */
+  width: 44px;
   height: 44px;
   justify-content: center;
   align-items: center;
-  border-radius: 10px; /* Чуть скругление */
+  border-radius: 10px;
   flex-shrink: 0;
 }
 
@@ -438,7 +455,7 @@ code {
 
 .mobile-menu {
   position: fixed;
-  top: 64px; /* Высота хедера + прогресс-бар */
+  top: 64px;
   left: 0;
   width: 100%;
   height: calc(100vh - 64px);
@@ -462,16 +479,17 @@ code {
 }
 
 .mobile-menu li {
-  margin-bottom: 4px; /* Уменьшил */
+  margin-bottom: 4px;
 }
 
 .mobile-menu a {
   color: var(--text-secondary, var(--text-muted));
   text-decoration: none;
-  font-size: 1.1rem; /* Крупнее для тач-целей */
-  padding: 14px 0; /* Увеличил область нажатия */
+  font-size: 1.1rem;
+  padding: 14px 0;
   display: block;
   border-bottom: 1px solid var(--border);
+  word-break: break-word;
 }
 
 .mobile-menu a:hover {
@@ -480,7 +498,7 @@ code {
 
 .theme-toggle-mobile {
   margin-top: 20px;
-  padding: 16px; /* Больше область нажатия */
+  padding: 16px;
   background: var(--bg-tertiary, var(--bg-elev));
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -497,10 +515,9 @@ code {
   gap: 24px;
 }
 
+/* === 10. МЕДИАЗАПРОСЫ === */
 
-/* === 10. ГЛАВНЫЙ БЛОК МЕДИАЗАПРОСОВ === */
-
-/* Планшеты и маленькие десктопы (до 960px) */
+/* Планшеты */
 @media (max-width: 960px) {
   .article-layout {
     grid-template-columns: 1fr !important;
@@ -510,22 +527,12 @@ code {
   .article-aside {
     position: static !important;
     top: auto !important;
-    margin-top: 1rem; /* Отступ сверху для сайдбара */
+    margin-top: 1rem;
   }
 }
 
-/* Мобильные устройства (до 768px) - Здесь собираем всю логику */
+/* Мобильные устройства */
 @media (max-width: 768px) {
-  /* Корректируем отступы в контейнере */
-  .container {
-    width: calc(100% - var(--mobile-padding) * 2);
-  }
-
-  /* Стили для основного контента статьи */
-  .article-content {
-    padding: var(--mobile-padding); /* Добавляем отступы внутри панели */
-  }
-
   .article-content > div:first-child {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -534,24 +541,25 @@ code {
 
   /* Шеринг */
   .share-wrap {
-    flex-direction: column; /* Кнопка и ссылки друг под другом */
-    align-items: stretch; /* Растягиваем дочерние элементы */
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .btn-share {
-    width: 100%; /* Кнопка на всю ширину */
+    width: 100%;
     max-width: 100%;
-    justify-content: center; /* Центрируем текст и иконку */
+    justify-content: center;
   }
 
   .share-links {
-    flex-direction: row; /* Ссылки в ряд, но у нас уже есть flex-wrap */
+    flex-direction: row;
     width: 100%;
   }
 
   .share-links a {
-    flex: 1 1 0; /* Ссылки делят ширину поровну */
+    flex: 1 1 0;
     text-align: center;
+    padding: 0.7rem 0.5rem; /* Увеличил область нажатия */
   }
 
   /* Мета-информация */
@@ -568,29 +576,29 @@ code {
 
   /* Оглавление */
   .table-of-contents ul {
-    grid-template-columns: repeat(2, 1fr); /* Две колонки */
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  /* Админская навигация (если есть) */
+  /* Навигация */
   .desktop-nav {
     display: none;
   }
   .mobile-header {
-    display: flex; /* Показываем мобильный хедер */
+    display: flex;
   }
   .site-header {
-    display: none; /* Прячем десктопный хедер */
+    display: none;
   }
 }
 
-/* Очень маленькие телефоны (до 480px) */
+/* Очень маленькие телефоны */
 @media (max-width: 480px) {
   h1 {
-    font-size: 1.8rem; /* Фиксируем размер */
+    font-size: 1.8rem;
   }
 
   .table-of-contents ul {
-    grid-template-columns: 1fr; /* Одна колонка */
+    grid-template-columns: 1fr;
   }
 
   .step-title {
@@ -600,7 +608,7 @@ code {
   }
 
   .share-links {
-    flex-direction: column; /* Ссылки друг под другом */
+    flex-direction: column;
   }
 
   .share-links a {
@@ -610,9 +618,13 @@ code {
   .article-meta-item {
     font-size: 0.8rem;
   }
+  
+  .article-content {
+    padding: 12px; /* Уменьшил отступы на очень маленьких */
+  }
 }
 
-/* Десктопы (от 769px) */
+/* Десктопы */
 @media (min-width: 769px) {
   .desktop-nav {
     display: flex !important;
@@ -621,19 +633,17 @@ code {
   .hamburger,
   .mobile-header,
   .mobile-menu {
-    display: none; /* Прячем все мобильное */
+    display: none;
   }
 
   .site-header {
-    display: block; /* Показываем десктопный хедер */
+    display: block;
   }
 
-  /* Корректируем позиционирование с учетом прогресс-бара */
   .site-header {
     top: 4px !important;
   }
 }
-
 
 /* === 11. СВЕТЛАЯ ТЕМА === */
 :root[data-theme='light'] {
@@ -661,7 +671,7 @@ code {
 }
 
 :root[data-theme='light'] .mobile-header {
-  background: rgba(245, 247, 251, 0.95); /* Светлый фон с прозрачностью */
+  background: rgba(245, 247, 251, 0.95);
 }
 
 :root[data-theme='light'] .hamburger span {
