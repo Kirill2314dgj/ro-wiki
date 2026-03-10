@@ -207,25 +207,6 @@ end)</code></pre>
         <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
       </aside>
     </div>
-
-    <!-- FAB и Модальное окно для мобилок -->
-    <button class="toc-fab" aria-label="Open table of contents">
-      <svg viewBox="0 0 24 24" width="24" height="24">
-        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-      </svg>
-    </button>
-
-    <div class="toc-modal">
-      <div class="toc-modal-content">
-        <div class="toc-modal-header">
-          <h2>📖 On this page</h2>
-          <button class="toc-close" aria-label="Close menu">×</button>
-        </div>
-        <div class="modal-toc-content">
-          <!-- Контент скопируется через JS -->
-        </div>
-      </div>
-    </div>
   </main>
 
   <footer class="site-footer">
@@ -249,7 +230,11 @@ end)</code></pre>
 
   <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
 
+  <!-- Подключаем существующие скрипты -->
   <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/toc-mobile.js" defer></script>
+  
+  <!-- Оставляем только логику для прогресс-бара и шаринга -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // Прогресс-бар
@@ -288,19 +273,17 @@ end)</code></pre>
         document.getElementById('vkShare').href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
       }
 
-      if (shareBtn) {
-        shareBtn.addEventListener('click', function(e) {
-          e.stopPropagation();
-          const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
-          
-          if (isHidden) {
-            shareLinks.setAttribute('aria-hidden', 'false');
-            setupShareLinks();
-          } else {
-            shareLinks.setAttribute('aria-hidden', 'true');
-          }
-        });
-      }
+      shareBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+        
+        if (isHidden) {
+          shareLinks.setAttribute('aria-hidden', 'false');
+          setupShareLinks();
+        } else {
+          shareLinks.setAttribute('aria-hidden', 'true');
+        }
+      });
 
       document.querySelectorAll('.share-links a').forEach(link => {
         link.addEventListener('click', function(e) {
@@ -310,90 +293,16 @@ end)</code></pre>
         });
       });
 
-      if (shareBtn) {
-        shareBtn.addEventListener('dblclick', function() {
-          copyToClipboard(window.location.href);
-          shareLinks.setAttribute('aria-hidden', 'true');
-        });
-      }
+      shareBtn.addEventListener('dblclick', function() {
+        copyToClipboard(window.location.href);
+        shareLinks.setAttribute('aria-hidden', 'true');
+      });
 
       document.addEventListener('click', function(e) {
-        if (shareBtn && !shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
+        if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
           shareLinks.setAttribute('aria-hidden', 'true');
         }
       });
-
-      // Логика для FAB и модального окна
-      const fabButton = document.querySelector('.toc-fab');
-      const modal = document.querySelector('.toc-modal');
-      const closeButton = document.querySelector('.toc-close');
-      const modalContent = document.querySelector('.modal-toc-content');
-      const sidebar = document.querySelector('.article-aside');
-      
-      // Копируем содержимое сайдбара в модальное окно с проверкой
-      if (modalContent && sidebar) {
-        // Функция для копирования контента
-        function copySidebarContent() {
-          // Очищаем предыдущее содержимое
-          modalContent.innerHTML = '';
-          
-          // Клонируем сайдбар
-          const sidebarClone = sidebar.cloneNode(true);
-          
-          // Удаляем заголовок
-          const heading = sidebarClone.querySelector('h2');
-          if (heading) heading.remove();
-          
-          // Удаляем hr
-          const hrs = sidebarClone.querySelectorAll('hr');
-          hrs.forEach(hr => hr.remove());
-          
-          // Удаляем дополнительные тексты
-          const smalls = sidebarClone.querySelectorAll('.small');
-          smalls.forEach(small => small.remove());
-          
-          // Добавляем склонированное содержимое
-          modalContent.appendChild(sidebarClone);
-          
-          console.log('Sidebar content copied to modal'); // Для отладки
-        }
-        
-        // Копируем сразу
-        copySidebarContent();
-        
-        // Копируем с небольшой задержкой на всякий случай
-        setTimeout(copySidebarContent, 100);
-      } else {
-        console.error('Modal content or sidebar not found'); // Для отладки
-      }
-      
-      if (fabButton && modal && closeButton) {
-        fabButton.addEventListener('click', () => {
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-
-        closeButton.addEventListener('click', () => {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
-        });
-
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-        });
-
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && modal.classList.contains('active')) {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-          }
-        });
-      } else {
-        console.error('FAB button, modal, or close button not found'); // Для отладки
-      }
 
       // Форматирование даты
       const today = new Date();
