@@ -1,515 +1,302 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>How to Delete Roblox Account: Complete Step-by-Step Guide (2026) — RO-Wiki</title>
-  <meta name="description" content="Learn how to permanently delete your Roblox account. Step-by-step instructions with screenshots, important reminders about data loss, and alternative options.">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <link rel="canonical" href="https://ro-wiki.fun/wiki/how-to-delete-roblox-account/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Make a Game Pass on Roblox (2026 Guide) — RO-Wiki</title>
+  <meta name="description" content="Step-by-step tutorial: create, customize, and sell a game pass on Roblox. From opening Studio to setting a price and getting your Pass ID.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://ro-wiki.fun/wiki/how-to-gamepass/">
   <link rel="icon" type="image/png" href="/assets/img/favicon.png">
   <meta property="og:type" content="article">
-  <meta property="og:title" content="How to Delete Roblox Account: Complete Step-by-Step Guide (2026)">
-  <meta property="og:description" content="Planning to leave Roblox? Here's exactly how to delete your account permanently, plus what you need to know before you do.">
-  <meta property="og:url" content="https://ro-wiki.fun/wiki/how-to-delete-roblox-account/">
-  <meta property="og:image" content="https://ro-wiki.fun/assets/img/Roblox_OfficialBlog_Wallpaper.jpg">
+  <meta property="og:title" content="How to Make a Game Pass on Roblox (2026 Guide)">
+  <meta property="og:description" content="Learn how to create a game pass in 8 simple steps.">
+  <meta property="og:url" content="https://ro-wiki.fun/wiki/how-to-gamepass/">
+  
+  <!-- Глобальный CSS -->
   <link rel="stylesheet" href="/assets/css/global.css">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    "name": "How to Delete a Roblox Account",
-    "description": "Step-by-step guide to permanently delete your Roblox account through the support system.",
-    "totalTime": "PT15M",
-    "step": [
-      {"@type": "HowToStep", "name": "Visit Roblox Support", "text": "Go to the Roblox Support form and make sure you're logged in."},
-      {"@type": "HowToStep", "name": "Fill contact information", "text": "Provide your email address and verify it twice."},
-      {"@type": "HowToStep", "name": "Select issue type", "text": "Choose 'Delete My Account' from the dropdown menu."},
-      {"@type": "HowToStep", "name": "Specify your request", "text": "Clearly state that you want to permanently delete your account."},
-      {"@type": "HowToStep", "name": "Submit and wait", "text": "Submit the form and wait for Roblox support to respond."}
-    ]
-  }
-  </script>
-
-  <style>
-    /* Основные стили из предыдущих страниц */
-    .share-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin: 0.5rem 0;
-      flex-wrap: wrap;
-    }
-    
-    .btn-share {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      cursor: pointer;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: #fff;
-      transition: all 0.2s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    }
-    
-    .btn-share:hover {
-      background: linear-gradient(145deg, #333, #222);
-      border-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-    }
-    
-    .share-links {
-      display: inline-flex;
-      gap: 0.5rem;
-      align-items: center;
-      animation: slideIn 0.3s ease;
-    }
-    
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-10px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    
-    .share-links[aria-hidden="true"] { display: none; }
-    
-    .share-links a {
-      text-decoration: none;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      border-radius: 30px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    
-    .share-links a:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-    }
-    
-    .share-toast {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: 20px;
-      background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-      color: #fff;
-      padding: 0.8rem 1.5rem;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      z-index: 9999;
-      display: none;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-    }
-    
-    .share-toast.show { display: block; animation: slideUp 0.3s ease; }
-    
-    @keyframes slideUp {
-      from { opacity: 0; transform: translate(-50%, 20px); }
-      to { opacity: 1; transform: translate(-50%, 0); }
-    }
-    
-    .article-meta {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      color: #888;
-      font-size: 0.9rem;
-      margin: 1rem 0 2rem 0;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      flex-wrap: wrap;
-    }
-    
-    .article-meta-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    
-    .article-meta-item svg {
-      width: 16px;
-      height: 16px;
-      fill: #888;
-    }
-    
-    /* Стили для предупреждений и блоков */
-    .warning-box {
-      background: rgba(220, 53, 69, 0.15);
-      border-left: 6px solid #dc3545;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .info-box {
-      background: rgba(23, 162, 184, 0.15);
-      border-left: 6px solid #17a2b8;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .tip-box {
-      background: rgba(40, 167, 69, 0.15);
-      border-left: 6px solid #28a745;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin: 2rem 0;
-    }
-    
-    .step-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 12px;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-    }
-    
-    .step-number {
-      display: inline-block;
-      background: linear-gradient(145deg, #00a2ff, #0066cc);
-      color: white;
-      font-weight: bold;
-      font-size: 1.2rem;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 36px;
-      margin-right: 1rem;
-    }
-    
-    .step-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      margin-bottom: 1rem;
-    }
-    
-    .step-image {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 12px;
-      padding: 1rem;
-      margin: 1.5rem 0;
-      text-align: center;
-      border: 1px dashed rgba(255, 255, 255, 0.2);
-      color: #888;
-      font-style: italic;
-    }
-    
-    .step-image img {
-      max-width: 100%;
-      border-radius: 8px;
-    }
-    
-    .table-of-contents {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 1.5rem;
-      border-radius: 8px;
-      margin: 2rem 0;
-    }
-    
-    .table-of-contents ul {
-      columns: 2;
-      column-gap: 2rem;
-    }
-    
-    @media (max-width: 600px) {
-      .table-of-contents ul { columns: 1; }
-      .article-meta { flex-direction: column; align-items: flex-start; }
-    }
-    
-    .related-articles {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
-      margin: 2rem 0;
-    }
-    
-    .related-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 1rem;
-      transition: transform 0.2s;
-    }
-    
-    .related-card:hover {
-      transform: translateY(-2px);
-      border-color: #00a2ff;
-    }
-    
-    .progress-container {
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .progress-bar {
-      height: 4px;
-      background: linear-gradient(90deg, #00a2ff, #0066cc);
-      width: 0%;
-      transition: width 0.1s;
-    }
-  </style>
+  
+  <!-- Шрифты -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Прогресс-бар как в примере -->
+  <!-- Прогресс бар -->
   <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
   </div>
 
+  <!-- Десктоп хедер -->
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="/"><span class="brand-mark"></span><span>RO-Wiki</span></a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/wiki/" aria-current="page">Wiki</a></li>
-        <li><a href="/policy/">Policy</a></li>
-      </ul>
-      <button class="theme-toggle" data-theme-toggle type="button">Theme</button>
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span>RO-Wiki</span>
+      </a>
+      <nav class="desktop-nav">
+        <a href="/">Home</a>
+        <a href="/wiki/" aria-current="page">Wiki</a>
+        <a href="/policy/">Policy</a>
+        <button class="theme-toggle" data-theme-toggle type="button">Theme</button>
+      </nav>
     </div>
   </header>
 
-  <main class="section">
+  <!-- Мобильный хедер -->
+  <header class="mobile-header">
+    <div class="container">
+      <a class="brand" href="/">
+        <span class="brand-mark"></span>
+        <span>RO-Wiki</span>
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Мобильное меню -->
+  <nav class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/wiki/">Wiki</a></li>
+      <li><a href="/policy/">Policy</a></li>
+    </ul>
+    <button class="theme-toggle-mobile" data-theme-toggle>Switch Theme</button>
+  </nav>
+
+  <main>
     <div class="container article-layout">
       <article class="panel article-content">
-        <!-- Хлебные крошки как в примере -->
-        <div class="post-breadcrumb" style="margin-bottom: 1rem; color: #888;">
-          <a href="/" style="color: #888;">Home</a> › 
-          <a href="/wiki/" style="color: #888;">Wiki</a> › 
-          <a href="/wiki/how-to-delete-roblox-account/" style="color: #888;">How to delete roblox account</a>
+        <!-- Хлебные крошки -->
+        <div class="breadcrumbs">
+          <a href="/">Home</a> › 
+          <a href="/wiki/">Wiki</a> › 
+          <span>How to Make a Game Pass</span>
         </div>
 
-        <div style="display:flex; align-items:center; gap:1rem; justify-content:space-between; flex-wrap:wrap;">
-          <h1 style="margin:0;">How to Delete Your Roblox Account</h1>
-
-          <div class="share-wrap" aria-hidden="false">
-            <button id="shareBtn" class="btn-share" aria-label="Share article">
-              <svg viewBox="0 0 24 24" width="18" height="18">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+          <h1 style="margin: 0;">How to Make a Game Pass on Roblox</h1>
+          
+          <!-- Кнопка Share -->
+          <div class="share-wrap">
+            <button id="shareBtn" class="btn-share">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
                 <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 9.81C6.5 9.31 5.79 9 5 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
               </svg>
               Share
             </button>
             <div class="share-links" id="shareLinks" aria-hidden="true">
-              <a id="twShare" target="_blank" rel="noopener">𝕏 Twitter</a>
-              <a id="tgShare" target="_blank" rel="noopener">📱 Telegram</a>
-              <a id="vkShare" target="_blank" rel="noopener">📘 VK</a>
+              <a id="twShare" target="_blank">𝕏 Twitter</a>
+              <a id="tgShare" target="_blank">📱 Telegram</a>
+              <a id="vkShare" target="_blank">📘 VK</a>
             </div>
           </div>
         </div>
 
-        <!-- Мета-информация -->
+        <!-- Мета информация -->
         <div class="article-meta">
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
-            </svg>
-            <time datetime="2026-03-10">March 10, 2026</time>
-          </div>
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
-              <path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 2c-1.66 0-5 1.34-5 4v2h10v-2c0-2.66-3.34-4-5-4z"/>
-            </svg>
-            <span>By RO-Wiki Team</span>
-          </div>
-          <div class="article-meta-item">
-            <svg viewBox="0 0 24 24" width="16" height="16">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
-            </svg>
-            <span>3 min read</span>
-          </div>
+          <div class="article-meta-item">📅 <time datetime="2026-03-10">March 10, 2026</time></div>
+          <div class="article-meta-item">👤 By RO-Wiki Team</div>
+          <div class="article-meta-item">⏱️ 8 min read</div>
         </div>
 
-        <!-- Lead paragraph -->
-        <p class="lead">Whether you're taking a break from Roblox or want to permanently remove your presence from the platform, deleting your account isn't as simple as clicking a button. Here's exactly how to do it.</p>
-
-        <!-- Основное изображение -->
-        <div style="margin: 2rem 0;">
-          <img src="https://cdn.oneesports.gg/cdn-data/2024/03/Roblox_OfficialBlog_Wallpaper-1024x576.jpg" alt="Roblox official wallpaper" style="max-width:100%; border-radius:12px;">
-          <p style="color: #888; font-size:0.9rem; margin-top:0.5rem;">Credit: Roblox Corporation</p>
-        </div>
+        <!-- Lead -->
+        <p class="lead">Game passes are one of the best ways to monetize your Roblox experience. This guide walks you through the entire process — from opening the Creator Hub to setting a price and grabbing your Pass ID for scripts.</p>
 
         <!-- Оглавление -->
         <div class="table-of-contents">
-          <h2>📖 In this guide</h2>
+          <h3 style="margin-top: 0;">📋 On this page</h3>
           <ul>
-            <li><a href="#warning">⚠️ Important: Read before deleting</a></li>
-            <li><a href="#step1">Step 1: Visit Roblox Support</a></li>
-            <li><a href="#step2">Step 2: Provide contact information</a></li>
-            <li><a href="#step3">Step 3: Select issue type</a></li>
-            <li><a href="#step4">Step 4: Specify your request</a></li>
-            <li><a href="#step5">Step 5: Submit and wait</a></li>
-            <li><a href="#alternative">🔄 Alternative: Data Privacy Request</a></li>
-            <li><a href="#faq">❓ Frequently Asked Questions</a></li>
+            <li><a href="#overview">Overview</a></li>
+            <li><a href="#requirements">Requirements</a></li>
+            <li><a href="#step1">Step 1: Open Roblox</a></li>
+            <li><a href="#step2">Step 2: Go to Create</a></li>
+            <li><a href="#step3">Step 3: Select your game</a></li>
+            <li><a href="#step4">Step 4: Go to Passes</a></li>
+            <li><a href="#step5">Step 5: Click "Create A Pass"</a></li>
+            <li><a href="#step6">Step 6: Customize</a></li>
+            <li><a href="#step7">Step 7: Enable sales</a></li>
+            <li><a href="#step8">Step 8: Set price</a></li>
+            <li><a href="#snippet">Code snippet</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
 
-        <!-- Важное предупреждение -->
-        <div class="warning-box" id="warning">
-          <h2 style="margin-top:0; color:#dc3545;">⚠️ Think carefully before deleting</h2>
-          <p><strong>This action is permanent and irreversible.</strong> Once your account is deleted:</p>
-          <ul>
-            <li>All game progress, items, Robux, and purchases are lost forever</li>
-            <li>Your username becomes available for others to use</li>
-            <li>You cannot recover any data or transfer it to a new account</li>
-            <li>If you want to play Roblox again, you must start from scratch</li>
-          </ul>
-          <p style="margin-bottom:0;">Consider <strong>temporary deactivation</strong> or just <strong>taking a break</strong> instead of permanent deletion.</p>
-        </div>
+        <!-- Содержание статьи -->
+        <h2 id="overview">Overview</h2>
+        <p>In this tutorial, you'll learn how to create a game pass, customize it with a name and thumbnail, enable sales, and set a price in Robux. We'll also show you where to find your Pass ID so you can use it in your game scripts later.</p>
 
-        <!-- Step 1 -->
+        <h2 id="requirements">What you'll need</h2>
+        <ul>
+          <li>A Roblox account with publishing permissions</li>
+          <li>A published experience in your Creator Dashboard</li>
+          <li>An image for your game pass thumbnail (512x512 pixels works best)</li>
+        </ul>
+
+        <!-- Шаг 1 -->
         <div class="step-card" id="step1">
           <div class="step-title">
             <span class="step-number">1</span>
-            Visit Roblox Support
+            <h3>Open Roblox</h3>
           </div>
-          <p>Open your browser and go to the <a href="https://www.roblox.com/support" target="_blank" rel="noopener">Roblox Support form</a>. <strong>Make sure you're logged into the account you want to delete</strong> before proceeding.</p>
+          <p>Start by launching Roblox. You can do this either through the <strong>Roblox Player app</strong> on your computer, or by visiting the <strong>Roblox website</strong> in your browser. Make sure you're logged into your account.</p>
           <div class="step-image">
-            [Screenshot: Roblox Support form]
-            <img src="https://ro-wiki.fun/assets/img/tutorials/deleteaccount/how-to-delete-roblox-account_step1.png" alt="Roblox Support form" style="max-width:100%;">
+            <div style="background: var(--bg); padding: 40px; border-radius: 8px;">
+              🎮 Roblox App/Website
+            </div>
           </div>
         </div>
 
-        <!-- Step 2 -->
+        <!-- Шаг 2 -->
         <div class="step-card" id="step2">
           <div class="step-title">
             <span class="step-number">2</span>
-            Provide Contact Information
+            <h3>Go to Create</h3>
           </div>
-          <p>Fill in your email address. You'll need to <strong>verify it twice</strong> – Roblox wants to be absolutely sure it's you. Your username and first name are optional but recommended.</p>
+          <p>Once you're logged in, navigate to the <strong>Creator Hub</strong>. On the website, click the <strong>"Create"</strong> button in the top navigation bar.</p>
           <div class="step-image">
-            [Screenshot: Contact information form]
-            <img src="https://ro-wiki.fun/assets/img/tutorials/deleteaccount/how-to-delete-roblox-account_step2.png" alt="Contact information form" style="max-width:100%;">
+            <div style="background: var(--bg); padding: 40px; border-radius: 8px;">
+              🎨 Creator Hub
+            </div>
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- Шаг 3 -->
         <div class="step-card" id="step3">
           <div class="step-title">
             <span class="step-number">3</span>
-            Select Issue Type
+            <h3>Select your game</h3>
           </div>
-          <p>Under "Type of help", select <strong>"I want to Delete My Account"</strong> from the dropdown menu. You'll be prompted to confirm this selection twice.</p>
-          <div class="info-box" style="margin:1rem 0;">
-            <strong>Alternative method:</strong> You can also select "Data Privacy Request" → "Right to be Forgotten (RTBF)" which achieves the same result.
+          <p>In the Creator Hub, find your game under <strong>"Experiences"</strong> and click on its title.</p>
+          <div class="step-image">
+            <div style="background: var(--bg); padding: 40px; border-radius: 8px;">
+              📋 Your Games List
+            </div>
           </div>
         </div>
 
-        <!-- Step 4 -->
+        <!-- Шаг 4 -->
         <div class="step-card" id="step4">
           <div class="step-title">
             <span class="step-number">4</span>
-            Specify Your Request
+            <h3>Go to Passes</h3>
           </div>
-          <p>In the "Description of issue" field, clearly state that you want to <strong>permanently delete your Roblox account</strong>. You can add a brief reason if you want, but it's not required.</p>
-          <div class="tip-box">
-            <strong>Example message:</strong> "I would like to permanently delete my Roblox account. Please process this request and confirm once completed."
-          </div>
+          <p>In the game management panel, go to <strong>Monetization</strong> → <strong>Passes</strong>.</p>
           <div class="step-image">
-            [Screenshot: Issue description field]
-            <img src="https://ro-wiki.fun/assets/img/tutorials/deleteaccount/how-to-delete-roblox-account_step3.png" alt="Issue description field" style="max-width:100%;">
+            <div style="background: var(--bg); padding: 40px; border-radius: 8px;">
+              💰 Monetization → Passes
+            </div>
           </div>
         </div>
 
-        <!-- Step 5 -->
+        <!-- Шаг 5 -->
         <div class="step-card" id="step5">
           <div class="step-title">
             <span class="step-number">5</span>
-            Submit and Wait
+            <h3>Click "Create A Pass"</h3>
           </div>
-          <p>Click "Submit" and wait for Roblox Customer Support to respond. This usually takes <strong>1-3 business days</strong>. They'll send you an email with:</p>
-          <ul>
-            <li>Confirmation that they received your request</li>
-            <li>Additional verification steps (if needed)</li>
-            <li>Final confirmation when your account is deleted</li>
-          </ul>
+          <p>On the Passes page, click the <strong>Create A Pass</strong> button.</p>
           <div class="step-image">
-            [Screenshot: Submitted form confirmation]
-            <img src="https://ro-wiki.fun/assets/img/tutorials/deleteaccount/how-to-delete-roblox-account_step4.png" alt="Submitted form" style="max-width:100%;">
+            <div style="background: var(--bg); padding: 40px; border-radius: 8px;">
+              ➕ Create A Pass
+            </div>
           </div>
         </div>
 
-        <!-- Alternative Method -->
-        <h2 id="alternative">🔄 Alternative: Data Privacy Request Method</h2>
-        <p>Some users prefer the privacy request route. Here's how:</p>
-        <ol>
-          <li>In the Support form, select <strong>"Data Privacy Request"</strong> as the help type</li>
-          <li>Choose <strong>"Right to be Forgotten (RTBF)"</strong> from the sub-options</li>
-          <li>Complete the same verification process</li>
-          <li>Submit and wait for confirmation</li>
-        </ol>
+        <!-- Шаг 6 -->
+        <div class="step-card" id="step6">
+          <div class="step-title">
+            <span class="step-number">6</span>
+            <h3>Customize your pass</h3>
+          </div>
+          <p>Fill in:</p>
+          <ul>
+            <li><strong>Name:</strong> Clear and appealing</li>
+            <li><strong>Description:</strong> What the buyer gets</li>
+            <li><strong>Image:</strong> 512x512 pixel image</li>
+          </ul>
+          <p>Click <strong>Save Changes</strong>.</p>
+        </div>
 
-        <!-- FAQ Section -->
-        <h2 id="faq">❓ Frequently Asked Questions</h2>
+        <!-- Шаг 7 -->
+        <div class="step-card" id="step7">
+          <div class="step-title">
+            <span class="step-number">7</span>
+            <h3>Enable sales</h3>
+          </div>
+          <p>Go to the <strong>Sales</strong> tab and toggle <strong>Item for Sale</strong> to on.</p>
+          <div class="info-box">
+            💡 Your pass won't be visible until you enable this!
+          </div>
+        </div>
 
-        <h3>How long does account deletion take?</h3>
-        <p>Once Roblox Support confirms your request, deletion is usually processed within <strong>7-14 days</strong>. They'll email you when it's complete.</p>
+        <!-- Шаг 8 -->
+        <div class="step-card" id="step8">
+          <div class="step-title">
+            <span class="step-number">8</span>
+            <h3>Set a price</h3>
+          </div>
+          <p>Enter the price in Robux. You earn <strong>70%</strong> of each sale. Click <strong>Save Changes</strong>.</p>
+          <div class="tip-box">
+            💰 Check similar games for competitive pricing!
+          </div>
+        </div>
 
-        <h3>Can I cancel a deletion request?</h3>
-        <p><strong>Yes, but only before it's processed.</strong> If you change your mind, reply to the confirmation email immediately and ask to cancel the request.</p>
+        <!-- Код -->
+        <h2 id="snippet">Using the Pass ID in a Script</h2>
+        <p>After you have your Pass ID, use this script in ServerScriptService:</p>
+        <pre><code>local MarketplaceService = game:GetService("MarketplaceService")
+local PASS_ID = 123456789  -- Replace with your ID
 
-        <h3>What happens to my Robux and items?</h3>
-        <p>Everything is <strong>permanently lost</strong> – Robux, game passes, limited items, and all progress. There is no refund or transfer option.</p>
+game.Players.PlayerAdded:Connect(function(player)
+    local success, ownsPass = pcall(function()
+        return MarketplaceService:UserOwnsGamePassAsync(player.UserId, PASS_ID)
+    end)
 
-        <h3>Will my username become available?</h3>
-        <p>Yes, after deletion, your username returns to the pool and can be claimed by anyone.</p>
+    if success and ownsPass then
+        print(player.Name .. " owns the pass! Grant benefits.")
+        -- Add your benefits here
+    end
+end)</code></pre>
 
-        <h3>Can I just deactivate my account instead?</h3>
-        <p>Roblox doesn't offer a deactivation feature – it's either <strong>active or permanently deleted</strong>. If you're unsure, just stop playing and keep your account.</p>
+        <!-- FAQ -->
+        <h2 id="faq">Frequently Asked Questions</h2>
 
-   <!-- Related Articles -->
-<h2>📚 Related Guides</h2>
-<div class="related-articles">
-  <div class="related-card">
-    <h3 style="margin-top:0;">How to Make a Game Pass</h3>
-    <p>Create and sell game passes to earn Robux</p>
-    <a href="/wiki/how-to-gamepass/">Read more →</a>
-  </div>
+        <h3>How much Robux do I earn?</h3>
+        <p>You earn 70% of the price. For a 100 Robux pass, you receive 70 Robux.</p>
 
-  <div class="related-card">
-    <h3 style="margin-top:0;">Scripting Basics</h3>
-    <p>Learn Lua scripting from scratch</p>
-    <a href="/wiki/scripting-basics/">Read more →</a>
-  </div>
-</div>
+        <h3>Can I change the price later?</h3>
+        <p>Yes, anytime from the Sales tab.</p>
 
-</article>
+        <h3>Do I need an image?</h3>
+        <p>Recommended, but Roblox provides a default placeholder.</p>
+      </article>
 
-      <!-- Sidebar -->
+      <!-- Сайдбар -->
       <aside class="panel article-aside">
-        <h2 style="font-size:1.1rem;">On this page</h2>
-        <ul style="list-style:none; padding-left:0;">
-          <li><a href="#warning">⚠️ Important warning</a></li>
-          <li><a href="#step1">Step 1: Visit Support</a></li>
-          <li><a href="#step2">Step 2: Contact info</a></li>
-          <li><a href="#step3">Step 3: Issue type</a></li>
-          <li><a href="#step4">Step 4: Specify request</a></li>
-          <li><a href="#step5">Step 5: Submit & wait</a></li>
-          <li><a href="#alternative">Alternative method</a></li>
+        <h3>📑 On this page</h3>
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#step1">Step 1: Open Roblox</a></li>
+          <li><a href="#step2">Step 2: Go to Create</a></li>
+          <li><a href="#step3">Step 3: Select game</a></li>
+          <li><a href="#step4">Step 4: Go to Passes</a></li>
+          <li><a href="#step5">Step 5: Create A Pass</a></li>
+          <li><a href="#step6">Step 6: Customize</a></li>
+          <li><a href="#step7">Step 7: Enable sales</a></li>
+          <li><a href="#step8">Step 8: Set price</a></li>
+          <li><a href="#snippet">Code snippet</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
         <hr>
-        <p class="small"><strong>Last updated:</strong><br>
-        <time datetime="2026-03-10">March 10, 2026</time></p>
+        <p class="small"><strong>Last updated:</strong> March 10, 2026</p>
         <hr>
-        <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
+        <p class="small"><strong>Need help?</strong><br>📧 towerobbyproductions@gmail.com</p>
       </aside>
     </div>
   </main>
@@ -518,93 +305,22 @@
     <div class="container footer-grid">
       <div>
         <h3>RO-Wiki</h3>
-        <p class="small">Free knowledge base for Roblox developers. Tutorials, scripts, and best practices from experienced creators.</p>
+        <p class="small">Free knowledge base for Roblox developers.</p>
       </div>
       <div>
         <h3>Contact</h3>
-        <p class="small">Email: <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a><br>
-        X: <a href="https://x.com/TowerObbyPR" rel="noopener" target="_blank">@TowerObbyPR</a><br>
-        Roblox: <a href="https://www.roblox.com/communities/102552180/Tower-Obby-Productions" rel="noopener" target="_blank">Tower Obby Productions</a></p>
+        <p class="small">📧 towerobbyproductions@gmail.com<br>𝕏 @TowerObbyPR</p>
       </div>
       <div>
         <h3>Legal</h3>
-        <p class="small"><a href="/policy/">Privacy & Policy</a><br><a href="/404.html">404 page</a></p>
+        <p class="small"><a href="/policy/">Privacy & Policy</a></p>
       </div>
     </div>
   </footer>
 
-  <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
+  <div id="shareToast" class="share-toast"></div>
 
-  <script src="/assets/js/main.js" defer></script>
-  <script>
-    // Прогресс-бар при скролле
-    window.addEventListener('scroll', function() {
-      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      document.getElementById('progressBar').style.width = scrolled + '%';
-    });
-
-    // Логика для кнопки Share
-    document.addEventListener('DOMContentLoaded', function() {
-      const shareBtn = document.getElementById('shareBtn');
-      const shareLinks = document.getElementById('shareLinks');
-      const toast = document.getElementById('shareToast');
-      
-      function showToast(message, duration = 3000) {
-        toast.textContent = message;
-        toast.classList.add('show');
-        setTimeout(() => toast.classList.remove('show'), duration);
-      }
-
-      function copyToClipboard(text) {
-        navigator.clipboard.writeText(text).then(() => {
-          showToast('✅ Link copied to clipboard!');
-        }).catch(() => {
-          showToast('❌ Failed to copy link');
-        });
-      }
-
-      function setupShareLinks() {
-        const currentUrl = encodeURIComponent(window.location.href);
-        const title = encodeURIComponent(document.title);
-        
-        document.getElementById('twShare').href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`;
-        document.getElementById('tgShare').href = `https://t.me/share/url?url=${currentUrl}&text=${title}`;
-        document.getElementById('vkShare').href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
-      }
-
-      shareBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
-        
-        if (isHidden) {
-          shareLinks.setAttribute('aria-hidden', 'false');
-          setupShareLinks();
-        } else {
-          shareLinks.setAttribute('aria-hidden', 'true');
-        }
-      });
-
-      document.querySelectorAll('.share-links a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          e.preventDefault();
-          window.open(this.href, '_blank', 'width=600,height=400');
-          shareLinks.setAttribute('aria-hidden', 'true');
-        });
-      });
-
-      shareBtn.addEventListener('dblclick', function() {
-        copyToClipboard(window.location.href);
-        shareLinks.setAttribute('aria-hidden', 'true');
-      });
-
-      document.addEventListener('click', function(e) {
-        if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
-          shareLinks.setAttribute('aria-hidden', 'true');
-        }
-      });
-    });
-  </script>
+  <!-- Подключаем JS -->
+  <script src="/wiki/how-to-gamepass/css/script.js"></script>
 </body>
 </html>
