@@ -10,6 +10,7 @@
   --shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
   --radius: 14px;
   --container: 1120px;
+  --mobile-padding: 16px; /* Добавил переменную для отступов */
 }
 
 :root[data-theme='light'] {
@@ -32,6 +33,8 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
+  width: 100%;
 }
 
 body {
@@ -53,6 +56,7 @@ a:hover {
 img {
   max-width: 100%;
   display: block;
+  height: auto; /* Важно для мобильных */
 }
 
 .container {
@@ -83,6 +87,7 @@ img {
   gap: 0.65rem;
   font-weight: 700;
   color: var(--text);
+  flex-shrink: 0; /* Не даем сжиматься */
 }
 
 .brand-mark {
@@ -100,11 +105,14 @@ img {
   gap: 1rem;
   margin: 0;
   padding: 0;
+  flex-wrap: wrap; /* Разрешаем перенос */
+  justify-content: flex-end; /* Выравниваем справа */
 }
 
 .nav-links a {
   color: var(--text-muted);
   font-weight: 600;
+  white-space: nowrap; /* Заглушки не переносятся */
 }
 
 .nav-links a[aria-current='page'] {
@@ -119,6 +127,7 @@ img {
   padding: 0.5rem 0.9rem;
   cursor: pointer;
   font-weight: 600;
+  flex-shrink: 0; /* Не даем сжиматься */
 }
 
 .hero {
@@ -137,10 +146,12 @@ h2,
 h3 {
   line-height: 1.2;
   margin-top: 0;
+  word-wrap: break-word; /* Перенос длинных слов */
+  overflow-wrap: break-word;
 }
 
-h1 { font-size: clamp(2rem, 4vw, 3.2rem); }
-h2 { font-size: clamp(1.5rem, 2vw, 2.1rem); }
+h1 { font-size: clamp(2rem, 5vw, 3.2rem); } /* Уменьшил max в clamp */
+h2 { font-size: clamp(1.5rem, 4vw, 2.1rem); }
 h3 { font-size: 1.25rem; }
 
 .lead {
@@ -163,6 +174,7 @@ h3 { font-size: 1.25rem; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -229,6 +241,9 @@ h3 { font-size: 1.25rem; }
 
 .article-content {
   padding: 1.2rem;
+  min-width: 0; /* Важно для flex/grid детей - предотвращает переполнение */
+  width: 100%;
+  overflow-x: hidden; /* Предотвращаем горизонтальный скролл */
 }
 
 .article-content h2,
@@ -259,6 +274,8 @@ h3 { font-size: 1.25rem; }
   margin-top: 3rem;
   border-top: 1px solid var(--border);
   padding: 2rem 0;
+  width: 100%;
+  overflow: hidden; /* Предотвращаем вылезание */
 }
 
 .footer-grid {
@@ -294,6 +311,7 @@ h3 { font-size: 1.25rem; }
   text-align: center;
 }
 
+/* Медиазапросы - исправляем */
 @media (max-width: 960px) {
   .hero-grid,
   .grid-3,
@@ -310,5 +328,20 @@ h3 { font-size: 1.25rem; }
   .nav {
     flex-wrap: wrap;
     padding-block: 0.8rem;
+  }
+}
+
+/* Исправляем container для мобильных */
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - var(--mobile-padding) * 2);
+  }
+  
+  .article-content {
+    padding: var(--mobile-padding);
+  }
+  
+  .footer-grid {
+    gap: 2rem; /* Увеличиваем отступы между блоками на мобилках */
   }
 }
