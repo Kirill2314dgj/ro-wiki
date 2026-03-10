@@ -1,308 +1,321 @@
 /* assets/css/wiki.css */
 /* Дополнительные стили для страниц статей Wiki (гайды, туториалы) */
 
-/* --- Прогресс-бар (оставляем как есть, но можно добавить твики) --- */
+/* --- Прогресс-бар --- */
 .progress-container {
-    width: 100%;
-    height: 4px;
-    background: rgba(255, 255, 255, 0.1);
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9999;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
 }
 
 .progress-bar {
-    height: 4px;
-    background: linear-gradient(90deg, #00a2ff, #0066cc, #00a2ff);
-    background-size: 200% 100%;
-    width: 0%;
-    transition: width 0.1s ease;
-    box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
-    animation: gradientShift 2s linear infinite;
+  height: 4px;
+  background: linear-gradient(90deg, #00a2ff, #0066cc, #00a2ff);
+  background-size: 200% 100%;
+  width: 0%;
+  transition: width 0.1s ease;
+  box-shadow: 0 0 10px rgba(0, 162, 255, 0.5);
+  animation: gradientShift 2s linear infinite;
 }
 
 @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 200% 50%; }
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
 }
 
 body {
-    margin-top: 4px; /* Чтобы контент не скрывался под прогресс-баром */
+  margin-top: 4px;
 }
+
 .site-header {
-    top: 4px; /* Чтобы хедер тоже начинался под прогресс-баром */
+  top: 4px;
 }
 
 /* --- Блок "Поделиться" (Share) --- */
 .share-wrap {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin: 0.5rem 0;
-    flex-wrap: wrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0.5rem 0;
+  flex-wrap: wrap;
 }
 
 .btn-share {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.2rem;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #fff;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #fff;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .btn-share:hover {
-    background: linear-gradient(145deg, #333, #222);
-    border-color: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  background: linear-gradient(145deg, #333, #222);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
+
 .btn-share:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
+
 .btn-share svg {
-    width: 18px;
-    height: 18px;
-    fill: currentColor;
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
 }
 
 .share-links {
-    display: inline-flex;
-    gap: 0.5rem;
-    align-items: center;
-    animation: slideIn 0.3s ease;
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  animation: slideIn 0.3s ease;
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(-10px); }
-    to { opacity: 1; transform: translateX(0); }
+  from { opacity: 0; transform: translateX(-10px); }
+  to { opacity: 1; transform: translateX(0); }
 }
 
 .share-links[aria-hidden="true"] {
-    display: none;
+  display: none;
 }
 
 .share-links a {
-    text-decoration: none;
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #fff;
-    font-weight: 500;
-    transition: all 0.2s ease;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
 .share-links a:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateY(-2px);
-    border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* --- Уведомление (Toast) для Share --- */
 .share-toast {
-    position: fixed;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 20px;
-    background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
-    color: #fff;
-    padding: 0.8rem 1.5rem;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-    display: none;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    font-weight: 500;
-    backdrop-filter: blur(10px);
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 20px;
+  background: linear-gradient(145deg, #2a2a2a, #1a1a1a);
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  backdrop-filter: blur(10px);
 }
 
 .share-toast.show {
-    display: block;
-    animation: slideUp 0.3s ease;
+  display: block;
+  animation: slideUp 0.3s ease;
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translate(-50%, 20px); }
-    to { opacity: 1; transform: translate(-50%, 0); }
+  from { opacity: 0; transform: translate(-50%, 20px); }
+  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 /* --- Мета-информация статьи (дата, автор) --- */
 .article-meta {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    color: #888;
-    font-size: 0.9rem;
-    margin: 1rem 0 2rem 0;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  color: #888;
+  font-size: 0.9rem;
+  margin: 1rem 0 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
 }
 
 .article-meta-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .article-meta-item svg {
-    width: 16px;
-    height: 16px;
-    fill: #888;
+  width: 16px;
+  height: 16px;
+  fill: #888;
 }
 
 .article-meta-item time {
-    color: #aaa;
+  color: #aaa;
 }
 
-/* --- Стили для контента статьи (карточки шагов, боксы, оглавление) --- */
+/* --- Стили для контента статьи --- */
 .warning-box {
-    background: rgba(220, 53, 69, 0.15);
-    border-left: 6px solid #dc3545;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
+  background: rgba(220, 53, 69, 0.15);
+  border-left: 6px solid #dc3545;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
 }
 
 .info-box {
-    background: rgba(23, 162, 184, 0.15);
-    border-left: 6px solid #17a2b8;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
+  background: rgba(23, 162, 184, 0.15);
+  border-left: 6px solid #17a2b8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
 }
 
 .tip-box {
-    background: rgba(40, 167, 69, 0.15);
-    border-left: 6px solid #28a745;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin: 2rem 0;
+  background: rgba(40, 167, 69, 0.15);
+  border-left: 6px solid #28a745;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
 }
 
 .step-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 1.5rem;
-    margin: 1.5rem 0;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .step-number {
-    display: inline-block;
-    background: linear-gradient(145deg, #00a2ff, #0066cc);
-    color: white;
-    font-weight: bold;
-    font-size: 1.2rem;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 36px;
-    margin-right: 1rem;
-    flex-shrink: 0; /* Запрещаем сжиматься на мобилках */
+  display: inline-block;
+  background: linear-gradient(145deg, #00a2ff, #0066cc);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 36px;
+  margin-right: 1rem;
+  flex-shrink: 0;
 }
 
 .step-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .step-image {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 1rem;
-    margin: 1.5rem 0;
-    text-align: center;
-    border: 1px dashed rgba(255, 255, 255, 0.2);
-    color: #888;
-    font-style: italic;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  color: #888;
+  font-style: italic;
 }
 
 .step-image img {
-    max-width: 100%;
-    border-radius: 8px;
+  max-width: 100%;
+  border-radius: 8px;
 }
 
 .table-of-contents {
-    background: rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
-    border-radius: 8px;
-    margin: 2rem 0;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
 }
 
 .table-of-contents ul {
-    columns: 2;
-    column-gap: 2rem;
-    margin-bottom: 0; /* Убираем лишний отступ снизу */
+  columns: 2;
+  column-gap: 2rem;
+  margin-bottom: 0;
 }
 
 .related-articles {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 .related-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    padding: 1rem;
-    transition: transform 0.2s;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 1rem;
+  transition: transform 0.2s;
 }
 
 .related-card:hover {
-    transform: translateY(-2px);
-    border-color: #00a2ff;
+  transform: translateY(-2px);
+  border-color: #00a2ff;
 }
 
 /* --- Хлебные крошки --- */
 .post-breadcrumb {
-    margin-bottom: 1rem;
-    color: #888;
-    font-size: 0.9rem;
-}
-.post-breadcrumb a {
-    color: #888;
-    text-decoration: none;
-}
-.post-breadcrumb a:hover {
-    color: var(--primary);
+  margin-bottom: 1rem;
+  color: #888;
+  font-size: 0.9rem;
 }
 
-/* --- Стили для кода (из второй статьи) --- */
-pre.panel {
-    padding: 0.9rem;
-    overflow: auto;
-    background: var(--bg); /* Используем переменную из global.css */
-    border-radius: var(--radius);
+.post-breadcrumb a {
+  color: #888;
+  text-decoration: none;
 }
+
+.post-breadcrumb a:hover {
+  color: var(--primary);
+}
+
+/* --- Стили для изображений в статьях --- */
+.article-content img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+/* --- Стили для кода --- */
+pre.panel {
+  padding: 0.9rem;
+  overflow: auto;
+  background: var(--bg);
+  border-radius: var(--radius);
+}
+
 pre code {
-    font-family: 'Courier New', monospace;
+  font-family: 'Courier New', monospace;
 }
 
 .callout {
-    border-left: 4px solid var(--success);
-    background: color-mix(in srgb, var(--success), transparent 90%);
-    padding: 0.8rem 0.9rem;
-    border-radius: 8px;
-    margin: 1rem 0;
+  border-left: 4px solid var(--success);
+  background: color-mix(in srgb, var(--success), transparent 90%);
+  padding: 0.8rem 0.9rem;
+  border-radius: 8px;
+  margin: 1rem 0;
 }
 
 /* ====================================================================
@@ -310,83 +323,103 @@ pre code {
    ==================================================================== */
 
 @media (max-width: 768px) {
-    /* Адаптация заголовка и блока с кнопкой Share */
-    .article-content > div:first-child {
-        flex-direction: column;
-        align-items: flex-start !important;
-    }
-    .btn-share {
-        width: 100%;
-        justify-content: center;
-    }
-    .share-links {
-        width: 100%;
-        justify-content: center;
-    }
-    .share-links a {
-        flex: 1;
-        text-align: center;
-    }
+  /* Адаптация заголовка и блока с кнопкой Share */
+  .article-content > div:first-child {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+  
+  .btn-share {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .share-links {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .share-links a {
+    flex: 1;
+    text-align: center;
+  }
 
-    /* Адаптация мета-информации */
-    .article-meta {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-    }
+  /* Адаптация мета-информации */
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
 
-    /* Адаптация оглавления */
-    .table-of-contents ul {
-        columns: 1; /* Делаем оглавление в одну колонку */
-    }
+  /* Адаптация оглавления */
+  .table-of-contents ul {
+    columns: 1;
+  }
 
-    /* Адаптация карточек шагов */
-    .step-card {
-        padding: 1rem; /* Уменьшаем паддинг */
-    }
-    .step-title {
-        font-size: 1.2rem;
-    }
-    .step-number {
-        width: 30px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 1rem;
-        margin-right: 0.75rem;
-    }
+  /* Адаптация карточек шагов */
+  .step-card {
+    padding: 1rem;
+  }
+  
+  .step-title {
+    font-size: 1.2rem;
+  }
+  
+  .step-number {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 1rem;
+    margin-right: 0.75rem;
+  }
 
-    /* Убираем лишние отступы у боксов */
-    .warning-box,
-    .info-box,
-    .tip-box {
-        padding: 1rem;
-        margin: 1.5rem 0;
-    }
+  /* Уменьшаем отступы у боксов */
+  .warning-box,
+  .info-box,
+  .tip-box {
+    padding: 1rem;
+    margin: 1.5rem 0;
+  }
 
-    /* Адаптация сетки похожих статей */
-    .related-articles {
-        grid-template-columns: 1fr; /* В одну колонку */
-    }
+  /* Адаптация сетки похожих статей */
+  .related-articles {
+    grid-template-columns: 1fr;
+  }
 
-    /* Уменьшаем размер шрифта для pre */
-    pre.panel {
-        font-size: 0.85rem;
-        padding: 0.7rem;
-    }
+  /* Уменьшаем размер шрифта для pre */
+  pre.panel {
+    font-size: 0.85rem;
+    padding: 0.7rem;
+  }
+  
+  /* Адаптация сайдбара */
+  .article-aside {
+    margin-top: 2rem;
+  }
 }
 
-/* Для совсем маленьких экранов (до 480px) */
 @media (max-width: 480px) {
-    .step-title {
-        font-size: 1.1rem;
-    }
-    .table-of-contents h2,
-    .warning-box h2,
-    .info-box h2,
-    .tip-box h2 {
-        font-size: 1.2rem;
-    }
-    h1 {
-        font-size: 1.6rem; /* Подгоняем размер главного заголовка */
-    }
+  .step-title {
+    font-size: 1.1rem;
+  }
+  
+  .table-of-contents h2,
+  .warning-box h2,
+  .info-box h2,
+  .tip-box h2 {
+    font-size: 1.2rem;
+  }
+  
+  h1 {
+    font-size: 1.6rem;
+  }
+  
+  .article-content h2 {
+    font-size: 1.4rem;
+  }
+  
+  .article-content h3 {
+    font-size: 1.2rem;
+  }
 }
