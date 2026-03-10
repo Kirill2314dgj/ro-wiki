@@ -1,14 +1,14 @@
 /* assets/css/wiki.css */
-/* Стили только для страниц Wiki - ПОЛНАЯ ВЕРСИЯ */
+/* Универсальные стили для всех Wiki страниц */
 
 /* === ПРОГРЕСС-БАР === */
 .progress-container {
-  width: 100%;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.1);
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
   z-index: 9999;
 }
 
@@ -31,7 +31,8 @@ body {
   margin-top: 4px !important;
 }
 
-.site-header {
+.site-header,
+.mobile-header {
   top: 4px !important;
 }
 
@@ -93,10 +94,6 @@ body {
   border-color: var(--primary, #6ea8ff);
 }
 
-.btn-share:active {
-  transform: translateY(0);
-}
-
 .btn-share svg {
   width: 18px;
   height: 18px;
@@ -137,7 +134,6 @@ body {
   background: var(--primary, #6ea8ff);
   color: #fff;
   transform: translateY(-2px);
-  border-color: transparent;
 }
 
 /* === ТОСТ-УВЕДОМЛЕНИЕ === */
@@ -184,7 +180,7 @@ body {
   color: var(--text-muted, #888);
   text-decoration: none;
   font-size: 0.95rem;
-  transition: color 0.2s;
+  transition: all 0.2s;
   display: inline-block;
   padding: 0.2rem 0;
 }
@@ -194,21 +190,27 @@ body {
   transform: translateX(3px);
 }
 
+.article-aside hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--border, rgba(255,255,255,0.1));
+}
+
 /* === БЛОК КОДА === */
-pre.panel {
+pre {
+  background: var(--bg-tertiary, var(--bg-elev, #1a1d23));
   padding: 1rem;
+  border-radius: 8px;
   overflow-x: auto;
-  background: var(--bg, #0f1117);
-  border: 1px solid var(--border, #2a3040);
-  border-radius: var(--radius, 14px);
-  font-family: 'Courier New', monospace;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--text, #e8ecf3);
+  font-size: 0.9rem;
+  margin: 16px 0;
+  border: 1px solid var(--border, rgba(255,255,255,0.1));
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
 }
 
 code {
-  background: var(--bg, #0f1117);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  background: var(--bg-tertiary, var(--bg, #0f1117));
   padding: 0.2rem 0.4rem;
   border-radius: 4px;
   font-size: 0.9em;
@@ -238,11 +240,253 @@ code {
   margin-bottom: 0.75rem;
 }
 
-.article-content h2:first-of-type {
-  margin-top: 1rem;
+/* === STEP CARDS (для второй страницы) === */
+.step-card {
+  background: var(--card-bg, rgba(255,255,255,0.02));
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 12px;
+  padding: 20px;
+  margin: 20px 0;
 }
 
-/* === АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ === */
+.step-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(145deg, #00a2ff, #0066cc);
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: white;
+}
+
+.step-image {
+  background: var(--bg-tertiary, #1a1d23);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  border: 1px dashed var(--border, rgba(255,255,255,0.08));
+  color: var(--text-muted, #6c7a8e);
+  margin: 16px 0;
+}
+
+/* === INFO BOXES === */
+.info-box, .tip-box, .warning-box {
+  padding: 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-left: 4px solid;
+}
+
+.info-box {
+  background: rgba(23, 162, 184, 0.1);
+  border-left-color: #17a2b8;
+}
+
+.tip-box {
+  background: rgba(40, 167, 69, 0.1);
+  border-left-color: #28a745;
+}
+
+.warning-box {
+  background: rgba(220, 53, 69, 0.1);
+  border-left-color: #dc3545;
+}
+
+/* === TABLE OF CONTENTS (для второй страницы) === */
+.table-of-contents {
+  background: var(--bg-tertiary, var(--bg-elev, #1a1d23));
+  padding: 16px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+}
+
+.table-of-contents ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.table-of-contents li {
+  margin-bottom: 8px;
+}
+
+.table-of-contents a {
+  color: var(--text-secondary, #9aa4b8);
+  text-decoration: none;
+}
+
+.table-of-contents a:hover {
+  color: var(--primary, #6ea8ff);
+}
+
+/* === ХЛЕБНЫЕ КРОШКИ (для второй страницы) === */
+.breadcrumbs {
+  color: var(--text-muted, #888);
+  font-size: 0.85rem;
+  margin-bottom: 16px;
+}
+
+.breadcrumbs a {
+  color: var(--text-muted, #888);
+  text-decoration: none;
+}
+
+.breadcrumbs a:hover {
+  color: var(--primary, #6ea8ff);
+}
+
+/* === МОБИЛЬНЫЙ ХЕДЕР (для второй страницы) === */
+.mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: var(--bg-primary, var(--bg));
+  border-bottom: 1px solid var(--border);
+  height: 60px;
+  display: flex;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(var(--bg-rgb, 10,12,16), 0.95);
+}
+
+.mobile-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hamburger {
+  background: var(--bg-tertiary, var(--bg-elev));
+  border: 1px solid var(--border);
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+}
+
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100vh - 60px);
+  background: var(--bg-secondary, var(--bg-elev));
+  z-index: 999;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  overflow-y: auto;
+  padding: 20px;
+  border-right: 1px solid var(--border);
+}
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+
+.mobile-menu ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.mobile-menu li {
+  margin-bottom: 12px;
+}
+
+.mobile-menu a {
+  color: var(--text-secondary, var(--text-muted));
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px 0;
+  display: block;
+  border-bottom: 1px solid var(--border);
+}
+
+.mobile-menu a:hover {
+  color: var(--primary);
+}
+
+.theme-toggle-mobile {
+  margin-top: 20px;
+  padding: 12px;
+  background: var(--bg-tertiary, var(--bg-elev));
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  width: 100%;
+  cursor: pointer;
+}
+
+/* === ДЕСКТОП НАВИГАЦИЯ (для второй страницы) === */
+.desktop-nav {
+  display: none;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex !important;
+  }
+  
+  .hamburger {
+    display: none;
+  }
+  
+  .mobile-menu {
+    display: none;
+  }
+}
+
+.desktop-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.desktop-nav a:hover {
+  color: var(--primary);
+}
+
+/* === АДАПТАЦИЯ === */
 @media (max-width: 960px) {
   .article-layout {
     grid-template-columns: 1fr !important;
@@ -252,16 +496,10 @@ code {
   .article-aside {
     position: static !important;
     top: auto !important;
-    order: 2;
-  }
-
-  .article-content {
-    order: 1;
   }
 }
 
 @media (max-width: 768px) {
-  /* Шапка статьи */
   .article-content > div:first-child {
     flex-direction: column !important;
     align-items: flex-start !important;
@@ -270,134 +508,75 @@ code {
 
   h1 {
     font-size: 1.8rem !important;
-    margin-bottom: 0.5rem !important;
   }
 
-  /* Шеринг */
   .share-wrap {
     width: 100%;
-    flex-direction: row;
-    justify-content: stretch;
   }
 
   .btn-share {
-    flex: 1;
-    white-space: nowrap;
-    padding: 0.7rem 0.8rem;
-    font-size: 0.9rem;
+    width: 100%;
   }
 
   .share-links {
     width: 100%;
-    justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   .share-links a {
-    flex: 1;
+    width: 100%;
     text-align: center;
-    min-width: 80px;
-    padding: 0.6rem 0.2rem;
-    font-size: 0.85rem;
   }
 
-  /* Мета */
   .article-meta {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.6rem;
-    margin: 1rem 0 1.5rem 0;
   }
 
-  /* Код */
-  pre.panel {
-    font-size: 0.8rem;
-    padding: 0.75rem;
-    white-space: pre-wrap;
-    word-break: break-word;
+  .step-card {
+    padding: 15px;
   }
 
-  /* Сайдбар */
-  .article-aside {
-    margin-top: 1rem;
-    padding: 1rem !important;
-  }
-
-  .article-aside ul {
+  .table-of-contents ul {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 0.5rem 1rem;
-  }
-
-  .article-aside li {
-    margin-bottom: 0;
-  }
-
-  .article-aside a {
-    font-size: 0.9rem;
-  }
-
-  /* Картинки */
-  .article-content img {
-    margin: 1rem 0;
+    gap: 8px;
   }
 }
 
 @media (max-width: 480px) {
-  .share-wrap {
-    flex-direction: column;
-  }
-
-  .btn-share {
-    width: 100%;
-  }
-
-  .share-links {
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-
-  .share-links a {
-    width: 100%;
-  }
-
-  .article-aside ul {
+  .table-of-contents ul {
     grid-template-columns: 1fr;
   }
-
-  .article-meta-item {
-    font-size: 0.8rem;
-  }
-
-  pre.panel {
-    font-size: 0.75rem;
+  
+  .step-title {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
 /* === СВЕТЛАЯ ТЕМА === */
+:root[data-theme='light'] {
+  --card-bg: rgba(0,0,0,0.02);
+  --bg-primary: #f5f7fb;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f0f2f5;
+}
+
 :root[data-theme='light'] .btn-share,
 :root[data-theme='light'] .share-links a {
-  background: #fff;
+  background: #ffffff;
   color: #1b2230;
   border-color: #dbe2ef;
 }
 
-:root[data-theme='light'] .btn-share:hover {
-  background: var(--primary, #2b6fff);
-  color: #fff;
+:root[data-theme='light'] .step-number {
+  color: white;
 }
 
-:root[data-theme='light'] .share-links a:hover {
-  background: var(--primary, #2b6fff);
-  color: #fff;
-}
-
-:root[data-theme='light'] pre.panel {
-  background: #f5f7fb;
-  color: #1b2230;
-}
-
+:root[data-theme='light'] pre,
 :root[data-theme='light'] code {
   background: #f5f7fb;
-  color: #2b6fff;
+  color: #1b2230;
 }
