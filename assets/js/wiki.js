@@ -161,28 +161,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // === LIGHTBOX ДЛЯ ИЗОБРАЖЕНИЙ ===
     function initLightbox() {
-        // Создаем элементы lightbox, если их нет
-        if (!document.getElementById('lightboxModal')) {
-            const lightboxHTML = `
-                <div class="lightbox-modal" id="lightboxModal" onclick="lightboxClick(event)">
-                    <div class="lightbox-content">
-                        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-                        <img id="lightboxImage" src="" alt="">
-                        <div class="lightbox-caption" id="lightboxCaption"></div>
-                    </div>
-                </div>
-            `;
-            document.body.insertAdjacentHTML('beforeend', lightboxHTML);
-        }
-
         const lightboxModal = document.getElementById('lightboxModal');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxCaption = document.getElementById('lightboxCaption');
 
-        if (!lightboxModal || !lightboxImage || !lightboxCaption) return;
+        if (!lightboxModal || !lightboxImage || !lightboxCaption) {
+            console.log('Lightbox elements not found');
+            return;
+        }
 
         // Функция открытия lightbox
         window.openLightbox = function(imgElement) {
+            console.log('Opening lightbox with image:', imgElement.src);
             lightboxImage.src = imgElement.src;
             lightboxImage.alt = imgElement.alt || 'Full size image';
             lightboxCaption.textContent = imgElement.alt || imgElement.title || 'Image preview';
@@ -192,6 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Функция закрытия lightbox
         window.closeLightbox = function() {
+            console.log('Closing lightbox');
             lightboxModal.classList.remove('active');
             document.body.style.overflow = ''; // возвращаем прокрутку
             // Очищаем src после закрытия
@@ -217,9 +208,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Добавляем обработчики для всех изображений в статье
         function addClickHandlersToImages() {
             const articleImages = document.querySelectorAll('.article-content img');
-            articleImages.forEach(img => {
+            console.log('Found images:', articleImages.length);
+            
+            articleImages.forEach((img, index) => {
                 // Убеждаемся, что у изображения есть src
                 if (img.src) {
+                    console.log(`Adding click handler to image ${index}:`, img.src);
+                    
                     // Удаляем старый обработчик, если был
                     img.removeEventListener('click', img.clickHandler);
                     
@@ -233,45 +228,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     // Добавляем атрибут для стилей
                     img.setAttribute('data-lightbox', 'true');
-                    
-                    // Добавляем кнопку для открытия (опционально)
-                    addOpenButtonToImage(img);
+                    img.style.cursor = 'pointer';
                 }
             });
-        }
-
-        // Добавляем кнопку "Открыть" рядом с изображением (опционально)
-        function addOpenButtonToImage(img) {
-            // Проверяем, есть ли уже кнопка
-            const container = img.parentElement;
-            if (!container) return;
-            
-            // Ищем существующую кнопку
-            const existingBtn = container.querySelector('.image-open-btn');
-            if (existingBtn) return;
-
-            // Создаем кнопку
-            const btn = document.createElement('button');
-            btn.className = 'image-open-btn';
-            btn.innerHTML = `
-                <svg viewBox="0 0 24 24" width="18" height="18">
-                    <path d="M15 3h6v6h-2V5h-4V3zM9 3v2H5v4H3V3h6zm6 18v-2h4v-4h2v6h-6zm-6 0H3v-6h2v4h4v2z"/>
-                </svg>
-                View full size
-            `;
-            
-            // Добавляем обработчик
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                openLightbox(img);
-            });
-            
-            // Вставляем после изображения или его контейнера
-            if (container.tagName === 'P' || container.tagName === 'DIV') {
-                container.insertAdjacentElement('afterend', btn);
-            } else {
-                img.insertAdjacentElement('afterend', btn);
-            }
         }
 
         // Запускаем добавление обработчиков
@@ -300,6 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function initImageErrorHandling() {
         document.querySelectorAll('.article-content img').forEach(img => {
             img.addEventListener('error', function() {
+                console.log('Image failed to load:', this.src);
                 // Если изображение не загрузилось, показываем заглушку
                 this.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%25\' height=\'100%25\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'monospace\' font-size=\'14\'%3EImage not found%3C/text%3E%3C/svg%3E';
                 this.alt = 'Image failed to load';
@@ -313,6 +273,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initDates();
     initSmoothScroll();
     initActiveSection();
-    initLightbox();
+    initLightbox(); // Добавляем инициализацию lightbox
     initImageErrorHandling();
 });
