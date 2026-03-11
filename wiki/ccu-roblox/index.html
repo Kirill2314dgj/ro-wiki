@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>What is CCU in Roblox? Complete Guide for Developers (2026) — RO-Wiki</title>
+  <meta name="description" content="Learn everything about CCU (Concurrent Users) in Roblox: what it means, why it matters for developers, how to track it, and tips to increase your game's CCU.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://ro-wiki.fun/wiki/what-is-ccu-roblox/">
+  <link rel="icon" type="image/png" href="/assets/img/favicon.png">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="What is CCU in Roblox? Complete Guide for Developers (2026)">
+  <meta property="og:description" content="CCU (Concurrent Users) is one of the most important metrics for Roblox developers. Learn how to track, analyze, and improve your game's CCU.">
+  <meta property="og:url" content="https://ro-wiki.fun/wiki/what-is-ccu-roblox/">
+  <meta property="og:image" content="https://images.rbxcdn.com/8fgg7h6j5k4l3m2n1o0p9q8r7s6t5u4v3w2x1y0z.jpg">
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/wiki.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What is CCU in Roblox? Complete Guide for Developers",
+    "description": "Complete guide explaining CCU (Concurrent Users) in Roblox: definition, importance, how to check it, and strategies to increase your game's player count.",
+    "author": {
+      "@type": "Person",
+      "name": "RO-Wiki Team"
+    },
+    "datePublished": "2026-03-11",
+    "dateModified": "2026-03-11",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://ro-wiki.fun/wiki/what-is-ccu-roblox/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- Прогресс-бар при скролле -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="/"><span class="brand-mark"></span><span>RO-Wiki</span></a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/wiki/" aria-current="page">Wiki</a></li>
+        <li><a href="/policy/">Policy</a></li>
+      </ul>
+      <button class="theme-toggle" data-theme-toggle type="button">Theme</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container article-layout">
+      <article class="panel article-content">
+        <div style="display:flex; align-items:center; gap:1rem; justify-content:space-between; flex-wrap:wrap;">
+          <h1 style="margin:0;">What is CCU in Roblox? Complete Guide for Developers (2026)</h1>
+
+          <div class="share-wrap">
+            <button id="shareBtn" class="btn-share" aria-label="Share article">
+              <svg viewBox="0 0 24 24" width="18" height="18">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L7.04 9.81C6.5 9.31 5.79 9 5 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+              </svg>
+              Share
+            </button>
+            <div class="share-links" id="shareLinks" aria-hidden="true">
+              <a id="twShare" target="_blank" rel="noopener">𝕏 Twitter</a>
+              <a id="tgShare" target="_blank" rel="noopener">📱 Telegram</a>
+              <a id="vkShare" target="_blank" rel="noopener">📘 VK</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Мета-информация статьи -->
+        <div class="article-meta">
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-.5-13v6l5.25 3.15.75-1.23-4.5-2.67V7z"/>
+            </svg>
+            <time datetime="2026-03-11">March 11, 2026</time>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm0 2c-1.66 0-5 1.34-5 4v2h10v-2c0-2.66-3.34-4-5-4z"/>
+            </svg>
+            <span>By RO-Wiki Team</span>
+          </div>
+          <div class="article-meta-item">
+            <svg viewBox="0 0 24 24" width="16" height="16">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+            </svg>
+            <span>6 min read</span>
+          </div>
+        </div>
+
+        <p class="lead">If you're a Roblox developer, you've probably seen the term "CCU" thrown around in Discord servers, developer forums, and YouTube videos. But what exactly does it mean, and why should you care? This guide explains everything you need to know about Concurrent Users in Roblox.</p>
+
+        <!-- Основное изображение -->
+        <div style="margin: 2rem 0;">
+          <img src="https://images.rbxcdn.com/8fgg7h6j5k4l3m2n1o0p9q8r7s6t5u4v3w2x1y0z.jpg" alt="Roblox CCU graph showing concurrent players" style="max-width:100%; border-radius:12px; cursor:pointer;">
+          <p style="color: #888; font-size:0.9rem; margin-top:0.5rem;">Example of CCU tracking in Roblox Creator Dashboard</p>
+        </div>
+
+        <!-- Оглавление -->
+        <div class="table-of-contents">
+          <h2>📖 In this guide</h2>
+          <ul>
+            <li><a href="#what-is-ccu">🔍 What is CCU?</a></li>
+            <li><a href="#why-important">⭐ Why CCU Matters for Developers</a></li>
+            <li><a href="#how-to-check">📊 How to Check Your Game's CCU</a></li>
+            <li><a href="#good-ccu">📈 What is a "Good" CCU?</a></li>
+            <li><a href="#peak-times">⏰ Peak Times and Trends</a></li>
+            <li><a href="#increase-ccu">🚀 How to Increase Your CCU</a></li>
+            <li><a href="#ccu-vs-visits">🔄 CCU vs Total Visits: Key Differences</a></li>
+            <li><a href="#faq">❓ Frequently Asked Questions</a></li>
+          </ul>
+        </div>
+
+        <h2 id="what-is-ccu">🔍 What is CCU?</h2>
+        <p><strong>CCU stands for Concurrent Users</strong> (or Concurrent Players). It represents the number of players actively playing your game at any given moment. Unlike total visits or daily active users, CCU shows you the real-time popularity of your experience.</p>
+        
+        <div class="info-box">
+          <strong>Simple definition:</strong> If your game has 500 CCU, that means 500 people are playing your game RIGHT NOW across all servers.
+        </div>
+
+        <p>Think of CCU like a restaurant's occupancy – it tells you how many customers are currently sitting at tables, not how many walked through the door today.</p>
+
+        <h2 id="why-important">⭐ Why CCU Matters for Developers</h2>
+        <p>CCU isn't just a vanity metric – it directly impacts your success on Roblox:</p>
+        
+        <ul>
+          <li><strong>Algorithm Boost:</strong> Roblox's discovery algorithm favors games with high and consistent CCU. More concurrent players = more visibility on the front page and in recommendations.</li>
+          <li><strong>Monetization:</strong> More active players means more potential purchases of game passes, developer products, and private servers.</li>
+          <li><strong>Server Costs:</strong> Higher CCU requires more servers, which affects your infrastructure planning (especially if you use paid servers).</li>
+          <li><strong>Player Retention:</strong> Games with healthy CCU feel more alive, which encourages new players to stay and invites their friends to join.</li>
+          <li><strong>Sponsorship Value:</strong> Brands and collaborators often look at your average CCU to determine your game's reach and engagement.</li>
+        </ul>
+
+        <div class="tip-box">
+          <strong>Developer tip:</strong> Track your CCU trends over time rather than focusing on single spikes. A game that maintains 200 CCU for weeks is often more valuable than one that peaks at 1000 CCU for a day then drops to zero.
+        </div>
+
+        <h2 id="how-to-check">📊 How to Check Your Game's CCU</h2>
+        <p>Roblox provides several ways to monitor your concurrent users:</p>
+
+        <h3>Method 1: Creator Dashboard</h3>
+        <p>The most detailed analytics are in your Creator Dashboard:</p>
+        <ol>
+          <li>Go to <a href="https://create.roblox.com" target="_blank" rel="noopener">create.roblox.com</a> and log in</li>
+          <li>Click on your experience under "My Creations"</li>
+          <li>Navigate to the "Analytics" tab</li>
+          <li>Look for "Concurrent Users" or "CCU" in the metrics</li>
+        </ol>
+
+        <div class="step-image">
+          <img src="/assets/img/tutorials/ccu/creator-dashboard-ccu.png" alt="Creator Dashboard showing CCU graph" style="max-width:100%;">
+        </div>
+
+        <h3>Method 2: Game Page (Quick Check)</h3>
+        <p>For a quick glance at your game's current popularity:</p>
+        <ol>
+          <li>Go to your game's public page on Roblox.com</li>
+          <li>Look for the "Active" badge near the play button</li>
+          <li>Hover over it to see the exact number of active players</li>
+        </ol>
+
+        <div class="step-image">
+          <img src="/assets/img/tutorials/ccu/game-page-active.png" alt="Roblox game page showing active players" style="max-width:100%;">
+        </div>
+
+        <h3>Method 3: Third-Party Trackers</h3>
+        <p>Sites like <strong>RobloxTrack.com</strong> and <strong>V3rmillion's game tracker</strong> can show historical CCU data for any public game, including competitors.</p>
+
+        <h2 id="good-ccu">📈 What is a "Good" CCU?</h2>
+        <p>This depends entirely on your game's age, genre, and goals:</p>
+
+        <ul>
+          <li><strong>New game (first week):</strong> 50-100 CCU is promising</li>
+          <li><strong>Established indie game:</strong> 200-500 CCU is healthy</li>
+          <li><strong>Mid-tier success:</strong> 1,000-5,000 CCU</li>
+          <li><strong>Front page hits:</strong> 10,000-50,000+ CCU</li>
+          <li><strong>Roblox giants (Adopt Me, Brookhaven):</strong> 100,000-500,000+ CCU</li>
+        </ul>
+
+        <div class="warning-box">
+          <strong>Reality check:</strong> Less than 5% of Roblox games ever reach 1,000 CCU. Don't be discouraged if your game starts small – focus on steady growth and player retention.
+        </div>
+
+        <h2 id="peak-times">⏰ Peak Times and Trends</h2>
+        <p>CCU naturally fluctuates based on:</p>
+        
+        <ul>
+          <li><strong>Time of day:</strong> Evenings and weekends in major time zones see higher activity</li>
+          <li><strong>Holidays:</strong> School breaks, summer vacation, and holidays like Christmas boost CCU across the platform</li>
+          <li><strong>Updates:</strong> Major game updates typically cause CCU spikes</li>
+          <li><strong>Events:</strong> Roblox-wide events (like The Hunt, Egg Hunt) drive massive CCU</li>
+        </ul>
+
+        <p>Most games follow a daily pattern: lowest CCU around 4-8 AM UTC, highest around 4-10 PM UTC (when US and European players are active).</p>
+
+        <div class="step-image">
+          <img src="/assets/img/tutorials/ccu/ccu-daily-pattern.png" alt="Graph showing daily CCU pattern" style="max-width:100%;">
+        </div>
+
+        <h2 id="increase-ccu">🚀 How to Increase Your CCU</h2>
+        <p>Growing your concurrent users requires a multi-pronged approach:</p>
+
+        <h3>1. Improve Retention (The Most Important Factor)</h3>
+        <p>If players leave after 5 minutes, your CCU will never grow. Focus on:</p>
+        <ul>
+          <li>Polished core gameplay loop</li>
+          <li>Regular content updates</li>
+          <li>Progression systems that keep players coming back</li>
+          <li>Social features (chat, parties, clans)</li>
+        </ul>
+
+        <h3>2. Optimize Your Thumbnail and Icon</h3>
+        <p>A compelling thumbnail increases click-through rate, which brings in new players to boost your CCU.</p>
+
+        <h3>3. Run Events and Updates</h3>
+        <p>Schedule updates during peak hours to maximize the CCU spike. Announce them in advance on your social media.</p>
+
+        <h3>4. Use Influencer Marketing</h3>
+        <p>When a popular YouTuber or TikToker plays your game, you'll see an immediate CCU jump. Make your game influencer-friendly with easy-to-record moments.</p>
+
+        <h3>5. Cross-Promote Within Your Game</h3>
+        <p>If you have multiple games, promote them to each other. Add a "Play Our Other Game" button that opens a new Roblox experience.</p>
+
+        <div class="tip-box">
+          <strong>Pro strategy:</strong> The best time to run ads (Roblox Sponsor or external ads) is when your game already has decent CCU. New players are more likely to stay if they join an active server rather than an empty one.
+        </div>
+
+        <h2 id="ccu-vs-visits">🔄 CCU vs Total Visits: Key Differences</h2>
+        
+        <table style="width:100%; border-collapse:collapse; margin:1.5rem 0;">
+          <thead>
+            <tr style="background:rgba(255,255,255,0.1);">
+              <th style="padding:0.75rem; border:1px solid var(--border); text-align:left;">Metric</th>
+              <th style="padding:0.75rem; border:1px solid var(--border); text-align:left;">What It Measures</th>
+              <th style="padding:0.75rem; border:1px solid var(--border); text-align:left;">Why It Matters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.75rem; border:1px solid var(--border);"><strong>CCU (Concurrent Users)</strong></td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Players online RIGHT NOW</td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Shows real-time popularity, affects Roblox algorithm</td>
+            </tr>
+            <tr>
+              <td style="padding:0.75rem; border:1px solid var(--border);"><strong>Total Visits</strong></td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Total number of play sessions (counts the same player multiple times)</td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Shows overall reach, good for bragging rights</td>
+            </tr>
+            <tr>
+              <td style="padding:0.75rem; border:1px solid var(--border);"><strong>DAU (Daily Active Users)</strong></td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Unique players in a 24-hour period</td>
+              <td style="padding:0.75rem; border:1px solid var(--border);">Shows daily reach, better for retention tracking</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>A game could have 1 million total visits but only 10 CCU – that means lots of people tried it, but few stick around. Conversely, a game with 100,000 total visits and 500 CCU has excellent retention.</p>
+
+        <h2 id="faq">❓ Frequently Asked Questions</h2>
+
+        <h3>Does CCU affect my Robux earnings?</h3>
+        <p>Indirectly, yes. Higher CCU typically means more engagement, which leads to more game pass and developer product purchases. However, CCU alone doesn't determine earnings – a game with 100 whales (big spenders) can earn more than a game with 1,000 free players.</p>
+
+        <h3>Can I see competitor CCU?</h3>
+        <p>Yes! Visit any public game's page on Roblox and hover over the "Active" badge. For historical data, use third-party tracking sites like RobloxTrack.</p>
+
+        <h3>Why did my CCU suddenly drop?</h3>
+        <p>Common reasons include:</p>
+        <ul>
+          <li>It's early morning in major time zones</li>
+          <li>School/work hours in your primary audience's region</li>
+          <li>A competitor released a major update</li>
+          <li>Roblox-wide technical issues</li>
+          <li>Your game has a bug making it unplayable</li>
+        </ul>
+
+        <h3>What's the highest CCU ever on Roblox?</h3>
+        <p>As of 2026, games like <strong>Adopt Me!</strong>, <strong>Brookhaven RP</strong>, and <strong>Pet Simulator 99</strong> have peaked at over <strong>500,000+ concurrent users</strong> during major events. The all-time record is over 2 million CCU for limited-time events.</p>
+
+        <h3>Can I fake or boost CCU?</h3>
+        <p>While some developers use bot networks to inflate numbers, this violates Roblox Terms of Service and can result in a permanent ban. Focus on legitimate growth instead – it's slower but sustainable.</p>
+
+        <h3>How often is CCU updated?</h3>
+        <p>Roblox updates CCU data in near real-time. In the Creator Dashboard, you'll see minute-by-minute fluctuations. On the public game page, it updates every few minutes.</p>
+
+        <!-- Related Articles -->
+        <h2>📚 Related Guides</h2>
+        <div class="related-articles">
+          <div class="related-card">
+            <h3 style="margin-top:0;">How to Analyze Your Game Analytics</h3>
+            <p>Deep dive into all Roblox analytics metrics</p>
+            <a href="/wiki/roblox-analytics-guide/">Read more →</a>
+          </div>
+          <div class="related-card">
+            <h3 style="margin-top:0;">10 Proven Ways to Increase Player Retention</h3>
+            <p>Keep players coming back to your game</p>
+            <a href="/wiki/increase-player-retention/">Read more →</a>
+          </div>
+          <div class="related-card">
+            <h3 style="margin-top:0;">How to Get Your Game on the Front Page</h3>
+            <p>Strategies for Roblox algorithm success</p>
+            <a href="/wiki/front-page-strategy/">Read more →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Обычный сайдбар (виден только на десктопе) -->
+      <aside class="panel article-aside">
+        <h2 style="font-size:1.1rem;">On this page</h2>
+        <ul style="list-style:none; padding-left:0;">
+          <li><a href="#what-is-ccu">🔍 What is CCU?</a></li>
+          <li><a href="#why-important">⭐ Why CCU Matters</a></li>
+          <li><a href="#how-to-check">📊 How to Check CCU</a></li>
+          <li><a href="#good-ccu">📈 What is "Good" CCU?</a></li>
+          <li><a href="#peak-times">⏰ Peak Times</a></li>
+          <li><a href="#increase-ccu">🚀 Increase Your CCU</a></li>
+          <li><a href="#ccu-vs-visits">🔄 CCU vs Visits</a></li>
+          <li><a href="#faq">❓ FAQ</a></li>
+        </ul>
+        <hr>
+        <p class="small"><strong>Last updated:</strong><br>
+        <time datetime="2026-03-11">March 11, 2026</time></p>
+        <hr>
+        <p class="small"><strong>Need help?</strong><br>Contact us at <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a></p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>RO-Wiki</h3>
+        <p class="small">Free knowledge base for Roblox developers. Tutorials, scripts, and best practices from experienced creators.</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p class="small">Email: <a href="mailto:towerobbyproductions@gmail.com">towerobbyproductions@gmail.com</a><br>
+        X: <a href="https://x.com/TowerObbyPR" rel="noopener" target="_blank">@TowerObbyPR</a><br>
+        Roblox: <a href="https://www.roblox.com/communities/102552180/Tower-Obby-Productions" rel="noopener" target="_blank">Tower Obby Productions</a></p>
+      </div>
+      <div>
+        <h3>Legal</h3>
+        <p class="small"><a href="/policy/">Privacy & Policy</a><br><a href="/404.html">404 page</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
+
+  <!-- Lightbox для просмотра изображений -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose">&times;</button>
+      <img id="lightboxImage" src="" alt="">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Подключаем существующие скрипты -->
+  <script src="/assets/js/main.js" defer></script>
+  <script src="/assets/js/toc-mobile.js" defer></script>
+  
+  <!-- Единый скрипт для всей страницы -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // === ПРОГРЕСС-БАР ===
+      function initProgressBar() {
+        const progressBar = document.getElementById('progressBar');
+        if (!progressBar) return;
+        
+        window.addEventListener('scroll', function() {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          progressBar.style.width = scrolled + '%';
+        });
+      }
+
+      // === ШЕРИНГ ===
+      function initSharing() {
+        const shareBtn = document.getElementById('shareBtn');
+        const shareLinks = document.getElementById('shareLinks');
+        const toast = document.getElementById('shareToast');
+        
+        if (!shareBtn || !shareLinks || !toast) return;
+
+        function showToast(message, duration = 3000) {
+          toast.textContent = message;
+          toast.classList.add('show');
+          setTimeout(() => toast.classList.remove('show'), duration);
+        }
+
+        function copyToClipboard(text) {
+          navigator.clipboard.writeText(text).then(() => {
+            showToast('✅ Link copied to clipboard!');
+          }).catch(() => {
+            showToast('❌ Failed to copy link');
+          });
+        }
+
+        function setupShareLinks() {
+          const currentUrl = encodeURIComponent(window.location.href);
+          const title = encodeURIComponent(document.title);
+          
+          const twLink = document.getElementById('twShare');
+          const tgLink = document.getElementById('tgShare');
+          const vkLink = document.getElementById('vkShare');
+          
+          if (twLink) twLink.href = `https://twitter.com/intent/tweet?url=${currentUrl}&text=${title}`;
+          if (tgLink) tgLink.href = `https://t.me/share/url?url=${currentUrl}&text=${title}`;
+          if (vkLink) vkLink.href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
+        }
+
+        shareBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
+          
+          if (isHidden) {
+            shareLinks.setAttribute('aria-hidden', 'false');
+            setupShareLinks();
+          } else {
+            shareLinks.setAttribute('aria-hidden', 'true');
+          }
+        });
+
+        document.querySelectorAll('.share-links a').forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            window.open(this.href, '_blank', 'width=600,height=400');
+            shareLinks.setAttribute('aria-hidden', 'true');
+          });
+        });
+
+        shareBtn.addEventListener('dblclick', function() {
+          copyToClipboard(window.location.href);
+          shareLinks.setAttribute('aria-hidden', 'true');
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
+            shareLinks.setAttribute('aria-hidden', 'true');
+          }
+        });
+      }
+
+      // === ДАТЫ ===
+      function initDates() {
+        const today = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const formattedDate = today.toLocaleDateString('en-US', options);
+        const isoDate = today.toISOString().split('T')[0];
+        
+        document.querySelectorAll('time').forEach(timeEl => {
+          if (!timeEl.getAttribute('datetime')) {
+            timeEl.setAttribute('datetime', isoDate);
+          }
+          if (!timeEl.textContent || timeEl.textContent.trim() === '') {
+            timeEl.textContent = formattedDate;
+          }
+        });
+      }
+
+      // === LIGHTBOX ===
+      function initLightbox() {
+        const lightboxModal = document.getElementById('lightboxModal');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
+
+        if (!lightboxModal || !lightboxImage || !lightboxCaption || !lightboxClose) {
+          console.log('Lightbox elements not found');
+          return;
+        }
+
+        // Функция открытия lightbox
+        function openLightbox(imgElement) {
+          console.log('Opening lightbox with image:', imgElement.src);
+          lightboxImage.src = imgElement.src;
+          lightboxImage.alt = imgElement.alt || 'Full size image';
+          lightboxCaption.textContent = imgElement.alt || imgElement.title || 'Image preview';
+          lightboxModal.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        }
+
+        // Функция закрытия lightbox
+        function closeLightbox() {
+          console.log('Closing lightbox');
+          lightboxModal.classList.remove('active');
+          document.body.style.overflow = '';
+          setTimeout(() => {
+            lightboxImage.src = '';
+          }, 300);
+        }
+
+        // Закрытие по клику на крестик
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Закрытие по клику вне изображения
+        lightboxModal.addEventListener('click', function(event) {
+          if (event.target === lightboxModal) {
+            closeLightbox();
+          }
+        });
+
+        // Закрытие по клавише Escape
+        document.addEventListener('keydown', function(event) {
+          if (event.key === 'Escape' && lightboxModal.classList.contains('active')) {
+            closeLightbox();
+          }
+        });
+
+        // Добавляем обработчики для всех изображений в статье
+        function addClickHandlersToImages() {
+          const articleImages = document.querySelectorAll('.article-content img');
+          console.log('Found images:', articleImages.length);
+          
+          articleImages.forEach((img, index) => {
+            if (img.src) {
+              console.log(`Adding click handler to image ${index}:`, img.src);
+              
+              // Удаляем старый обработчик, если был
+              img.removeEventListener('click', img.clickHandler);
+              
+              // Создаем новый обработчик
+              img.clickHandler = function() {
+                openLightbox(this);
+              };
+              
+              // Добавляем обработчик
+              img.addEventListener('click', img.clickHandler);
+              
+              // Добавляем атрибут для стилей
+              img.setAttribute('data-lightbox', 'true');
+              img.style.cursor = 'pointer';
+            }
+          });
+        }
+
+        // Запускаем добавление обработчиков
+        addClickHandlersToImages();
+
+        // Наблюдаем за изменениями в DOM
+        const observer = new MutationObserver(function(mutations) {
+          mutations.forEach(function(mutation) {
+            if (mutation.addedNodes.length) {
+              addClickHandlersToImages();
+            }
+          });
+        });
+
+        const articleContent = document.querySelector('.article-content');
+        if (articleContent) {
+          observer.observe(articleContent, {
+            childList: true,
+            subtree: true
+          });
+        }
+      }
+
+      // === ЗАПУСК ВСЕХ ФУНКЦИЙ ===
+      initProgressBar();
+      initSharing();
+      initDates();
+      initLightbox();
+    });
+  </script>
+</body>
+</html>
