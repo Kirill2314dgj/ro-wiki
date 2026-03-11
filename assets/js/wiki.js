@@ -23,7 +23,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (!shareBtn || !shareLinks || !toast) return;
 
-        // Показать уведомление
         function showToast(message, duration = 3000) {
             toast.textContent = message;
             toast.classList.add('show');
@@ -32,7 +31,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }, duration);
         }
 
-        // Копирование ссылки
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(() => {
                 showToast('✅ Link copied to clipboard!');
@@ -41,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        // Настройка ссылок для шаринга
         function setupShareLinks() {
             const currentUrl = encodeURIComponent(window.location.href);
             const title = encodeURIComponent(document.title);
@@ -55,7 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
             if (vkLink) vkLink.href = `https://vk.com/share.php?url=${currentUrl}&title=${title}`;
         }
 
-        // Показываем/скрываем ссылки
         shareBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             const isHidden = shareLinks.getAttribute('aria-hidden') === 'true';
@@ -68,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        // Обработка клика по ссылкам
         document.querySelectorAll('.share-links a').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -78,13 +73,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Копирование при двойном клике
         shareBtn.addEventListener('dblclick', function() {
             copyToClipboard(window.location.href);
             shareLinks.setAttribute('aria-hidden', 'true');
         });
 
-        // Закрытие при клике вне
         document.addEventListener('click', function(e) {
             if (!shareBtn.contains(e.target) && !shareLinks.contains(e.target)) {
                 shareLinks.setAttribute('aria-hidden', 'true');
@@ -124,14 +117,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         block: 'start'
                     });
                     
-                    // Обновляем URL без перезагрузки
                     history.pushState(null, null, targetId);
                 }
             });
         });
     }
 
-    // === ПОДСВЕТКА ТЕКУЩЕГО РАЗДЕЛА В САЙДБАРЕ ===
+    // === ПОДСВЕТКА ТЕКУЩЕГО РАЗДЕЛА ===
     function initActiveSection() {
         const sections = document.querySelectorAll('h2[id], h3[id]');
         const navLinks = document.querySelectorAll('.article-aside a[href^="#"]');
@@ -164,39 +156,42 @@ document.addEventListener('DOMContentLoaded', function() {
         const lightboxModal = document.getElementById('lightboxModal');
         const lightboxImage = document.getElementById('lightboxImage');
         const lightboxCaption = document.getElementById('lightboxCaption');
+        const lightboxClose = document.getElementById('lightboxClose');
 
-        if (!lightboxModal || !lightboxImage || !lightboxCaption) {
+        if (!lightboxModal || !lightboxImage || !lightboxCaption || !lightboxClose) {
             console.log('Lightbox elements not found');
             return;
         }
 
         // Функция открытия lightbox
-        window.openLightbox = function(imgElement) {
+        function openLightbox(imgElement) {
             console.log('Opening lightbox with image:', imgElement.src);
             lightboxImage.src = imgElement.src;
             lightboxImage.alt = imgElement.alt || 'Full size image';
             lightboxCaption.textContent = imgElement.alt || imgElement.title || 'Image preview';
             lightboxModal.classList.add('active');
-            document.body.style.overflow = 'hidden'; // запрещаем прокрутку страницы
-        };
+            document.body.style.overflow = 'hidden';
+        }
 
         // Функция закрытия lightbox
-        window.closeLightbox = function() {
+        function closeLightbox() {
             console.log('Closing lightbox');
             lightboxModal.classList.remove('active');
-            document.body.style.overflow = ''; // возвращаем прокрутку
-            // Очищаем src после закрытия
+            document.body.style.overflow = '';
             setTimeout(() => {
                 lightboxImage.src = '';
             }, 300);
-        };
+        }
 
-        // Обработка клика вне изображения
-        window.lightboxClick = function(event) {
+        // Закрытие по клику на крестик
+        lightboxClose.addEventListener('click', closeLightbox);
+
+        // Закрытие по клику вне изображения
+        lightboxModal.addEventListener('click', function(event) {
             if (event.target === lightboxModal) {
                 closeLightbox();
             }
-        };
+        });
 
         // Закрытие по клавише Escape
         document.addEventListener('keydown', function(event) {
@@ -210,10 +205,9 @@ document.addEventListener('DOMContentLoaded', function() {
             const articleImages = document.querySelectorAll('.article-content img');
             console.log('Found images:', articleImages.length);
             
-            articleImages.forEach((img, index) => {
-                // Убеждаемся, что у изображения есть src
+            articleImages.forEach((img) => {
                 if (img.src) {
-                    console.log(`Adding click handler to image ${index}:`, img.src);
+                    console.log('Adding click handler to image:', img.src);
                     
                     // Удаляем старый обработчик, если был
                     img.removeEventListener('click', img.clickHandler);
@@ -236,7 +230,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Запускаем добавление обработчиков
         addClickHandlersToImages();
 
-        // Наблюдаем за изменениями в DOM (на случай динамической загрузки контента)
+        // Наблюдаем за изменениями в DOM
         const observer = new MutationObserver(function(mutations) {
             mutations.forEach(function(mutation) {
                 if (mutation.addedNodes.length) {
@@ -245,7 +239,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
-        // Начинаем наблюдение за контентом статьи
         const articleContent = document.querySelector('.article-content');
         if (articleContent) {
             observer.observe(articleContent, {
@@ -255,18 +248,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // === ОБРАБОТКА ОШИБОК ЗАГРУЗКИ ИЗОБРАЖЕНИЙ ===
-    function initImageErrorHandling() {
-        document.querySelectorAll('.article-content img').forEach(img => {
-            img.addEventListener('error', function() {
-                console.log('Image failed to load:', this.src);
-                // Если изображение не загрузилось, показываем заглушку
-                this.src = 'data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100%25\' height=\'100%25\'%3E%3Crect width=\'100%25\' height=\'100%25\' fill=\'%23333\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' text-anchor=\'middle\' dy=\'.3em\' fill=\'%23999\' font-family=\'monospace\' font-size=\'14\'%3EImage not found%3C/text%3E%3C/svg%3E';
-                this.alt = 'Image failed to load';
-            });
-        });
-    }
-
     // === ЗАПУСК ВСЕХ ФУНКЦИЙ ===
     initProgressBar();
     initSharing();
@@ -274,5 +255,4 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initActiveSection();
     initLightbox(); // Добавляем инициализацию lightbox
-    initImageErrorHandling();
 });
