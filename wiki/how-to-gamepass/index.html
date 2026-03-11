@@ -319,5 +319,16 @@ end)</code></pre>
       });
     });
   </script>
+
+<!-- Lightbox для просмотра изображений -->
+<div class="lightbox-modal" id="lightboxModal" onclick="lightboxClick(event)">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+    <img id="lightboxImage" src="" alt="">
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+</div>
+
+
 </body>
 </html>
